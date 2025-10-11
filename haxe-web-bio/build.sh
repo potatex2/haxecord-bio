@@ -1,78 +1,103 @@
-# Claude AI through NEtlify
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
-# Download and extract Haxe
-echo "Installing Haxe 4.3.2..."
-curl -sSL https://haxe.org/download/file/4.3.2/haxe-4.3.2-linux64.tar.gz/ | tar xz
+# Usage:
+# ./build.sh setup    -> install Haxe/Neko and haxelibs
+# ./build.sh build    -> build (runs setup if needed)
 
-# Download and extract Neko (required for haxelib)
-echo "Installing Neko 2.3.0..."
-curl -sSL https://github.com/HaxeFoundation/neko/releases/download/v2-3-0/neko-2.3.0-linux64.tar.gz | tar xz
+HAXE_VERSION="4.3.2"
+NEKO_VERSION="2-3-0" # GitHub tagging uses 2-3-0
+WORKDIR="$PWD/.haxe-build"
+HAXE_TARBALL="haxe-${HAXE_VERSION}-linux64.tar.gz"
+NEKO_TARBALL="neko-${NEKO_VERSION}-linux64.tar.gz"
 
-# Set up PATH - use the actual extracted directory names
-HAXE_DIR=$(find . -maxdepth 1 -name "haxe*" -type d | head -1)
-NEKO_DIR=$(find . -maxdepth 1 -name "neko*" -type d | head -1)
+mkdir -p "$WORKDIR"
+cd "$WORKDIR"
 
-if [ -z "$HAXE_DIR" ]; then
-    echo "Error: Haxe directory not found after extraction"
+download_and_extract() {
+  local url="$1"
+  local out="$2"
+  echo "Downloading $url"
+  curl -L -sS "$url" -o "$out"
+  echo "Extracting $out"
+  tar -xzf "$out"
+}
+
+install_haxe_and_neko() {
+  # Haxe tarball URL (official GitHub release)
+  HAXE_URL="https://github.com/HaxeFoundation/haxe/releases/download/${HAXE_VERSION}/${HAXE_TARBALL}"
+  NEKO_URL="https://github.com/HaxeFoundation/neko/releases/download/v${NEKO_VERSION}/${NEKO_TARBALL}"
+
+  # Download & extract
+  download_and_extract "$HAXE_URL" "$HAXE_TARBALL"
+  download_and_extract "$NEKO_URL" "$NEKO_TARBALL"
+
+  # Determine extracted directory names (first component of tar)
+  HAXE_DIR=$(tar -tzf "$HAXE_TARBALL" | head -1 | cut -d/ -f1)
+  NEKO_DIR=$(tar -tzf "$NEKO_TARBALL" | head -1 | cut -d/ -f1)
+
+  # Add bin dirs to PATH
+  export PATH="$WORKDIR/$HAXE_DIR/bin:$WORKDIR/$NEKO_DIR/bin:$PATH"
+
+  # For shared libraries used by neko
+  export LD_LIBRARY_PATH="$WORKDIR/$NEKO_DIR/lib:${LD_LIBRARY_PATH:-}"
+
+  echo "Haxe dir: $WORKDIR/$HAXE_DIR"
+  echo "Neko dir: $WORKDIR/$NEKO_DIR"
+}
+
+setup_haxelib_and_libraries() {
+  # Haxelib requires a writable haxelib directory; use HOME-based path so Netlify caching can re-use it
+  export HAXELIB_PATH="${HOME}/.haxelib"
+  mkdir -p "$HAXELIB_PATH"
+
+  echo "Running haxelib setup -> $HAXELIB_PATH"
+  # haxelib setup uses $HAXELIB_PATH if given
+  haxelib setup "$HAXELIB_PATH"
+
+  # Install required libraries. Pin versions where appropriate.
+  echo "Installing haxelibs (lime, openfl, flixel, flixel-addons, flixel-ui)"
+  haxelib install lime 8.1.3 || haxelib install lime
+  haxelib install openfl 9.3.2 || haxelib install openfl
+  haxelib install flixel 5.8.0 || haxelib install flixel
+  haxelib install flixel-addons 3.3.0 || haxelib install flixel-addons
+  haxelib install flixel-ui 2.6.3 || haxelib install flixel-ui
+
+  # Run lime setup to finish
+  haxelib run lime setup
+}
+
+do_build() {
+  echo "Building HTML5..."
+  haxelib run lime build html5 -release
+  echo "Build output should be under export/html5/bin"
+}
+
+# Main control
+case "${1:-all}" in
+  setup)
+    install_haxe_and_neko
+    setup_haxelib_and_libraries
+    echo "Setup completed."
+    ;;
+  build)
+    # If haxe binary not found, run setup first
+    if ! command -v haxe >/dev/null 2>&1; then
+      echo "Haxe not found; running setup first..."
+      install_haxe_and_neko
+      setup_haxelib_and_libraries
+    else
+      echo "Haxe found: $(haxe --version)"
+    fi
+    do_build
+    ;;
+  all)
+    install_haxe_and_neko
+    setup_haxelib_and_libraries
+    do_build
+    ;;
+  *)
+    echo "Usage: $0 {setup|build|all}"
     exit 1
-fi
-
-if [ -z "$NEKO_DIR" ]; then
-    echo "Error: Neko directory not found after extraction"
-    exit 1
-fi
-
-export PATH=$PWD/$HAXE_DIR:$PWD/$NEKO_DIR:$PATH
-export LD_LIBRARY_PATH=$PWD/$NEKO_DIR:$LD_LIBRARY_PATH
-
-echo "Using Haxe directory: $HAXE_DIR"
-echo "Using Neko directory: $NEKO_DIR"
-
-# Verify Haxe installation
-echo "Verifying Haxe installation..."
-if ! command -v haxe &> /dev/null; then
-    echo "Error: Haxe command not found in PATH"
-    exit 1
-fi
-haxe --version
-
-# Verify Neko installation
-echo "Verifying Neko installation..."
-if ! command -v neko &> /dev/null; then
-    echo "Error: Neko command not found in PATH"
-    exit 1
-fi
-neko
-
-# Verify haxelib can run (depends on Neko)
-echo "Verifying haxelib installation..."
-if ! command -v haxelib &> /dev/null; then
-    echo "Error: haxelib command not found in PATH"
-    exit 1
-fi
-haxelib version
-
-# Set up haxelib
-echo "Setting up haxelib..."
-mkdir -p ~/haxelib
-haxelib setup ~/haxelib
-
-# Install dependencies
-echo "Installing dependencies..."
-haxelib install lime
-haxelib install openfl
-haxelib install flixel
-haxelib install flixel-ui
-haxelib install flixel-addons
-
-# Run lime setup
-echo "Setting up lime..."
-haxelib run lime setup
-
-# Build the project
-echo "Building project..."
-haxelib run lime build html5 -release
-
-echo "Build completed successfully!"
+    ;;
+esac
