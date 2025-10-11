@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+chmod +x build.sh
+
 set -euo pipefail
 
 # Usage:
