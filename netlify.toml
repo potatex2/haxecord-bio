@@ -1,10 +1,10 @@
 [build]
-  command = "haxelib setup ~/haxelib && haxelib install lime && haxelib install openfl && haxelib run lime setup && haxelib run lime build html5 -release"
+  command = "./build.sh"
   publish = "export/html5/bin"
 
 [build.environment]
-  HAXE_VERSION = "4.3.5"
-  LIME_VERSION = "8.1.1"
+  HAXE_VERSION = "4.3.2"
+  LIME_VERSION = "8.1.3"
   OPENFL_VERSION = "9.3.2"
 
 [[redirects]]
