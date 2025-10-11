@@ -10,6 +10,7 @@
     },
 
     "dependencies": {
+        "haxe-dev": "^4.3.2",
         "haxe": "4.3.2",
         "haxelib": "4.1.0",
         "lime": "8.1.3",
