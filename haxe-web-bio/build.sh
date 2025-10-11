@@ -3,8 +3,8 @@
 set -e
 
 # Download and extract Haxe
-echo "Installing Haxe 4.3.5..."
-curl -sSL https://github.com/HaxeFoundation/haxe/releases/download/4.3.5/haxe-4.3.5-linux64.tar.gz | tar xz
+echo "Installing Haxe 4.3.2..."
+curl -sSL https://haxe.org/download/file/4.3.2/haxe-4.3.2-linux64.tar.gz/ | tar xz
 
 # Download and extract Neko (required for haxelib)
 echo "Installing Neko 2.3.0..."
