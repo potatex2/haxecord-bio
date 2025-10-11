@@ -20,11 +20,11 @@ cd "$WORKDIR"
 download_and_extract() {
   local url="$1"
   local out="$2"
-  mkdir -p "$(dirname "$out")"   # Ensure folder exists
+  mkdir -p "$WORKDIR"   # Ensure folder exists
   echo "Downloading $url"
   curl -L -sSf "$url" -o "$out"
   echo "Extracting $out"
-  tar -xzf "$out"
+  tar -xzf "$out" -C "$WORKDIR"
 }
 
 install_haxe_and_neko() {
