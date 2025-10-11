@@ -8,10 +8,10 @@ set -euo pipefail
 # ./build.sh build    -> build (runs setup if needed)
 
 HAXE_VERSION="4.3.2"
-NEKO_VERSION="2-3-0" # GitHub tagging uses 2-3-0
+NEKO_VERSION="2-3-0"
 WORKDIR="$PWD/.haxe-build"
 HAXE_TARBALL="haxe-${HAXE_VERSION}-linux64.tar.gz"
-NEKO_TARBALL="neko-${NEKO_VERSION}-linux64.tar.gz"
+NEKO_TARBALL="neko-2.3.0-linux64.tar.gz"
 
 mkdir -p "$WORKDIR"
 cd "$WORKDIR"
@@ -28,7 +28,7 @@ download_and_extract() {
 install_haxe_and_neko() {
   # Haxe tarball URL (official GitHub release)
   HAXE_URL="https://github.com/HaxeFoundation/haxe/releases/download/${HAXE_VERSION}/${HAXE_TARBALL}"
-  NEKO_URL="https://github.com/HaxeFoundation/neko/releases/download/v${NEKO_VERSION}/${NEKO_TARBALL}"
+  NEKO_URL="https://github.com/HaxeFoundation/neko/releases/download/v2-3-0/neko-2.3.0-linux64.tar.gz"
 
   # Download & extract
   download_and_extract "$HAXE_URL" "$HAXE_TARBALL"
