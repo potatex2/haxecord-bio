@@ -2,10 +2,17 @@
     "name": "potatex2-bio",
     "version": "0.1.0",
     "private": true,
+    "scripts": {
+        "install:haxe": "npx haxe-dev setup",
+        "install:haxelibs": "haxelib setup ~/haxelib && haxelib install lime && haxelib install openfl && haxelib install flixel && haxelib install flixel-addons && haxelib install flixel-ui",
+        "build": "haxelib run lime build html5 -release",
+        "start": "haxelib run lime test html5"
+    },
+
     "dependencies": {
         "haxe": "4.3.2",
         "haxelib": "4.1.0",
-        "lime": "18.3.1",
+        "lime": "8.1.3",
         "flixel": "5.8.0",
         "flixel-ui": "2.6.3",
         "flixel-addons": "3.3.0"
