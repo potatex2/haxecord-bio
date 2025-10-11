@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+trap '' PIPE
 chmod +x build.sh
 
 set -euo pipefail
@@ -19,8 +20,9 @@ cd "$WORKDIR"
 download_and_extract() {
   local url="$1"
   local out="$2"
+  mkdir -p "$(dirname "$out")"   # Ensure folder exists
   echo "Downloading $url"
-  curl -L -sS "$url" -o "$out"
+  curl -L -sSf "$url" -o "$out"
   echo "Extracting $out"
   tar -xzf "$out"
 }
