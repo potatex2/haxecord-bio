@@ -1,0 +1,1 @@
+WebStatusState as a test run to substitute manually typing JS code.
