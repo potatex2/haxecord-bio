@@ -1,7 +1,8 @@
 package classes;
 
 import flixel.FlxSubState;
-import flixel.ui.FlxSpriteButton;
+import classes.UI;
+import states.WebStatusState;
 import flixel.FlxG;
 import flixel.tweens.*;
 
@@ -17,9 +18,9 @@ class Page extends FlxSubState {
     // TO-DO: for-loop on each substate instance, closing non-current ones.
     public static var listOfPages:Array<Page> = [];
 
-    var pageName:String;
-    var callback:Void->Void;
-    var isHome:Bool;
+    public var pageName:String;
+    public var callback:Void->Void;
+    public var isHome:Bool;
     var temp:Dynamic;
     /**__Note:__ Icons for href links must be manually initialized with `pushToHeader()`.*/
     public function new(pageName:String, objCreation:()->Void, isHome:Bool = false) {
@@ -29,9 +30,10 @@ class Page extends FlxSubState {
         callback = objCreation;
         this.isHome = isHome;
         initPage();
+        listOfPages.push(this);
+        trace(this);
     }
     function initPage() {
         callback();
     }
-    function pushToHeader() {}
 }

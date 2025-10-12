@@ -29,7 +29,7 @@ class WebStatusState extends FlxState {
     /**Goober.*/
     var bopper:Img;
     /**Base camera for canvas elements.*/
-    var camHUD:HUD;
+    public static var camHUD:HUD;
 
     // Other mf cameras for pages, this is likely so inefficient...
     var camHome:HUD = new HUD();
@@ -123,7 +123,6 @@ So yeah, I'm building my whole profile stuff from scratch with the language I an
         bopper = new Img(FlxG.width + 200, FlxG.height / 2).loadGraphic(RootDirectory + "bozo.png");
         bopper.alpha = 0;
         add(bopper);
-        trace(bopper);
         //bopper.cameras = [camHUD];
 
         realTime = new FlxText(FlxG.width - 405, FlxG.height - 25, 400, "Current Time: ", 20);
@@ -154,7 +153,7 @@ So yeah, I'm building my whole profile stuff from scratch with the language I an
             trace(jason);
         }
         FlxTween.tween(bopper, {alpha: 1, x: FlxG.width*0.7}, 1.7, {ease: FlxEase.sineOut, onComplete: (_) -> {startBop = true; bopConst = bopper.x;}});
-        
+        PageNav.pushToHeader(this);
     }
 
     var boopWay:Bool = true;
@@ -163,7 +162,7 @@ So yeah, I'm building my whole profile stuff from scratch with the language I an
     override function update(elapsed:Float) {
         var secondsTotal:Float = FlxMath.roundDecimal(MusicHandler.time / 1000, 4);
         var croshet:Float = FlxMath.roundDecimal(60 / jason,4);
-        if (secondsTotal % croshet >= 0 && secondsTotal % croshet <= 0.025) {
+        if (secondsTotal % croshet >= 0 && secondsTotal % croshet <= 0.03) {
             if (!delayy) {
                 if (startBop) {
                     FlxTween.completeTweensOf(bopper);
@@ -173,13 +172,13 @@ So yeah, I'm building my whole profile stuff from scratch with the language I an
                         FlxTween.tween(camHUD, {zoom: 1}, croshet*1.02, {ease: FlxEase.sineOut});
                     }
                     bopper.x += (camBeat % 2 == 0 ? 5 : -5);
-                    FlxTween.tween(bopper, {x: bopConst}, croshet/1.5, {ease: FlxEase.expoOut});
+                    FlxTween.tween(bopper, {x: bopConst}, croshet/2.01, {ease: FlxEase.expoOut});
                 }
                 boopWay = !boopWay;
                 bopper.angle = boopWay ? 10 : -10;
                 bopper.scale.set(0.9, 0.9); //YES. IT. DOES.
-                FlxTween.tween(bopper, {angle: 0}, croshet/1.8, {ease: FlxEase.circOut});
-                FlxTween.tween(bopper.scale, {x: 0.75, y: 0.75}, croshet/1.5, {ease: FlxEase.quadOut});
+                FlxTween.tween(bopper, {angle: 0}, croshet/2.01, {ease: FlxEase.circOut});
+                FlxTween.tween(bopper.scale, {x: 0.75, y: 0.75}, croshet/1.8, {ease: FlxEase.quadOut});
                 delayy = true;
                 new FlxTimer().start(croshet/4, (_) -> delayy = false);
             }
