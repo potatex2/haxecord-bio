@@ -1,7 +1,7 @@
 <!--ChatGPT-->
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-    <app title="WebStatusState" file="index.html" main="Main" version="1.0.0" company="PotateX2"/>
+    <app title="PotateX2 ~ WebStatusState.hx" file="index.html" main="Main" version="1.0.0" company="PotateX2"/>
     <window width="1280" height="720" fps="60" background="#000000" />
 
 	<window if="html5" resizable="true" />

@@ -23,7 +23,6 @@ class HTMLBackend {
             var obj:Null<Dynamic> = null;
             if (targ != null) {
                 obj = Json.parse(targ);
-                trace(obj);
             }
             return obj;
         } catch (e) {throw "$$$$$ Parse failed | "+e; return null;}

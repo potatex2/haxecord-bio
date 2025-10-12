@@ -47,22 +47,45 @@ class WebStatusState extends FlxState {
     var files:UI;
     var realTime:FlxText;
 
-    var PageDirectory:Array<String> = ["Home", "Bio", "Status"];
-    var pageList:Array<Page> = [];
+    /**
+        __The root of the page elements to pass objects through in callbacks.__
+    */
+    var __Page_Elements:Map<String, Void->Void> = [];
+
     var preventTransition:Bool = false;
     override function create() {
-        camList.add(camHome);
-        camList.add(camBio);
-        camList.add(camStatus);
-        trace(camList);
+        __Page_Elements = [
+            // Home page
+            "Home" => function() {
+                var placeholder:FlxText = new FlxText(0, 0, 800,
+"Oh, heyo. Looks like you stumbled upon the preliminary structure
+of what's supposed to be my entire Discord profile page.
 
-        var notHomeSet:Bool = true;
-        var iter:Int = 0;
-        for (name => callback in Page.camFuncs) {
-            pageList[iter] = new Page(PageDirectory[iter], camList.members[iter], callback, notHomeSet);
-            iter++;
-            if (notHomeSet) notHomeSet = false;
-        }
+Now for those of you that have seen the Netlify one with all the
+JS and HTML stuff, you might be wondering why I'm using this instead.
+It's simple, really. BRINGING HAXE TO NPM AND JS IS A HASSLE, AAAAA
+
+So yeah, I'm building my whole profile stuff from scratch with the language I analyze the most.
+`(if this isn't in markdown format i'll figure out linting soon for hx format, ugh)`
+\n~ PotateX2 | Sunday, Oct 12, 12:00 am
+
+(Sorry for the lag, optimization soon...)",
+                    16
+                );
+                placeholder.setFormat("PhantomMuff 1.5", 20, 0x00c3e6, "left");
+                add(placeholder);
+            } /*,
+            // About Me pages (tweak later on if nested substates or any other UI will be used)
+            "Bio" => function() {
+
+            },
+            // Current status page
+            "Status" => function() {
+
+            }
+            */
+        ];
+
         Browser.document.body.style.overflowY = "scroll";
         Browser.document.body.style.height = Std.string(2000 + FlxG.height);
 
@@ -73,6 +96,12 @@ class WebStatusState extends FlxState {
         Browser.document.body.appendChild(filler);
 
         super.create();
+        for (pageName => elements in __Page_Elements) {
+            // Note: set a handler for managing substates.
+            openSubState(new Page(pageName, elements));
+            persistentDraw = true;
+            persistentUpdate = true;
+        }
 
         FlxG.autoPause = false;
 		bgGoofy = new BG(RootDirectory + "bgGoofy.png"); 
@@ -124,7 +153,7 @@ class WebStatusState extends FlxState {
             jason = parse.bpm;
             trace(jason);
         }
-        FlxTween.tween(bopper, {alpha: 1, x: FlxG.width/2}, 1.7, {ease: FlxEase.sineOut, onComplete: (_) -> {startBop = true; bopConst = bopper.x;}});
+        FlxTween.tween(bopper, {alpha: 1, x: FlxG.width*0.7}, 1.7, {ease: FlxEase.sineOut, onComplete: (_) -> {startBop = true; bopConst = bopper.x;}});
         
     }
 
@@ -144,12 +173,12 @@ class WebStatusState extends FlxState {
                         FlxTween.tween(camHUD, {zoom: 1}, croshet*1.02, {ease: FlxEase.sineOut});
                     }
                     bopper.x += (camBeat % 2 == 0 ? 5 : -5);
-                    FlxTween.tween(bopper, {x: bopConst}, croshet/1.2, {ease: FlxEase.expoOut});
+                    FlxTween.tween(bopper, {x: bopConst}, croshet/1.5, {ease: FlxEase.expoOut});
                 }
                 boopWay = !boopWay;
                 bopper.angle = boopWay ? 10 : -10;
                 bopper.scale.set(0.9, 0.9); //YES. IT. DOES.
-                FlxTween.tween(bopper, {angle: 0}, croshet/1.4, {ease: FlxEase.circOut});
+                FlxTween.tween(bopper, {angle: 0}, croshet/1.8, {ease: FlxEase.circOut});
                 FlxTween.tween(bopper.scale, {x: 0.75, y: 0.75}, croshet/1.5, {ease: FlxEase.quadOut});
                 delayy = true;
                 new FlxTimer().start(croshet/4, (_) -> delayy = false);

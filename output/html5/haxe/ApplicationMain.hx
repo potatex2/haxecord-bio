@@ -35,10 +35,10 @@ class ApplicationMain
 		ManifestResources.init(config);
 		#end
 
-		app.meta["build"] = "7";
+		app.meta["build"] = "19";
 		app.meta["company"] = "PotateX2";
 		app.meta["file"] = "index.html";
-		app.meta["name"] = "WebStatusState";
+		app.meta["name"] = "PotateX2 ~ WebStatusState.hx";
 		app.meta["packageName"] = "com.example.myapp";
 		app.meta["version"] = "1.0.0";
 
@@ -60,7 +60,7 @@ class ApplicationMain
 			minimized: false,
 			parameters: {},
 			resizable: true,
-			title: "WebStatusState",
+			title: "PotateX2 ~ WebStatusState.hx",
 			width: 1280,
 			x: null,
 			y: null,
@@ -102,7 +102,7 @@ class ApplicationMain
 		app.createWindow(attributes);
 		
 		#elseif air
-		app.window.title = "WebStatusState";
+		app.window.title = "PotateX2 ~ WebStatusState.hx";
 		#else
 		app.window.context.attributes.background = 0;
 		app.window.frameRate = 60;

@@ -1,6 +1,5 @@
 package;
 
-import classes.HTMLBackend;
 import flixel.ui.FlxSpriteButton;
 import openfl.Lib;
 import js.Browser;

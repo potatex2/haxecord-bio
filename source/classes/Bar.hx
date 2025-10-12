@@ -23,8 +23,8 @@ class Bar extends FlxSpriteGroup
 	public var barHeight(default, set):Int = 1;
 	public var barOffset:FlxPoint = new FlxPoint(3, 3);
 	/**
-		*Note:* Bar is not centered and asset name must be in the __bulkAssets__ folder.
-	**/
+		_Note:_ Bar is not centered and asset name must be in the __bulkAssets__ folder.
+	*/
 	public function new(x:Float, y:Float, image:String = 'musicBar', valueFunction:Void->Float = null, boundX:Float = 0, boundY:Float = 1)
 	{
 		super(x, y);
