@@ -47,6 +47,9 @@ class WebStatusState extends FlxState {
     var files:UI;
     var realTime:FlxText;
 
+    //TEMPORARY
+    public var sorry:FlxText;
+
     /**
         __The root of the page elements to pass objects through in callbacks.__
     */
@@ -154,12 +157,23 @@ So yeah, I'm building my whole profile stuff from scratch with the language I an
         }
         FlxTween.tween(bopper, {alpha: 1, x: FlxG.width*0.7}, 1.7, {ease: FlxEase.sineOut, onComplete: (_) -> {startBop = true; bopConst = bopper.x;}});
         PageNav.pushToHeader(this);
+
+        sorry = new FlxText(FlxG.width - 200, 53, 200, "Sorry for this, I'll \nfix all lag soon. ;-;", 8);
+        sorry.setFormat("PhantomMuff 1.5", 12, 0x00c3e6, "right");
+        add(sorry);
     }
 
     var boopWay:Bool = true;
     var delayy:Bool = false;
     var camBeat:Int;
     override function update(elapsed:Float) {
+        @:privateAccess
+        if (Main.fpsVar.currentFPS <= Main.state.width / 2) {
+            sorry.visible = true;
+        } else {
+            sorry.visible = false;
+        }
+
         var secondsTotal:Float = FlxMath.roundDecimal(MusicHandler.time / 1000, 4);
         var croshet:Float = FlxMath.roundDecimal(60 / jason,4);
         if (secondsTotal % croshet >= 0 && secondsTotal % croshet <= 0.03) {

@@ -19,7 +19,7 @@ class ApplicationMain
 		lime.system.System.__registerEntryPoint("index.html", create);
 
 		#if (js && html5)
-		#if (munit || utest)
+		#if (munit || (utest && openfl_enable_utest_legacy_mode))
 		lime.system.System.embed("index.html", null, 1280, 720);
 		#end
 		#else
@@ -35,7 +35,7 @@ class ApplicationMain
 		ManifestResources.init(config);
 		#end
 
-		app.meta["build"] = "20";
+		app.meta["build"] = "21";
 		app.meta["company"] = "PotateX2";
 		app.meta["file"] = "index.html";
 		app.meta["name"] = "PotateX2 ~ WebStatusState.hx";

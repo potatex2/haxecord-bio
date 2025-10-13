@@ -1,6 +1,9 @@
 package;
 
+import openfl.text.TextFormat;
+import openfl.text.TextFormatAlign;
 import flixel.ui.FlxSpriteButton;
+import classes.FPSCounter;
 import openfl.Lib;
 import js.Browser;
 import flixel.FlxG;
@@ -13,8 +16,10 @@ import openfl.events.Event;
 class Main extends Sprite {
 	/**
 		Window initialization settings for FlxGame, derived from Psych Engine.
+
+		You're not making ANOTHER main state, so don't bother taking out `static`.
 	**/
-    var state = {
+    static var state = {
 		width: Browser.window.innerWidth, // WINDOW width
 		height: Browser.window.innerHeight, // WINDOW height
 		initialState: states.Load, // starting state
@@ -24,6 +29,7 @@ class Main extends Sprite {
 		startFullscreen: false
 	};
 	private var initButton:FlxSpriteButton;
+	public static var fpsVar:FPSCounter;
     
 	public function new() {
         super();
@@ -62,6 +68,11 @@ class Main extends Sprite {
 			state.height = Math.ceil(stageHeight / state.zoom);
 		}
         addChild(new FlxGame(state.width, state.height, state.initialState, #if (flixel < "5.0.0") state.zoom, #end state.framerate, state.framerate, state.skipSplash, state.startFullscreen));
+		
+		fpsVar = new FPSCounter(FlxG.width - 150, 3, 0xFFFFFF);
+		fpsVar.defaultTextFormat = new TextFormat("_sans", 14, 0xffffffff, false, false, false, null, null, TextFormatAlign.RIGHT);
+		addChild(fpsVar);
+		fpsVar.visible = true;	
 		trace("%%%%% Post-setup %%%%%\n");
     }
 }
