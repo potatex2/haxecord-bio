@@ -8,6 +8,8 @@ import openfl.system.System;
 /**
 	The FPS class provides an easy-to-use monitor to display
 	the current frame rate of an OpenFL project
+
+	(Derived from Psych Engine source code)
 **/
 class FPSCounter extends TextField
 {
@@ -67,7 +69,9 @@ class FPSCounter extends TextField
 
 		textColor = 0xFFFFFFFF;
 		if (currentFPS < FlxG.drawFramerate * 0.5)
-			textColor = 0xFFFF9500;
+			textColor = 0xFFFF7B00;
+		else if (currentFPS < FlxG.drawFramerate * 0.8)
+			textColor = 0xFFFBFF00;
 	}
 
 	inline function get_memoryMegas():Float

@@ -2,7 +2,7 @@ package classes;
 
 import flixel.FlxState;
 import classes.Pages;
-import flixel.FlxCamera;
+import states.WebStatusState;
 import flixel.ui.FlxButton;
 import flixel.ui.FlxSpriteButton;
 import flixel.tweens.*;
@@ -16,7 +16,8 @@ class UI extends FlxButton {
 
 class PageNav extends FlxSpriteButton {
     public function new(dest:Void->Void, x:Float = 0, y:Float = 0, ?img:String) {
-        super(x, y, new FlxSprite().loadGraphic(img), dest);
+        super(x, y, null, dest);
+        this.loadGraphic(img);
         final defY = y;
 
         this.onOver.callback = () -> {
@@ -33,16 +34,10 @@ class PageNav extends FlxSpriteButton {
             this.scale.y -= 0.2;
         };
         this.onUp.callback = () -> {
-            dest();
+            if (true) dest();
             FlxTween.cancelTweensOf(this);
             this.scale.x += 0.2;
             this.scale.y += 0.2;
         };
-    }
-    public static function pushToHeader(state:FlxState) {
-        for (i in 0...Page.listOfPages.length) {
-            var button = new PageNav(Page.listOfPages[i].callback, 25 + (150 * i), 30, 'navIcons/${Page.listOfPages[i].pageName}');
-            state.add(button);
-        }
     }
 }

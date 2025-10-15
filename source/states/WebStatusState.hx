@@ -47,6 +47,8 @@ class WebStatusState extends FlxState {
     var files:UI;
     var realTime:FlxText;
 
+    public static var curPage:String;
+
     //TEMPORARY
     public var sorry:FlxText;
 
@@ -59,8 +61,10 @@ class WebStatusState extends FlxState {
     override function create() {
         __Page_Elements = [
             // Home page
-            "Home" => function() {
-                var placeholder:FlxText = new FlxText(0, 0, 800,
+            "Home" => () -> {
+                add(new Page("Home", () -> {
+                    Page.addToPage(
+                        new FlxText(0, 0, 800,
 "Oh, heyo. Looks like you stumbled upon the preliminary structure
 of what's supposed to be my entire Discord profile page.
 
@@ -68,17 +72,18 @@ Now for those of you that have seen the Netlify one with all the
 JS and HTML stuff, you might be wondering why I'm using this instead.
 It's simple, really. BRINGING HAXE TO NPM AND JS IS A HASSLE, AAAAA
 
-So yeah, I'm building my whole profile stuff from scratch with the language I analyze the most.
-`(if this isn't in markdown format i'll figure out linting soon for hx format, ugh)`
-\n~ PotateX2 | Sunday, Oct 12, 12:00 am
-
-(Sorry for the lag, optimization soon...)",
-                    16
-                );
-                placeholder.setFormat("PhantomMuff 1.5", 20, 0x00c3e6, "left");
-                add(placeholder);
-            } /*,
-            // About Me pages (tweak later on if nested substates or any other UI will be used)
+So yeah, I'm building my whole profile stuff from scratch with the language I tinker with the most.
+More improvements coming soon; add issues in the main GitHub repo if you want to.
+( Note: Navigation to other pages will be added later on. )
+\n~ PotateX2 | Tuesday, Oct 14, 10:05 pm MDT",
+                            16
+                        ).setFormat("PhantomMuff 1.5", 20, 0x00c3e6, "left")
+                    );
+                }
+                ));
+            }
+            /*,
+            // About Me pages
             "Bio" => function() {
 
             },
@@ -99,11 +104,8 @@ So yeah, I'm building my whole profile stuff from scratch with the language I an
         Browser.document.body.appendChild(filler);
 
         super.create();
-        for (pageName => elements in __Page_Elements) {
-            // Note: set a handler for managing substates.
-            openSubState(new Page(pageName, elements));
-            persistentDraw = true;
-            persistentUpdate = true;
+        for (page => objects in __Page_Elements) {
+            objects();
         }
 
         FlxG.autoPause = false;
@@ -156,7 +158,7 @@ So yeah, I'm building my whole profile stuff from scratch with the language I an
             trace(jason);
         }
         FlxTween.tween(bopper, {alpha: 1, x: FlxG.width*0.7}, 1.7, {ease: FlxEase.sineOut, onComplete: (_) -> {startBop = true; bopConst = bopper.x;}});
-        PageNav.pushToHeader(this);
+            // open default (Home) page
 
         sorry = new FlxText(FlxG.width - 200, 53, 200, "Sorry for this, I'll \nfix all lag soon. ;-;", 8);
         sorry.setFormat("PhantomMuff 1.5", 12, 0x00c3e6, "right");
@@ -168,7 +170,7 @@ So yeah, I'm building my whole profile stuff from scratch with the language I an
     var camBeat:Int;
     override function update(elapsed:Float) {
         @:privateAccess
-        if (Main.fpsVar.currentFPS <= Main.state.width / 2) {
+        if (Main.fpsVar.currentFPS <= 25) { //yes
             sorry.visible = true;
         } else {
             sorry.visible = false;
@@ -206,5 +208,27 @@ So yeah, I'm building my whole profile stuff from scratch with the language I an
 
         super.update(elapsed);
     }
+    public function openPage(page:Page):Void {
+        // guard: already current
+        if (Page.current == page) return;
+
+        // optional: guard to prevent spam: set a small cooldown
+        if (this._pageSwitching) return;
+        this._pageSwitching = true;
+
+        // close previous
+        if (Page.current != null) {
+            Page.current = null;
+        }
+
+        // open the new page substate
+        Page.current = page;
+        curPage = page.pageName;
+
+        // release switching lock slightly after transition (tweak delay)
+        new FlxTimer().start(0.15, function(_) this._pageSwitching = false);
+    }
+
+    var _pageSwitching:Bool = false;
 
 }
