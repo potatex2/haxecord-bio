@@ -69,8 +69,8 @@ class Main extends Sprite {
 		}
         addChild(new FlxGame(state.width, state.height, state.initialState, #if (flixel < "5.0.0") state.zoom, #end state.framerate, state.framerate, state.skipSplash, state.startFullscreen));
 		
-		fpsVar = new FPSCounter(stageWidth * 0.8, 3, 0xFFFFFF);
-		fpsVar.defaultTextFormat = new TextFormat("_sans", 14, 0xffffffff, false, false, false, null, null, TextFormatAlign.RIGHT);
+		fpsVar = new FPSCounter(5, 3, 0xFFFFFF);
+		fpsVar.defaultTextFormat = new TextFormat("_sans", 14, 0xffffffff, false, false, false, null, null, TextFormatAlign.LEFT);
 		addChild(fpsVar);
 		fpsVar.visible = true;	
 		trace("%%%%% Post-setup %%%%%\n");

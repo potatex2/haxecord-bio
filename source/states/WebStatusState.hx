@@ -55,16 +55,15 @@ class WebStatusState extends FlxState {
     /**
         __The root of the page elements to pass objects through in callbacks.__
     */
-    var __Page_Elements:Map<String, Void->Void> = [];
+    public static var __Page_Elements:Map<String, Void->Void> = [];
 
     var preventTransition:Bool = false;
     override function create() {
         __Page_Elements = [
             // Home page
-            "Home" => () -> {
-                add(new Page("Home", () -> {
-                    Page.addToPage(
-                        new FlxText(0, 0, 800,
+            "Home" => function() {
+                add(new Page("Home", [
+                    new FlxText(5, 45, 800,
 "Oh, heyo. Looks like you stumbled upon the preliminary structure
 of what's supposed to be my entire Discord profile page.
 
@@ -72,26 +71,28 @@ Now for those of you that have seen the Netlify one with all the
 JS and HTML stuff, you might be wondering why I'm using this instead.
 It's simple, really. BRINGING HAXE TO NPM AND JS IS A HASSLE, AAAAA
 
-So yeah, I'm building my whole profile stuff from scratch with the language I tinker with the most.
-More improvements coming soon; add issues in the main GitHub repo if you want to.
-( Note: Navigation to other pages will be added later on. )
-\n~ PotateX2 | Tuesday, Oct 14, 10:05 pm MDT",
-                            16
-                        ).setFormat("PhantomMuff 1.5", 20, 0x00c3e6, "left")
-                    );
-                }
-                ));
-            }
-            /*,
+# Web Status: #
+0.2.0 will allow for basic navigation and routing, as well as properly rendered
+GUI for the rest of the page. Later on, I'll be adding other external links
+so that everything is integrated seamlessly. Take care, yall. :) 
+\n~ PotateX2 | Wednesday, Oct 15, 10:34 am MDT (yes, during my class time)",
+                        16
+                    ).setFormat("PhantomMuff 1.5", 20, 0x00c3e6, "left"),
+                    new FlxText(0,0,100," ", 8)
+                ], true));
+            },
             // About Me pages
             "Bio" => function() {
-
+                add(new Page("About Me", [
+                    new FlxText(5, 5, 100, "You shouldn't see this yet.", 8)
+                ], false));
             },
             // Current status page
             "Status" => function() {
-
+                add(new Page("Status", [
+                    new FlxText(400, 5, 50, "placeholder", 8)
+                ], false));
             }
-            */
         ];
 
         Browser.document.body.style.overflowY = "scroll";
@@ -105,10 +106,14 @@ More improvements coming soon; add issues in the main GitHub repo if you want to
 
         super.create();
         for (page => objects in __Page_Elements) {
-            objects();
+            // Home page renders only
+            if (page == "Home") objects();
         }
 
         FlxG.autoPause = false;
+
+        var parse:Dynamic;
+
 		bgGoofy = new BG(RootDirectory + "bgGoofy.png"); 
 		bgGoofy.updateHitbox(); 
 		bgGoofy.alpha = 1; 
@@ -152,7 +157,13 @@ More improvements coming soon; add issues in the main GitHub repo if you want to
             FlxTween.tween(files, {alpha: 1}, 1.7, {ease: FlxEase.sineOut});
         if (Browser.window.localStorage.getItem("metadata") == null)
             HTMLBackend.loadAndCache("metadata", "bulkAssets/metadata.json", false);
-        final parse:Dynamic = HTMLBackend.fromJson("metadata").music;
+        try {
+            parse = HTMLBackend.fromJson("metadata").music;
+        }
+        catch(unloaded) {
+            Browser.window.alert("Backend data cached; please reload the page. \n(This will be fixed at a later date.)");
+            throw "## Backend data cached; please reload the page. \n## (This will be fixed at a later date.)";
+        }
         if (parse != null) {
             jason = parse.bpm;
             trace(jason);
@@ -160,7 +171,7 @@ More improvements coming soon; add issues in the main GitHub repo if you want to
         FlxTween.tween(bopper, {alpha: 1, x: FlxG.width*0.7}, 1.7, {ease: FlxEase.sineOut, onComplete: (_) -> {startBop = true; bopConst = bopper.x;}});
             // open default (Home) page
 
-        sorry = new FlxText(FlxG.width - 200, 53, 200, "Sorry for this, I'll \nfix all lag soon. ;-;", 8);
+        sorry = new FlxText(Main.fpsVar.textWidth * 0.8, 3, 200, "Sorry for this, I'll \nfix all lag soon. ;-;", 8);
         sorry.setFormat("PhantomMuff 1.5", 12, 0x00c3e6, "right");
         add(sorry);
     }
@@ -210,19 +221,19 @@ More improvements coming soon; add issues in the main GitHub repo if you want to
     }
     public function openPage(page:Page):Void {
         // guard: already current
-        if (Page.current == page) return;
+        if (Page.instance == page) return;
 
         // optional: guard to prevent spam: set a small cooldown
         if (this._pageSwitching) return;
         this._pageSwitching = true;
 
         // close previous
-        if (Page.current != null) {
-            Page.current = null;
+        if (Page.instance != null) {
+            Page.instance = null;
         }
 
         // open the new page substate
-        Page.current = page;
+        Page.instance = page;
         curPage = page.pageName;
 
         // release switching lock slightly after transition (tweak delay)

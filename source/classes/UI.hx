@@ -34,7 +34,9 @@ class PageNav extends FlxSpriteButton {
             this.scale.y -= 0.2;
         };
         this.onUp.callback = () -> {
-            if (true) dest();
+            for (page => objects in WebStatusState.__Page_Elements) {
+                if (page == img) {objects(); dest();}
+            }
             FlxTween.cancelTweensOf(this);
             this.scale.x += 0.2;
             this.scale.y += 0.2;
