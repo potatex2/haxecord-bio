@@ -1,8 +1,0 @@
-{
-    "music": {
-        "name": "picoPause",
-        "bpm": 88,
-        "bopOnBeat": true
-    },
-    "comments": "pause bpm, bopOnBeat is self-explanatory; manually made by PotateX2"
-}
