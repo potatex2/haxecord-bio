@@ -892,7 +892,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "71";
+	app.meta.h["build"] = "72";
 	app.meta.h["company"] = "PotateX2";
 	app.meta.h["file"] = "index.html";
 	app.meta.h["name"] = "PotateX2 ~ WebStatusState.hx";
@@ -7487,88 +7487,6 @@ classes_FPSCounter.prototype = $extend(openfl_text_TextField.prototype,{
 	,__class__: classes_FPSCounter
 	,__properties__: $extend(openfl_text_TextField.prototype.__properties__,{get_memoryMegas:"get_memoryMegas"})
 });
-var classes_HTMLBackend = function() { };
-$hxClasses["classes.HTMLBackend"] = classes_HTMLBackend;
-classes_HTMLBackend.__name__ = "classes.HTMLBackend";
-classes_HTMLBackend.create = function() {
-	window.document.body.style.overflowY = "scroll";
-	var filler = window.document.createElement("div");
-	filler.style.boxShadow = "10px 5px 5px white";
-	filler.style.background = "linear-gradient(#000000, #002C3D)";
-	filler.style.position = "relative";
-	filler.style.height = "2000px";
-	var p;
-	var otherGoober;
-	var font = new FontFace("PhantomMuff 1.5","url('bulkAssets/PhantomMuff.ttf')");
-	font.load().then(function(loaded) {
-		window.document.fonts.add(loaded);
-		haxe_Log.trace("" + font.status + " | " + font.family,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 29, className : "classes.HTMLBackend", methodName : "create"});
-		p = window.document.createElement("p");
-		p.textContent = "More canvas elements below the HaxeFlixel window\nwill be added soon.";
-		p.style.fontFamily = "'PhantomMuff 1.5'";
-		p.style.fontSize = "24px";
-		p.style.color = "#68ff74";
-		filler.appendChild(p);
-		otherGoober = window.document.createElement("p");
-		otherGoober.innerHTML = "Created by " + ("<span style=\"color:#" + "48ff00" + ";\">" + "PotateX2" + "</span>") + " with " + ("<span style=\"color:#" + "fffb00" + ";\">" + "Ha" + "</span>") + ("<span style=\"color:#" + "ad00fd" + ";\">" + "xe" + "</span>") + ("<span style=\"color:#" + "00fd00" + ";\">" + "Fl" + "</span>") + ("<span style=\"color:#" + "00eeff" + ";\">" + "ix" + "</span>") + ("<span style=\"color:#" + "fa088d" + ";\">" + "el" + "</span>");
-		otherGoober.style.fontFamily = "'PhantomMuff 1.5'";
-		otherGoober.style.fontSize = "24px";
-		otherGoober.style.color = "#0084ff";
-		filler.appendChild(otherGoober);
-	}).then(function(_) {
-		p.style.position = "absolute";
-		p.style.top = "20%";
-		p.style.left = "10%";
-		otherGoober.style.position = "absolute";
-		otherGoober.style.top = "95%";
-		otherGoober.style.left = "50%";
-		otherGoober.style.textAlign = "center";
-		return otherGoober.style.textShadow = "black 2px 2px 3px";
-	}).catch(function(e) {
-		haxe_Log.trace("error on font: " + e,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 54, className : "classes.HTMLBackend", methodName : "create"});
-	});
-	window.document.body.appendChild(filler);
-};
-classes_HTMLBackend.fish = function(text,color) {
-	return "<span style=\"color:#" + color + ";\">" + text + "</span>";
-};
-classes_HTMLBackend.loadAndCache = function(name,url,async) {
-	var http = new haxe_http_HttpJs(url);
-	http.onData = function(raw) {
-		window.localStorage.setItem(name,raw);
-		haxe_Log.trace("Cached " + name,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 70, className : "classes.HTMLBackend", methodName : "loadAndCache"});
-	};
-	http.onError = function(err) {
-		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 72, className : "classes.HTMLBackend", methodName : "loadAndCache"});
-	};
-	http.request(async);
-};
-classes_HTMLBackend.fromJson = function(name) {
-	try {
-		var targ = window.localStorage.getItem(name);
-		var tmp = targ;
-		haxe_Log.trace(tmp != null ? tmp : "NO OBJECT VALUE",{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 79, className : "classes.HTMLBackend", methodName : "fromJson"});
-		var obj = null;
-		if(targ != null) {
-			obj = JSON.parse(targ);
-		}
-		return obj;
-	} catch( _g ) {
-		var e = haxe_Exception.caught(_g);
-		throw haxe_Exception.thrown("$$$$$ Parse failed | " + Std.string(e));
-	}
-};
-classes_HTMLBackend.switchPage = function(pagename) {
-	var _g = 0;
-	var _g1 = classes_Page.pageList;
-	while(_g < _g1.length) {
-		var pag = _g1[_g];
-		++_g;
-		flixel_tweens_FlxTween.tween(pag,{ alpha : pag.pageName != pagename ? 0 : 1},0.3,{ ease : flixel_tweens_FlxEase.circInOut, startDelay : pag.pageName != pagename ? 0 : 0.3});
-		pag.set_visible(pag.pageName != pagename ? false : true);
-		haxe_Log.trace(pag,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 92, className : "classes.HTMLBackend", methodName : "switchPage"});
-	}
-};
 var flixel_util_IFlxPooled = function() { };
 $hxClasses["flixel.util.IFlxPooled"] = flixel_util_IFlxPooled;
 flixel_util_IFlxPooled.__name__ = "flixel.util.IFlxPooled";
@@ -75522,7 +75440,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 401;
+	this.version = 206429;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -123154,58 +123072,70 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 			_gthis.add(new classes_Page("Home",[new flixel_text_FlxText(5,110,flixel_FlxG.width * 0.55,classes_PageInfo.Homepage,16).setFormat("PhantomMuff 1.5",20,50150,"left"),new flixel_text_FlxText(0,0,100," ",8)],true));
 		};
 		_g.h["Bio"] = function() {
-			_gthis.add(new classes_Page("About Me",[new flixel_text_FlxText(5,5,100,classes_PageInfo.About_Me,8)],false));
+			_gthis.add(new classes_Page("Bio",[new classes_FlxDynamicText("Bio",40,60,500,classes_PageInfo.About_Me,8).setFormat("PhantomMuff 1.5",20,50150,"left"),new flixel_text_FlxText(0,0,100," ",8)],false));
 		};
 		_g.h["Status"] = function() {
-			_gthis.add(new classes_Page("Status",[new flixel_text_FlxText(400,5,50,classes_PageInfo.Status,8)],false));
+			var reloadY = flixel_FlxG.height * 0.2;
+			_gthis.add(new classes_Page("Status",[new classes_FlxDynamicText("Status",140,reloadY | 0,flixel_FlxG.width * 0.8,classes_PageInfo.Status,8).setFormat("PhantomMuff 1.5",20 * (flixel_FlxG.width / flixel_FlxG.height) | 0,50150,"left"),new classes_FlxAnimButton("Reload Status",20,reloadY,null,null).loadGraphic("bulkAssets/reload.png")],false));
+			var button = classes_FlxAnimButton.get("Reload Status");
+			button.setCallbacks(function() {
+				if(classes_Page.current.pageName != "Status") {
+					return;
+				}
+				flixel_tweens_FlxTween.cancelTweensOf(button,["alpha","y"]);
+				button.scale.set_x(button.scale.x + 0.2);
+				button.scale.set_y(button.scale.y + 0.2);
+				if(!button.cd) {
+					var pluh;
+					button.cd = true;
+					_gthis.SoundHandler.soundCheck("ToggleJingle.ogg");
+					classes_FlxDynamicText.getInstance("Status").set_text("Fetching status, please wait...");
+					new Promise(function(resolve,reject) {
+						var http = new haxe_http_HttpJs("https://raw.githubusercontent.com/potatex2/status/refs/heads/main/status.txt");
+						haxe_Log.trace("http testing",{ fileName : "source/states/WebStatusState.hx", lineNumber : 271, className : "states.WebStatusState", methodName : "getStatus"});
+						http.onData = function(data) {
+							resolve(data);
+						};
+						http.onError = function(error) {
+							reject(error);
+							haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 275, className : "states.WebStatusState", methodName : "getStatus"});
+						};
+						http.request();
+					}).then(function(data) {
+						return classes_FlxDynamicText.getInstance("Status").set_text("status:\n" + data);
+					}).catch(function(error) {
+						return classes_FlxDynamicText.getInstance("Status").set_text("Status failed to load, please DM PotateX2.");
+					});
+					button.set_color(8224125);
+					pluh = flixel_tweens_FlxTween.color(button,3.0,1971158397,-1,{ ease : flixel_tweens_FlxEase.bounceIn, onComplete : function(_) {
+						button.cd = false;
+						pluh = null;
+					}, startDelay : 0.1});
+				}
+			},function() {
+				if(classes_Page.current.pageName != "Status") {
+					return;
+				}
+				flixel_tweens_FlxTween.cancelTweensOf(button,["alpha","y"]);
+				button.scale.set_x(button.scale.x - 0.2);
+				button.scale.set_y(button.scale.y - 0.2);
+			},function() {
+				if(classes_Page.current.pageName != "Status") {
+					return;
+				}
+				flixel_tweens_FlxTween.cancelTweensOf(button,["alpha","y"]);
+				flixel_tweens_FlxTween.tween(button,{ "scale.x" : 1.1, "scale.y" : 1.1, y : button.y - 10, angle : 360},0.4,{ ease : flixel_tweens_FlxEase.circInOut});
+			},function() {
+				if(classes_Page.current.pageName != "Status") {
+					return;
+				}
+				flixel_tweens_FlxTween.cancelTweensOf(button,["alpha","y"]);
+				flixel_tweens_FlxTween.tween(button,{ "scale.x" : 1, "scale.y" : 1, y : reloadY, angle : 0},0.4,{ ease : flixel_tweens_FlxEase.sineOut});
+			});
 		};
 		states_WebStatusState.__Page_Elements = _g;
-		window.document.body.style.overflowY = "scroll";
-		var filler = window.document.createElement("div");
-		filler.style.boxShadow = "10px 5px 5px white";
-		filler.style.background = "linear-gradient(#000000, #002C3D)";
-		filler.style.position = "relative";
-		filler.style.height = "2000px";
-		var p;
-		var otherGoober;
-		var font = new FontFace("PhantomMuff 1.5","url('bulkAssets/PhantomMuff.ttf')");
-		font.load().then(function(loaded) {
-			window.document.fonts.add(loaded);
-			haxe_Log.trace("" + font.status + " | " + font.family,{ fileName : "source/states/WebStatusState.hx", lineNumber : 95, className : "states.WebStatusState", methodName : "create"});
-			p = window.document.createElement("p");
-			p.textContent = "More canvas elements below the HaxeFlixel window\nwill be added soon.";
-			p.style.fontFamily = "'PhantomMuff 1.5'";
-			p.style.fontSize = "24px";
-			p.style.color = "#68ff74";
-			filler.appendChild(p);
-			otherGoober = window.document.createElement("p");
-			otherGoober.innerHTML = "Created by " + ("<span style=\"color:#" + "48ff00" + ";\">" + "PotateX2" + "</span>") + " with " + ("<span style=\"color:#" + "fffb00" + ";\">" + "Ha" + "</span>") + ("<span style=\"color:#" + "ad00fd" + ";\">" + "xe" + "</span>") + ("<span style=\"color:#" + "00fd00" + ";\">" + "Fl" + "</span>") + ("<span style=\"color:#" + "00eeff" + ";\">" + "ix" + "</span>") + ("<span style=\"color:#" + "fa088d" + ";\">" + "el" + "</span>");
-			otherGoober.style.fontFamily = "'PhantomMuff 1.5'";
-			otherGoober.style.fontSize = "24px";
-			otherGoober.style.color = "#0084ff";
-			filler.appendChild(otherGoober);
-		}).then(function(_) {
-			p.style.position = "absolute";
-			p.style.top = "20%";
-			p.style.left = "10%";
-			otherGoober.style.position = "absolute";
-			otherGoober.style.top = "95%";
-			otherGoober.style.left = "50%";
-			return otherGoober.style.textAlign = "center";
-		}).catch(function(e) {
-			haxe_Log.trace("error on font: " + e,{ fileName : "source/states/WebStatusState.hx", lineNumber : 119, className : "states.WebStatusState", methodName : "create"});
-		});
-		window.document.body.appendChild(filler);
+		classes_HTMLBackend.create();
 		flixel_FlxState.prototype.create.call(this);
-		var http = new haxe_http_HttpJs("https://raw.githubusercontent.com/potatex2/custom_for_discord/refs/heads/final/fish.txt?token=GHSAT0AAAAAADLCLR7J2SMGBAL73NXYA2Y62HVV44A");
-		haxe_Log.trace("http testing",{ fileName : "source/states/WebStatusState.hx", lineNumber : 85, className : "states.WebStatusState", methodName : "create"});
-		http.onData = function(data) {
-			haxe_Log.trace(data,{ fileName : "source/states/WebStatusState.hx", lineNumber : 87, className : "states.WebStatusState", methodName : "create"});
-		};
-		http.onError = function(error) {
-			haxe_Log.trace("access failed: " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 91, className : "states.WebStatusState", methodName : "create"});
-		};
-		http.request();
 		var sigh = 0;
 		var h = states_WebStatusState.__Page_Elements.h;
 		var _g_h = h;
@@ -123227,7 +123157,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 				})(page),flixel_FlxG.width * 0.4 + 120 * sigh,20,"bulkAssets/navIcons/" + page[0] + ".png"));
 			} catch( _g ) {
 				var nothing = haxe_Exception.caught(_g);
-				haxe_Log.trace(nothing,{ fileName : "source/states/WebStatusState.hx", lineNumber : 130, className : "states.WebStatusState", methodName : "create"});
+				haxe_Log.trace(nothing,{ fileName : "source/states/WebStatusState.hx", lineNumber : 135, className : "states.WebStatusState", methodName : "create"});
 			}
 			++sigh;
 		}
@@ -123303,7 +123233,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 		}
 		if(parse != null) {
 			this.jason = parse.bpm;
-			haxe_Log.trace(this.jason,{ fileName : "source/states/WebStatusState.hx", lineNumber : 190, className : "states.WebStatusState", methodName : "create"});
+			haxe_Log.trace(this.jason,{ fileName : "source/states/WebStatusState.hx", lineNumber : 195, className : "states.WebStatusState", methodName : "create"});
 		}
 		flixel_tweens_FlxTween.tween(this.bopper,{ alpha : 1, x : flixel_FlxG.width * 0.85},1.7,{ ease : flixel_tweens_FlxEase.sineOut, onComplete : function(_) {
 			_gthis.startBop = true;
@@ -123385,9 +123315,19 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 			_gthis._pageSwitching = false;
 		});
 	}
-	,_pageSwitching: null
-	,fish: function(text,color) {
-		return "<span style=\"color:#" + color + ";\">" + text + "</span>";
+	,getStatus: function() {
+		return new Promise(function(resolve,reject) {
+			var http = new haxe_http_HttpJs("https://raw.githubusercontent.com/potatex2/status/refs/heads/main/status.txt");
+			haxe_Log.trace("http testing",{ fileName : "source/states/WebStatusState.hx", lineNumber : 271, className : "states.WebStatusState", methodName : "getStatus"});
+			http.onData = function(data) {
+				resolve(data);
+			};
+			http.onError = function(error) {
+				reject(error);
+				haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 275, className : "states.WebStatusState", methodName : "getStatus"});
+			};
+			http.request();
+		});
 	}
 	,__class__: states_WebStatusState
 });
@@ -123494,9 +123434,9 @@ Xml.Comment = 3;
 Xml.DocType = 4;
 Xml.ProcessingInstruction = 5;
 Xml.Document = 6;
-classes_PageInfo.Homepage = "\r\nOh, heyo. Looks like you stumbled upon the preliminary structure of what's supposed to be my entire Discord profile page.\r\nNow for those of you that have seen the Netlify one with all the JS and HTML stuff, you might be wondering why I'm using this instead. It's simple, really. BRINGING\r\nHAXE TO NPM AND JS IS A HASSLE, AAAAA\r\n\r\n# Web Status: #\r\n0.2.0 will allow for basic navigation and routing, as well as properly rendered GUI for the rest of the page.\r\nLater on, I'll be adding other external links so that everything is integrated seamlessly. Take care, yall. :) \r\n\n~ PotateX2 | Wednesday, Oct 15, 10:34 am MDT (yes, during my class time)";
-classes_PageInfo.About_Me = "\r\nYou're not supposed to see this yet...\r\n    ";
-classes_PageInfo.Status = "\r\nNo status yet.\r\n    ";
+classes_PageInfo.Homepage = "\r\nOh, heyo. Looks like you stumbled upon the preliminary structure of what's supposed to be my entire Discord profile page.\r\nIf you've seen the Netlify site of this, well... it's getting discontinued. So we're here now. :P\r\n\r\n### 0.2.0 is out, check out the Status page for dynamic updates! (Third icon lol)\r\nMore stuff coming soon, by which I mean the bios...\r\n\r\n(Bug: The reload button is glitched when switching between pages; I'll fix that soon.\r\n\r\n~ PotateX2";
+classes_PageInfo.About_Me = "\r\nPlaceholder/main bio will be added here by 0.3.0, check back here soon. :)\r\n    ";
+classes_PageInfo.Status = "\r\nClick to fetch status\r\n    ";
 openfl_text_TextField.__missingFontWarning = new haxe_ds_StringMap();
 flixel_math_FlxRect._pool = (function($this) {
 	var $r;
