@@ -892,7 +892,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "8";
+	app.meta.h["build"] = "20";
 	app.meta.h["company"] = "PotateX2";
 	app.meta.h["file"] = "index.html";
 	app.meta.h["name"] = "PotateX2 ~ WebStatusState.hx";
@@ -4280,6 +4280,7 @@ var states_Load = function() {
 	fh.set_y(fh.y + 100);
 	this.add(this.indicator);
 	this.indicator.set_alpha(0);
+	flixel_system_FlxSplash.WIP = true;
 };
 $hxClasses["states.Load"] = states_Load;
 states_Load.__name__ = "states.Load";
@@ -12038,7 +12039,7 @@ classes_HTMLBackend.create = function() {
 		otherGoober.style.textAlign = "center";
 		return otherGoober.style.textShadow = "black 2px 2px 3px";
 	}).catch(function(e) {
-		haxe_Log.trace("error on font: " + e,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 53, className : "classes.HTMLBackend", methodName : "create"});
+		haxe_Log.trace("error on font: " + e,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 52, className : "classes.HTMLBackend", methodName : "create"});
 	});
 	window.document.body.appendChild(filler);
 };
@@ -12049,10 +12050,10 @@ classes_HTMLBackend.loadAndCache = function(name,url,async) {
 	var http = new haxe_http_HttpJs(url);
 	http.onData = function(raw) {
 		window.localStorage.setItem(name,raw);
-		haxe_Log.trace("Cached " + name,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 69, className : "classes.HTMLBackend", methodName : "loadAndCache"});
+		haxe_Log.trace("Cached " + name,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 67, className : "classes.HTMLBackend", methodName : "loadAndCache"});
 	};
 	http.onError = function(err) {
-		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 71, className : "classes.HTMLBackend", methodName : "loadAndCache"});
+		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 69, className : "classes.HTMLBackend", methodName : "loadAndCache"});
 	};
 	http.request(async);
 };
@@ -12060,7 +12061,7 @@ classes_HTMLBackend.fromJson = function(name) {
 	try {
 		var targ = window.localStorage.getItem(name);
 		var tmp = targ;
-		haxe_Log.trace(tmp != null ? tmp : "NO OBJECT VALUE",{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 78, className : "classes.HTMLBackend", methodName : "fromJson"});
+		haxe_Log.trace(tmp != null ? tmp : "NO OBJECT VALUE",{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 76, className : "classes.HTMLBackend", methodName : "fromJson"});
 		var obj = null;
 		if(targ != null) {
 			obj = JSON.parse(targ);
@@ -12208,7 +12209,7 @@ flixel_group_FlxTypedSpriteGroup.prototype = $extend(flixel_FlxSprite.prototype,
 			}
 		}
 	}
-	,transformChildren_Float: function(Function1,Value) {
+	,transformChildren_Bool: function(Function1,Value) {
 		if(this._skipTransformChildren || this.group == null) {
 			return;
 		}
@@ -12222,7 +12223,7 @@ flixel_group_FlxTypedSpriteGroup.prototype = $extend(flixel_FlxSprite.prototype,
 			}
 		}
 	}
-	,transformChildren_Bool: function(Function1,Value) {
+	,transformChildren_Float: function(Function1,Value) {
 		if(this._skipTransformChildren || this.group == null) {
 			return;
 		}
@@ -13204,11 +13205,12 @@ var classes_Page = function(pageName,objectList,isHome) {
 		classes_Page.addToPage(element);
 	}
 	classes_Page.pageList.push(this);
-	if(!isHome) {
-		this.set_alpha(0);
-		this.set_y(250);
+	this.set_alpha(0);
+	this.set_y(isHome ? 0 : 250);
+	if(isHome) {
+		flixel_tweens_FlxTween.tween(this,{ alpha : 1},0.7,{ ease : flixel_tweens_FlxEase.backOut});
 	}
-	haxe_Log.trace(this,{ fileName : "source/classes/Pages.hx", lineNumber : 44, className : "classes.Page", methodName : "new"});
+	haxe_Log.trace(this,{ fileName : "source/classes/Pages.hx", lineNumber : 42, className : "classes.Page", methodName : "new"});
 };
 $hxClasses["classes.Page"] = classes_Page;
 classes_Page.__name__ = "classes.Page";
@@ -14155,6 +14157,8 @@ var classes_PageNav = function(dest,x,y,img) {
 	var _gthis = this;
 	flixel_ui_FlxSpriteButton.call(this,x,y,null,dest);
 	this.loadGraphic(img);
+	this.set_alpha(0);
+	flixel_tweens_FlxTween.tween(this,{ alpha : 1},0.7,{ ease : flixel_tweens_FlxEase.backOut});
 	var defY = y;
 	this.onOver.callback = function() {
 		flixel_tweens_FlxTween.cancelTweensOf(_gthis);
@@ -19502,16 +19506,25 @@ flixel_system_FlxSplash.prototype = $extend(flixel_FlxState.prototype,{
 			}
 			var stageWidth = openfl_Lib.get_current().stage.stageWidth;
 			var stageHeight = openfl_Lib.get_current().stage.stageHeight;
-			haxe_Log.trace("Context for override: " + flixel_system_FlxSplash.contextOverride,{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 99, className : "flixel.system.FlxSplash", methodName : "create"});
+			if(flixel_system_FlxSplash.contextOverride != null) {
+				haxe_Log.trace("Context for override: " + flixel_system_FlxSplash.contextOverride,{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 102, className : "flixel.system.FlxSplash", methodName : "create"});
+			}
 			var tmp = flixel_system_FlxSplash.contextOverride;
 			_gthis.sprite.loadGraphic(tmp != null ? tmp : "bulkAssets/bozo.png");
-			_gthis.sprite.set_x(680);
-			_gthis.sprite.set_y(230);
+			_gthis.sprite.set_x(stageWidth * 0.6);
+			_gthis.sprite.set_y(stageHeight * 0.4);
 			_gthis._sprite = new openfl_display_Sprite();
 			openfl_Lib.get_current().stage.addChild(_gthis._sprite);
 			_gthis._gfx = _gthis._sprite.get_graphics();
 			_gthis._sprite.set_x(480);
 			_gthis._sprite.set_y(320);
+			if(flixel_system_FlxSplash.WIP) {
+				_gthis._WIP = new flixel_text_FlxText(0,0,stageWidth * 0.8,"",24,true);
+				_gthis._WIP.setFormat(flixel_system_FlxAssets.FONT_DEFAULT,24,-1,"center");
+				_gthis.add(_gthis._WIP);
+				_gthis._WIP.set_x(stageWidth / 8);
+				_gthis._WIP.set_y(stageHeight * 0.8);
+			}
 			_gthis._text = new openfl_text_TextField();
 			_gthis._text.set_selectable(false);
 			_gthis._text.set_embedFonts(true);
@@ -19526,7 +19539,7 @@ flixel_system_FlxSplash.prototype = $extend(flixel_FlxState.prototype,{
 			_gthis._credit.set_selectable(false);
 			_gthis._credit.set_embedFonts(true);
 			_gthis._credit.set_defaultTextFormat(dtf);
-			_gthis._credit.set_text("Edited");
+			_gthis._credit.set_text("Edited ");
 			openfl_Lib.get_current().stage.addChild(_gthis._credit);
 			_gthis._credit.set_x(_gthis.sprite.x + 23);
 			_gthis._credit.set_y(_gthis.sprite.y + 160);
@@ -19545,6 +19558,9 @@ flixel_system_FlxSplash.prototype = $extend(flixel_FlxState.prototype,{
 		this._colors = null;
 		this._functions = null;
 		this._credit = null;
+		if(flixel_system_FlxSplash.WIP) {
+			this._WIP = null;
+		}
 		flixel_FlxState.prototype.destroy.call(this);
 	}
 	,complete: function() {
@@ -19602,6 +19618,9 @@ flixel_system_FlxSplash.prototype = $extend(flixel_FlxState.prototype,{
 				flixel_tweens_FlxTween.tween(_gthis._text,{ y : 1000},1.6,{ ease : flixel_tweens_FlxEase.quintIn});
 				flixel_tweens_FlxTween.tween(_gthis.sprite,{ y : 1000},1.6,{ ease : flixel_tweens_FlxEase.quintIn});
 				flixel_tweens_FlxTween.tween(_gthis._credit,{ y : 1000},1.6,{ ease : flixel_tweens_FlxEase.quintIn});
+				if(flixel_system_FlxSplash.WIP) {
+					flixel_tweens_FlxTween.tween(_gthis._WIP,{ angle : 15, alpha : 0, y : openfl_Lib.get_current().stage.stageHeight * 0.9},1.2,{ ease : flixel_tweens_FlxEase.backIn, startDelay : 0.25});
+				}
 			});
 		}
 	}
@@ -19617,10 +19636,14 @@ flixel_system_FlxSplash.prototype = $extend(flixel_FlxState.prototype,{
 		this._gfx.lineTo(-37,0);
 		this._gfx.lineTo(0,-37);
 		this._gfx.endFill();
-		haxe_Log.trace("fun",{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 223, className : "flixel.system.FlxSplash", methodName : "drawGreen"});
+		if(flixel_system_FlxSplash.WIP) {
+			this._WIP.set_text("Off");
+		}
+		haxe_Log.trace("fun",{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 238, className : "flixel.system.FlxSplash", methodName : "drawGreen"});
 	}
 	,drawYellow: function() {
-		this._credit.set_text("Edited by");
+		var fh = this._credit;
+		fh.set_text(fh.get_text() + "by");
 		this._gfx.beginFill(this._colors[1]);
 		this._gfx.moveTo(-50,-50);
 		this._gfx.lineTo(-25,-50);
@@ -19629,10 +19652,15 @@ flixel_system_FlxSplash.prototype = $extend(flixel_FlxState.prototype,{
 		this._gfx.lineTo(-50,-25);
 		this._gfx.lineTo(-50,-50);
 		this._gfx.endFill();
-		haxe_Log.trace("ny",{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 237, className : "flixel.system.FlxSplash", methodName : "drawYellow"});
+		if(flixel_system_FlxSplash.WIP) {
+			var fh = this._WIP;
+			fh.set_text(fh.text + "sets ");
+		}
+		haxe_Log.trace("ny",{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 253, className : "flixel.system.FlxSplash", methodName : "drawYellow"});
 	}
 	,drawRed: function() {
-		this._credit.set_text("Edited by\nPotate");
+		var fh = this._credit;
+		fh.set_text(fh.get_text() + "\nPotate");
 		this._gfx.beginFill(this._colors[2]);
 		this._gfx.moveTo(50,-50);
 		this._gfx.lineTo(25,-50);
@@ -19641,10 +19669,15 @@ flixel_system_FlxSplash.prototype = $extend(flixel_FlxState.prototype,{
 		this._gfx.lineTo(50,-25);
 		this._gfx.lineTo(50,-50);
 		this._gfx.endFill();
-		haxe_Log.trace("self",{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 251, className : "flixel.system.FlxSplash", methodName : "drawRed"});
+		if(flixel_system_FlxSplash.WIP) {
+			var fh = this._WIP;
+			fh.set_text(fh.text + "be");
+		}
+		haxe_Log.trace("self",{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 268, className : "flixel.system.FlxSplash", methodName : "drawRed"});
 	}
 	,drawBlue: function() {
-		this._credit.set_text("Edited by\nPotateX");
+		var fh = this._credit;
+		fh.set_text(fh.get_text() + "X");
 		this._gfx.beginFill(this._colors[3]);
 		this._gfx.moveTo(-50,50);
 		this._gfx.lineTo(-25,50);
@@ -19653,10 +19686,15 @@ flixel_system_FlxSplash.prototype = $extend(flixel_FlxState.prototype,{
 		this._gfx.lineTo(-50,25);
 		this._gfx.lineTo(-50,50);
 		this._gfx.endFill();
-		haxe_Log.trace("in",{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 265, className : "flixel.system.FlxSplash", methodName : "drawBlue"});
+		if(flixel_system_FlxSplash.WIP) {
+			var fh = this._WIP;
+			fh.set_text(fh.text + "ing ");
+		}
+		haxe_Log.trace("in",{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 283, className : "flixel.system.FlxSplash", methodName : "drawBlue"});
 	}
 	,drawLightBlue: function() {
-		this._credit.set_text("Edited by\nPotateX2");
+		var fh = this._credit;
+		fh.set_text(fh.get_text() + "2");
 		this._gfx.beginFill(this._colors[4]);
 		this._gfx.moveTo(50,50);
 		this._gfx.lineTo(25,50);
@@ -19665,7 +19703,11 @@ flixel_system_FlxSplash.prototype = $extend(flixel_FlxState.prototype,{
 		this._gfx.lineTo(50,25);
 		this._gfx.lineTo(50,50);
 		this._gfx.endFill();
-		haxe_Log.trace("sert",{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 279, className : "flixel.system.FlxSplash", methodName : "drawLightBlue"});
+		if(flixel_system_FlxSplash.WIP) {
+			var fh = this._WIP;
+			fh.set_text(fh.text + "fixed... :/");
+		}
+		haxe_Log.trace("sert",{ fileName : "flixel/system/FlxSplash.hx", lineNumber : 298, className : "flixel.system.FlxSplash", methodName : "drawLightBlue"});
 	}
 	,startOutro: function(onOutroComplete) {
 		flixel_FlxG.cameras.set_bgColor(this._cachedBgColor);
@@ -19675,6 +19717,9 @@ flixel_system_FlxSplash.prototype = $extend(flixel_FlxState.prototype,{
 		openfl_Lib.get_current().stage.removeChild(this._sprite);
 		openfl_Lib.get_current().stage.removeChild(this._text);
 		openfl_Lib.get_current().stage.removeChild(this._credit);
+		if(flixel_system_FlxSplash.WIP) {
+			this._WIP.destroy();
+		}
 		flixel_FlxState.prototype.startOutro.call(this,onOutroComplete);
 	}
 	,__class__: flixel_system_FlxSplash
@@ -48434,7 +48479,7 @@ flixel_tweens_FlxTweenManager.prototype = $extend(flixel_FlxBasic.prototype,{
 		}
 		return Tween;
 	}
-	,add_flixel_tweens_misc_VarTween: function(Tween,Start) {
+	,add_flixel_tweens_FlxTween: function(Tween,Start) {
 		if(Start == null) {
 			Start = false;
 		}
@@ -48447,7 +48492,7 @@ flixel_tweens_FlxTweenManager.prototype = $extend(flixel_FlxBasic.prototype,{
 		}
 		return Tween;
 	}
-	,add_flixel_tweens_FlxTween: function(Tween,Start) {
+	,add_flixel_tweens_misc_VarTween: function(Tween,Start) {
 		if(Start == null) {
 			Start = false;
 		}
@@ -75458,7 +75503,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 370522;
+	this.version = 407732;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -123662,6 +123707,7 @@ flixel_FlxG.initialWidth = 0;
 flixel_FlxG.initialHeight = 0;
 flixel_FlxG.signals = new flixel_system_frontEnds_SignalFrontEnd();
 flixel_system_FlxSplash.muted = false;
+flixel_system_FlxSplash.WIP = false;
 flixel_system_FlxSplash.contextOverride = "bulkAssets/bozo.png";
 flixel_animation_FlxPrerotatedAnimation.PREROTATED = "prerotated_animation";
 flixel_effects_FlxFlicker._pool = new flixel_util_FlxPool(function() {
