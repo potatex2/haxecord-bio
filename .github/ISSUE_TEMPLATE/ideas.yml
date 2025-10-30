@@ -33,5 +33,4 @@ body:
           else throw 'Invalid submission | ${getInvalid()}';
       }
       ```
-- type: 
 ---
