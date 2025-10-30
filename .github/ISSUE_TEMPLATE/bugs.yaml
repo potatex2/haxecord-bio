@@ -4,7 +4,13 @@ about: For when Potate needs to resolve these (skill) issues. (General bugs)
 title: 'TOFIX: Put more things already'
 labels: bug
 assignees: potatex2
-
+body:
+    type: input
+    id: bruh
+    attributes:
+        label: testing
+        description: "jvrbeibrej"
+        placeholder: "eee"
 ---
 
 Time for your usual CAPTCHA.
