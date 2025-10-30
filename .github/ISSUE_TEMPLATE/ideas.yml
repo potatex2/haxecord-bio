@@ -3,7 +3,7 @@ name: Ideas
 description: For when you have something Potate can’t think of. (Suggestions)
 title: 'Ideas: Add more stuff'
 labels: improve
-assignees: ''
+assignees: potatex2
 body:
 - type: checkboxes
   id: chek
