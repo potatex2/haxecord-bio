@@ -1,0 +1,36 @@
+---
+name: Ideas
+description: For when you have something Potate can’t think of. (Suggestions)
+title: 'Ideas: Add more stuff'
+labels: improve
+assignees: potatex2
+body:
+- type: checkboxes
+  id: chek
+  attributes:
+    label: "**Preliminary Checks**"
+    description: "Time for your usual CAPTCHA."
+    options:
+      - label: My suggestion is unique and is not listed in previous proposals NOR the milestone page
+      - label: This can be relevant to improving the overall website
+      - label: I just HAD to repeat what was already clear enough
+- type: textarea
+  id: yap
+  attributes:
+    label:  So what does Potate need to fix?
+    placeholder: Where has he gone wrong now...
+    value: Everything
+    render: markdown
+  validations:
+    required: true
+- type: markdown
+  attributes:
+    value: |
+      ```hx
+      function checkIdeas(content:String) {
+          if (checklist.VALID)
+              ideas.push(content);
+          else throw 'Invalid submission | ${getInvalid()}';
+      }
+      ```
+---
