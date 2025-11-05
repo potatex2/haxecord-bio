@@ -1,1 +1,1 @@
-WebStatusState as a test run to substitute manually typing JS code.
+Oh, heyo. If you're seeing this straight through the GitHub page or getting flashbanged right now, you might want to navigate [here instead. :)](https://potatex2.github.io/haxecord-bio)
