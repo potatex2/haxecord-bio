@@ -925,7 +925,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "10";
+	app.meta.h["build"] = "11";
 	app.meta.h["company"] = "PotateX2";
 	app.meta.h["file"] = "index.html";
 	app.meta.h["name"] = "PotateX2 ~ WebStatusState.hx";
@@ -14212,11 +14212,10 @@ classes_PathSound.prototype = $extend(flixel_sound_FlxSound.prototype,{
 		try {
 			this.loadEmbedded(this.RootDirectory + path,!sound);
 			flixel_FlxG.sound.list.add(this);
-			haxe_Log.trace("" + path + " | in " + Std.string(flixel_FlxG.sound.list),{ fileName : "source/classes/PathSound.hx", lineNumber : 32, className : "classes.PathSound", methodName : "soundCheck"});
 			this.play();
 		} catch( _g ) {
 			var nul = haxe_Exception.caught(_g);
-			throw haxe_Exception.thrown(nul);
+			throw haxe_Exception.thrown("Sound failed to load: " + Std.string(nul));
 		}
 	}
 	,__class__: classes_PathSound
@@ -80656,7 +80655,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 188713;
+	this.version = 843684;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
