@@ -925,7 +925,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "11";
+	app.meta.h["build"] = "10";
 	app.meta.h["company"] = "PotateX2";
 	app.meta.h["file"] = "index.html";
 	app.meta.h["name"] = "PotateX2 ~ WebStatusState.hx";
@@ -4501,7 +4501,7 @@ Main.prototype = $extend(openfl_display_Sprite.prototype,{
 		Main.fpsVar.set_defaultTextFormat(new openfl_text_TextFormat("_sans",14,-1,false,false,false,null,null,3));
 		this.addChild(Main.fpsVar);
 		Main.fpsVar.set_visible(true);
-		haxe_Log.trace("%%%%% Post-setup %%%%%\n",{ fileName : "source/Main.hx", lineNumber : 77, className : "Main", methodName : "setupGame"});
+		window.console.log("%%%%% Post-setup %%%%%");
 	}
 	,__class__: Main
 });
@@ -4728,7 +4728,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy24:bulkAssets%2FbgGoofy.pngy4:sizei9125y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y21:bulkAssets%2Fbozo.pngR2i28469R3R4R5R7R6tgoR2i5681R3y5:SOUNDR5y24:bulkAssets%2FclickIn.oggy9:pathGroupaR9hR6tgoR2i5432R3R8R5y25:bulkAssets%2FclickOut.oggR10aR11hR6tgoR0y21:bulkAssets%2Ficon.pngR2i24322R3R4R5R12R6tgoR0y23:bulkAssets%2Ficon64.pngR2i5550R3R4R5R13R6tgoR0y26:bulkAssets%2Fmetadata.jsonR2i192R3y4:TEXTR5R14R6tgoR0y25:bulkAssets%2FmusicBar.pngR2i744R3R4R5R16R6tgoR0y31:bulkAssets%2FnavIcons%2FBio.pngR2i11086R3R4R5R17R6tgoR0y32:bulkAssets%2FnavIcons%2FHome.pngR2i10429R3R4R5R18R6tgoR0y36:bulkAssets%2FnavIcons%2FSettings.pngR2i8037R3R4R5R19R6tgoR0y34:bulkAssets%2FnavIcons%2FStatus.pngR2i6638R3R4R5R20R6tgoR2i110479R3R8R5y29:bulkAssets%2FnoticeUpdate.oggR10aR21hR6tgoR2i632783R3R8R5y22:bulkAssets%2Fpause.oggR10aR22hR6tgoR2i46252R3y4:FONTy9:classNamey35:__ASSET__bulkassets_phantommuff_ttfR5y28:bulkAssets%2FPhantomMuff.ttfR6tgoR0y23:bulkAssets%2Freload.pngR2i10586R3R4R5R27R6tgoR2i69071R3R8R5y29:bulkAssets%2FToggleJingle.oggR10aR28hR6tgoR0y30:bulkAssets%2Fui%2FnoticeBG.pngR2i17469R3R4R5R29R6tgoR0y34:bulkAssets%2Fui%2FstatusUpdate.pngR2i3516R3R4R5R30R6tgoR0y29:bulkAssets%2Fui%2FvolDown.pngR2i3714R3R4R5R31R6tgoR0y27:bulkAssets%2Fui%2FvolUp.pngR2i4198R3R4R5R32R6tgoR0y26:bulkAssets%2FvolumeBar.pngR2i3385R3R4R5R33R6tgoR2i2563R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R10aR35y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R34R5y28:flixel%2Fsounds%2Fflixel.mp3R10aR37y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i5636R3R8R5R36R10aR35R36hgoR2i33629R3R8R5R38R10aR37R38hgoR2i15744R3R23R24y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R23R24y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i277R3R4R5R43R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i505R3R4R5R44R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Fbox.pngR2i75R3R4R5R45R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fbutton.pngR2i211R3R4R5R46R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_down.pngR2i216R3R4R5R47R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_left.pngR2i222R3R4R5R48R6tgoR0y49:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_right.pngR2i238R3R4R5R49R6tgoR0y46:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_up.pngR2i227R3R4R5R50R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fbutton_thin.pngR2i118R3R4R5R51R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fbutton_toggle.pngR2i254R3R4R5R52R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fcheck_box.pngR2i101R3R4R5R53R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fcheck_mark.pngR2i97R3R4R5R54R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fchrome.pngR2i135R3R4R5R55R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fchrome_flat.pngR2i124R3R4R5R56R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_inset.pngR2i102R3R4R5R57R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_light.pngR2i118R3R4R5R58R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fdropdown_mark.pngR2i86R3R4R5R59R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Ffinger_big.pngR2i1337R3R4R5R60R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Ffinger_small.pngR2i157R3R4R5R61R6tgoR0y38:flixel%2Fflixel-ui%2Fimg%2Fhilight.pngR2i74R3R4R5R62R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Finvis.pngR2i72R3R4R5R63R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fminus_mark.pngR2i77R3R4R5R64R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fplus_mark.pngR2i83R3R4R5R65R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Fradio.pngR2i108R3R4R5R66R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fradio_dot.pngR2i81R3R4R5R67R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fswatch.pngR2i94R3R4R5R68R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Ftab.pngR2i106R3R4R5R69R6tgoR0y39:flixel%2Fflixel-ui%2Fimg%2Ftab_back.pngR2i111R3R4R5R70R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Ftooltip_arrow.pngR2i176R3R4R5R71R6tgoR0y39:flixel%2Fflixel-ui%2Fxml%2Fdefaults.xmlR2i1263R3R15R5R72R6tgoR0y53:flixel%2Fflixel-ui%2Fxml%2Fdefault_loading_screen.xmlR2i1953R3R15R5R73R6tgoR0y44:flixel%2Fflixel-ui%2Fxml%2Fdefault_popup.xmlR2i1848R3R15R5R74R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fcircle.pngR2i299R3R4R5R75R6tgoR0y53:flixel%2Fimages%2Ftransitions%2Fdiagonal_gradient.pngR2i730R3R4R5R76R6tgoR0y43:flixel%2Fimages%2Ftransitions%2Fdiamond.pngR2i236R3R4R5R77R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fsquare.pngR2i209R3R4R5R78R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy24:bulkAssets%2FbgGoofy.pngy4:sizei9125y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y21:bulkAssets%2Fbozo.pngR2i28469R3R4R5R7R6tgoR2i5681R3y5:SOUNDR5y24:bulkAssets%2FclickIn.oggy9:pathGroupaR9hR6tgoR2i5432R3R8R5y25:bulkAssets%2FclickOut.oggR10aR11hR6tgoR0y21:bulkAssets%2Ficon.pngR2i24322R3R4R5R12R6tgoR0y23:bulkAssets%2Ficon64.pngR2i5550R3R4R5R13R6tgoR0y26:bulkAssets%2Fmetadata.jsonR2i192R3y4:TEXTR5R14R6tgoR0y25:bulkAssets%2FmusicBar.pngR2i744R3R4R5R16R6tgoR0y31:bulkAssets%2FnavIcons%2FBio.pngR2i11086R3R4R5R17R6tgoR0y32:bulkAssets%2FnavIcons%2FHome.pngR2i10429R3R4R5R18R6tgoR0y36:bulkAssets%2FnavIcons%2FSettings.pngR2i8037R3R4R5R19R6tgoR0y34:bulkAssets%2FnavIcons%2FStatus.pngR2i6638R3R4R5R20R6tgoR2i110479R3R8R5y29:bulkAssets%2FnoticeUpdate.oggR10aR21hR6tgoR2i632783R3R8R5y22:bulkAssets%2Fpause.oggR10aR22hR6tgoR2i46252R3y4:FONTy9:classNamey35:__ASSET__bulkassets_phantommuff_ttfR5y28:bulkAssets%2FPhantomMuff.ttfR6tgoR0y23:bulkAssets%2Freload.pngR2i10586R3R4R5R27R6tgoR2i69071R3R8R5y29:bulkAssets%2FToggleJingle.oggR10aR28hR6tgoR0y28:bulkAssets%2Fui%2FbgMode.pngR2i391R3R4R5R29R6tgoR0y36:bulkAssets%2Fui%2FbgModeSelected.pngR2i710R3R4R5R30R6tgoR0y31:bulkAssets%2Fui%2FmusicIcon.pngR2i4035R3R4R5R31R6tgoR0y24:bulkAssets%2Fui%2FnO.pngR2i1681R3R4R5R32R6tgoR0y30:bulkAssets%2Fui%2FnoticeBG.pngR2i17469R3R4R5R33R6tgoR0y34:bulkAssets%2Fui%2FstatusUpdate.pngR2i3516R3R4R5R34R6tgoR0y29:bulkAssets%2Fui%2FvolDown.pngR2i3714R3R4R5R35R6tgoR0y27:bulkAssets%2Fui%2FvolUp.pngR2i4198R3R4R5R36R6tgoR0y26:bulkAssets%2FvolumeBar.pngR2i3385R3R4R5R37R6tgoR2i2563R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R10aR39y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R38R5y28:flixel%2Fsounds%2Fflixel.mp3R10aR41y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i5636R3R8R5R40R10aR39R40hgoR2i33629R3R8R5R42R10aR41R42hgoR2i15744R3R23R24y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R23R24y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i277R3R4R5R47R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i505R3R4R5R48R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Fbox.pngR2i75R3R4R5R49R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fbutton.pngR2i211R3R4R5R50R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_down.pngR2i216R3R4R5R51R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_left.pngR2i222R3R4R5R52R6tgoR0y49:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_right.pngR2i238R3R4R5R53R6tgoR0y46:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_up.pngR2i227R3R4R5R54R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fbutton_thin.pngR2i118R3R4R5R55R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fbutton_toggle.pngR2i254R3R4R5R56R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fcheck_box.pngR2i101R3R4R5R57R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fcheck_mark.pngR2i97R3R4R5R58R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fchrome.pngR2i135R3R4R5R59R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fchrome_flat.pngR2i124R3R4R5R60R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_inset.pngR2i102R3R4R5R61R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_light.pngR2i118R3R4R5R62R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fdropdown_mark.pngR2i86R3R4R5R63R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Ffinger_big.pngR2i1337R3R4R5R64R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Ffinger_small.pngR2i157R3R4R5R65R6tgoR0y38:flixel%2Fflixel-ui%2Fimg%2Fhilight.pngR2i74R3R4R5R66R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Finvis.pngR2i72R3R4R5R67R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fminus_mark.pngR2i77R3R4R5R68R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fplus_mark.pngR2i83R3R4R5R69R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Fradio.pngR2i108R3R4R5R70R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fradio_dot.pngR2i81R3R4R5R71R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fswatch.pngR2i94R3R4R5R72R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Ftab.pngR2i106R3R4R5R73R6tgoR0y39:flixel%2Fflixel-ui%2Fimg%2Ftab_back.pngR2i111R3R4R5R74R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Ftooltip_arrow.pngR2i176R3R4R5R75R6tgoR0y39:flixel%2Fflixel-ui%2Fxml%2Fdefaults.xmlR2i1263R3R15R5R76R6tgoR0y53:flixel%2Fflixel-ui%2Fxml%2Fdefault_loading_screen.xmlR2i1953R3R15R5R77R6tgoR0y44:flixel%2Fflixel-ui%2Fxml%2Fdefault_popup.xmlR2i1848R3R15R5R78R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fcircle.pngR2i299R3R4R5R79R6tgoR0y53:flixel%2Fimages%2Ftransitions%2Fdiagonal_gradient.pngR2i730R3R4R5R80R6tgoR0y43:flixel%2Fimages%2Ftransitions%2Fdiamond.pngR2i236R3R4R5R81R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fsquare.pngR2i209R3R4R5R82R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -13108,6 +13108,36 @@ classes_FlxDynamicText.__super__ = flixel_text_FlxText;
 classes_FlxDynamicText.prototype = $extend(flixel_text_FlxText.prototype,{
 	__class__: classes_FlxDynamicText
 });
+var classes_FlxTagSprite = function(name,x,y) {
+	flixel_FlxSprite.call(this,x,y);
+	this.name = name;
+	classes_FlxTagSprite.entries.h[name] = this;
+};
+$hxClasses["classes.FlxTagSprite"] = classes_FlxTagSprite;
+classes_FlxTagSprite.__name__ = "classes.FlxTagSprite";
+classes_FlxTagSprite.get = function(which) {
+	var h = classes_FlxTagSprite.entries.h;
+	var _g_h = h;
+	var _g_keys = Object.keys(h);
+	var _g_length = _g_keys.length;
+	var _g_current = 0;
+	while(_g_current < _g_length) {
+		var key = _g_keys[_g_current++];
+		var _g_key = key;
+		var _g_value = _g_h[key];
+		var named = _g_key;
+		var obj = _g_value;
+		if(named == which) {
+			return obj;
+		}
+	}
+	return null;
+};
+classes_FlxTagSprite.__super__ = flixel_FlxSprite;
+classes_FlxTagSprite.prototype = $extend(flixel_FlxSprite.prototype,{
+	name: null
+	,__class__: classes_FlxTagSprite
+});
 var flixel_input_IFlxInput = function() { };
 $hxClasses["flixel.input.IFlxInput"] = flixel_input_IFlxInput;
 flixel_input_IFlxInput.__name__ = "flixel.input.IFlxInput";
@@ -13622,6 +13652,45 @@ classes_FlxAnimButton.prototype = $extend(flixel_ui_FlxSpriteButton.prototype,{
 	}
 	,__class__: classes_FlxAnimButton
 });
+var classes_FlxGroupButton = function(name,x,y,button,toggleable) {
+	if(toggleable == null) {
+		toggleable = false;
+	}
+	flixel_group_FlxTypedSpriteGroup.call(this);
+	classes_FlxGroupButton.entries.h[name] = this;
+	this.add(button);
+	if(toggleable) {
+		this.toggleState = true;
+	}
+};
+$hxClasses["classes.FlxGroupButton"] = classes_FlxGroupButton;
+classes_FlxGroupButton.__name__ = "classes.FlxGroupButton";
+classes_FlxGroupButton.get = function(which) {
+	var h = classes_FlxGroupButton.entries.h;
+	var _g_h = h;
+	var _g_keys = Object.keys(h);
+	var _g_length = _g_keys.length;
+	var _g_current = 0;
+	while(_g_current < _g_length) {
+		var key = _g_keys[_g_current++];
+		var _g_key = key;
+		var _g_value = _g_h[key];
+		var named = _g_key;
+		var obj = _g_value;
+		if(named == which) {
+			return obj;
+		}
+	}
+	return null;
+};
+classes_FlxGroupButton.__super__ = flixel_group_FlxTypedSpriteGroup;
+classes_FlxGroupButton.prototype = $extend(flixel_group_FlxTypedSpriteGroup.prototype,{
+	toggleState: null
+	,addElement: function(obj) {
+		this.add(obj);
+	}
+	,__class__: classes_FlxGroupButton
+});
 var classes_HTMLBackend = function() { };
 $hxClasses["classes.HTMLBackend"] = classes_HTMLBackend;
 classes_HTMLBackend.__name__ = "classes.HTMLBackend";
@@ -13703,7 +13772,7 @@ classes_HTMLBackend.switchPage = function(pagename) {
 };
 classes_HTMLBackend.formatStatus = function(data) {
 	var tmp = data.notice;
-	return "Version: " + data.version + "\r\nChanges: " + data.changelog + "\r\nStatus:\r\n" + data.status + "\r\nTime: " + Std.string(data.timestamp) + " (timestamp class soon)\r\nNotice: " + (tmp != null ? tmp : "None; this is for any other info if I don't input one.");
+	return "__Version:__ " + data.version + "\r\n__Changes:__ " + data.changelog + "\r\n__Status:__\r\n" + data.status + "\r\n__Time:__ " + Std.string(data.timestamp) + " (timestamp class soon)\r\n__Notice:__ " + (tmp != null ? tmp : "None; this is for any other info if I don't input one.");
 };
 var classes_Page = function(pageName,objectList,isHome) {
 	if(isHome == null) {
@@ -80655,7 +80724,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 843684;
+	this.version = 50529;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -127571,6 +127640,7 @@ var states_WebStatusState = function() {
 	this.delayy = false;
 	this.boopWay = true;
 	this.preventTransition = false;
+	this.bopPrefs = true;
 	this.startBop = false;
 	this.notice = new flixel_group_FlxTypedSpriteGroup(0,flixel_FlxG.height + 20);
 	this.RootDirectory = "bulkAssets/";
@@ -127598,11 +127668,13 @@ states_WebStatusState.__super__ = flixel_FlxState;
 states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 	RootDirectory: null
 	,bopper: null
+	,dummy: null
 	,bgGoofy: null
 	,notice: null
 	,newNotice: null
 	,noticeBG: null
 	,startBop: null
+	,bopPrefs: null
 	,bopConst: null
 	,jason: null
 	,files: null
@@ -127611,17 +127683,19 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 	,preventTransition: null
 	,create: function() {
 		var _gthis = this;
+		this.dummy = new flixel_FlxSprite();
 		var ratio = Math.max(flixel_FlxG.width / flixel_FlxG.height,flixel_FlxG.height / flixel_FlxG.width) | 0;
 		var _g = new haxe_ds_StringMap();
 		_g.h["Home"] = function() {
-			_gthis.add(new classes_Page("Home",[new flixel_text_FlxText(5,110,flixel_FlxG.width * 0.55,classes_PageInfo.Homepage,16).setFormat("PhantomMuff 1.5",20 * ratio,50150,"left"),new flixel_text_FlxText(0,0,100," ",8)],true));
+			_gthis.add(new classes_Page("Home",[new flixel_text_FlxText(5,110,flixel_FlxG.width * 0.55,classes_PageInfo.Homepage,16).setFormat("PhantomMuff 1.5",20 * ratio,50150,"left").applyMarkup(classes_PageInfo.Homepage,[new flixel_text_FlxTextFormatMarkerPair(new flixel_text_FlxTextFormat(16762411,false,true,null,false),"!!"),new flixel_text_FlxTextFormatMarkerPair(new flixel_text_FlxTextFormat(8947848,true,false,null,false),"%%")]),new flixel_text_FlxText(0,0,100," ",8)],true));
 		};
 		_g.h["Bio"] = function() {
 			_gthis.add(new classes_Page("Bio",[new classes_FlxDynamicText("Bio",40,60,500,classes_PageInfo.About_Me,8).setFormat("PhantomMuff 1.5",25 * ratio,50150,"left"),new flixel_text_FlxText(0,0,100," ",8)],false));
 		};
 		_g.h["Status"] = function() {
 			var reloadY = flixel_FlxG.height * 0.2;
-			_gthis.add(new classes_Page("Status",[new classes_FlxDynamicText("Status",140,reloadY | 0,flixel_FlxG.width * 0.8,classes_PageInfo.Status,8).setFormat("PhantomMuff 1.5",26 * ratio,50150,"left"),new classes_FlxAnimButton("Reload Status",20,reloadY,null,null).loadGraphic("bulkAssets/reload.png")],false));
+			var headers = new flixel_text_FlxTextFormatMarkerPair(new flixel_text_FlxTextFormat(50150),"__");
+			_gthis.add(new classes_Page("Status",[new classes_FlxDynamicText("Status",140,reloadY | 0,flixel_FlxG.width * 0.8,classes_PageInfo.Status,8).setFormat("PhantomMuff 1.5",26 * ratio,13290186,"left"),new classes_FlxAnimButton("Reload Status",20,reloadY,null,null).loadGraphic("bulkAssets/reload.png")],false));
 			var button = classes_FlxAnimButton.get("Reload Status");
 			button.setCallbacks(function() {
 				classes_FlxAnimButton.no(button);
@@ -127650,13 +127724,14 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 						};
 						http.onError = function(error) {
 							reject(error);
-							haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 389, className : "states.WebStatusState", methodName : "getStatus"});
+							haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 465, className : "states.WebStatusState", methodName : "getStatus"});
 						};
 						http.request();
 					}).then(function(data) {
-						var tmp = classes_FlxDynamicText.getInstance("Status");
-						var tmp1 = data.notice;
-						return tmp.set_text("Version: " + data.version + "\r\nChanges: " + data.changelog + "\r\nStatus:\r\n" + data.status + "\r\nTime: " + Std.string(data.timestamp) + " (timestamp class soon)\r\nNotice: " + (tmp1 != null ? tmp1 : "None; this is for any other info if I don't input one."));
+						var temp = classes_FlxDynamicText.getInstance("Status");
+						var tmp = data.notice;
+						temp.set_text("__Version:__ " + data.version + "\r\n__Changes:__ " + data.changelog + "\r\n__Status:__\r\n" + data.status + "\r\n__Time:__ " + Std.string(data.timestamp) + " (timestamp class soon)\r\n__Notice:__ " + (tmp != null ? tmp : "None; this is for any other info if I don't input one."));
+						return temp.applyMarkup(temp.text,[headers]);
 					}).catch(function(error) {
 						return classes_FlxDynamicText.getInstance("Status").set_text("Status failed to load, please DM PotateX2.");
 					});
@@ -127682,9 +127757,30 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 			});
 		};
 		_g.h["Settings"] = function() {
-			_gthis.add(new classes_Page("Settings",[new classes_FlxDynamicText("Settings",50,100,flixel_FlxG.width * 0.4,classes_PageInfo.Settings,8).setFormat("PhantomMuff 1.5",26 * ratio,50150,"left"),new flixel_text_FlxText(50,classes_FlxDynamicText.getInstance("Settings").y + 100,200,"Music Volume",10).setFormat("PhantomMuff 1.5",15,50150),new classes_Bar("volume",50,classes_FlxDynamicText.getInstance("Settings").y + 130,"volumeBar",function() {
+			_gthis.add(new classes_Page("Settings",[new classes_FlxDynamicText("Settings",50,100,flixel_FlxG.width * 0.4,classes_PageInfo.Settings).setFormat("PhantomMuff 1.5",26 * ratio,2582493,"left"),new flixel_text_FlxText(50,classes_FlxDynamicText.getInstance("Settings").y + 50,200,"Music").setFormat("PhantomMuff 1.5",20,50150),new flixel_text_FlxText(50,classes_FlxDynamicText.getInstance("Settings").y + 90,200,"Volume").setFormat("PhantomMuff 1.5",15,50150),new classes_Bar("volume",50,classes_FlxDynamicText.getInstance("Settings").y + 130,"volumeBar",function() {
 				return states_WebStatusState.MusicHandler._volume;
-			}),new classes_FlxAnimButton("volDown",50,classes_Bar.getInstance("volume").y + 50 | 0,"bulkAssets/ui/volDown.png",null),new classes_FlxAnimButton("volUp",120,classes_Bar.getInstance("volume").y + 50 | 0,"bulkAssets/ui/volUp.png",null),new flixel_text_FlxText(50,classes_FlxDynamicText.getInstance("Settings").y + 300,300,"More settings added soon.",10).setFormat("PhantomMuff 1.5",20,50150)],false));
+			}),new classes_FlxAnimButton("volDown",50,classes_Bar.getInstance("volume").y + 50 | 0,"bulkAssets/ui/volDown.png",null),new classes_FlxAnimButton("volUp",120,classes_Bar.getInstance("volume").y + 50 | 0,"bulkAssets/ui/volUp.png",null),new flixel_text_FlxText(50,classes_FlxAnimButton.get("volDown").y + 80,200,"Background Color",10).setFormat("PhantomMuff 1.5",15,50150),new classes_FlxGroupButton("bgColor",50,classes_FlxAnimButton.get("volDown").y + 110,new classes_FlxAnimButton("bgMode",3,3,"bulkAssets/ui/bgMode.png",null),true),new classes_FlxGroupButton("music",50,classes_FlxAnimButton.get("volDown").y + 210,new classes_FlxAnimButton("toggleMusic",0,0,"bulkAssets/ui/musicIcon.png",null),true),new flixel_text_FlxText(50,classes_FlxDynamicText.getInstance("Settings").y + 500,500,"More settings and better UI added soon.",10).setFormat("PhantomMuff 1.5",20,50150)],false));
+			classes_FlxGroupButton.get("bgColor").addElement(new classes_FlxTagSprite("selector",5,6).loadGraphic("bulkAssets/ui/bgModeSelected.png"));
+			classes_FlxGroupButton.get("music").addElement(new classes_FlxTagSprite("muted",5,6).loadGraphic("bulkAssets/ui/nO.png"));
+			var bgButton = classes_FlxAnimButton.get("bgMode");
+			var select = classes_FlxTagSprite.get("selector");
+			var group = classes_FlxGroupButton.get("bgColor");
+			group.set_x(50);
+			group.set_y(classes_FlxAnimButton.get("volDown").y + 110);
+			bgButton.setCallbacks(function() {
+				classes_FlxAnimButton.no(bgButton);
+				flixel_tweens_FlxTween.cancelTweensOf(select,["x"]);
+				flixel_tweens_FlxTween.cancelTweensOf(_gthis.dummy);
+				states_WebStatusState.SoundHandler.soundCheck("clickOut.ogg");
+				flixel_tweens_FlxTween.tween(select,{ x : group.toggleState ? group.x + 5 + 23.25 : group.x + 5},0.3,{ ease : flixel_tweens_FlxEase.circOut});
+				flixel_tweens_FlxTween.color(_gthis.dummy,1,group.toggleState ? -16777216 : -12961222,group.toggleState ? -12961222 : -16777216,{ onUpdate : function(_) {
+					flixel_FlxG.camera.bgColor = _gthis.dummy.color;
+				}});
+				group.toggleState = !group.toggleState;
+			},function() {
+				classes_FlxAnimButton.no(bgButton);
+				states_WebStatusState.SoundHandler.soundCheck("clickIn.ogg");
+			});
 			var down = classes_FlxAnimButton.get("volDown");
 			var up = classes_FlxAnimButton.get("volUp");
 			down.setCallbacks(function() {
@@ -127725,6 +127821,30 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 				flixel_tweens_FlxTween.cancelTweensOf(up,["alpha","y"]);
 				flixel_tweens_FlxTween.tween(up,{ "scale.x" : 1, "scale.y" : 1},0.2,{ ease : flixel_tweens_FlxEase.sineOut});
 			});
+			var musicMute = classes_FlxAnimButton.get("toggleMusic");
+			var muteGroup = classes_FlxGroupButton.get("music");
+			muteGroup.set_x(300);
+			muteGroup.set_y(classes_FlxAnimButton.get("volDown").y);
+			musicMute.setCallbacks(function() {
+				musicMute.scale.set_x(1);
+				musicMute.scale.set_y(1);
+				states_WebStatusState.SoundHandler.soundCheck("clickOut.ogg");
+				if(classes_FlxGroupButton.get("music").toggleState) {
+					states_WebStatusState.MusicHandler.pause();
+					classes_FlxTagSprite.get("muted").set_visible(true);
+					_gthis.bopPrefs = false;
+				} else {
+					states_WebStatusState.MusicHandler.play();
+					classes_FlxTagSprite.get("muted").set_visible(false);
+					_gthis.bopPrefs = true;
+				}
+				classes_FlxGroupButton.get("music").toggleState = !classes_FlxGroupButton.get("music").toggleState;
+			},function() {
+				musicMute.scale.set_x(musicMute.scale.x - 0.2);
+				musicMute.scale.set_y(musicMute.scale.y - 0.2);
+				states_WebStatusState.SoundHandler.soundCheck("clickIn.ogg");
+			});
+			classes_FlxTagSprite.get("muted").set_visible(false);
 		};
 		states_WebStatusState.__Page_Elements = _g;
 		classes_HTMLBackend.create();
@@ -127750,7 +127870,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 				})(page),flixel_FlxG.width * 0.3 + 120 * sigh,20,"bulkAssets/navIcons/" + page[0] + ".png"));
 			} catch( _g ) {
 				var nothing = haxe_Exception.caught(_g);
-				haxe_Log.trace(nothing,{ fileName : "source/states/WebStatusState.hx", lineNumber : 209, className : "states.WebStatusState", methodName : "create"});
+				haxe_Log.trace(nothing,{ fileName : "source/states/WebStatusState.hx", lineNumber : 280, className : "states.WebStatusState", methodName : "create"});
 			}
 			++sigh;
 		}
@@ -127800,7 +127920,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 		this.realTime.set_cameras([states_WebStatusState.camHUD]);
 		flixel_tweens_FlxTween.tween(this.realTime,{ alpha : 1},1.4,{ ease : flixel_tweens_FlxEase.sineInOut});
 		this.files = new classes_UI(flixel_FlxG.width - 100,flixel_FlxG.height - 80,"placeholder",function() {
-			window.alert("This does nothing for now, what did you expect?");
+			window.alert("This still does nothing, I might just remove it... or will I?");
 			if(!_gthis.files.buffer && !_gthis.preventTransition) {
 				_gthis.files.buffer = true;
 				_gthis.preventTransition = true;
@@ -127821,12 +127941,12 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 			parse = classes_HTMLBackend.fromJson("metadata").music;
 		} catch( _g ) {
 			var unloaded = haxe_Exception.caught(_g);
-			window.alert("Backend data cached; please reload the page. \n(This will be fixed at a later date.)");
-			throw haxe_Exception.thrown("## Backend data cached; please reload the page. \n## (This will be fixed at a later date.)\n\n" + Std.string(unloaded));
+			window.alert("Backend data cached; please reload the page.\r\n            (This will be fixed at a later date.)");
+			throw haxe_Exception.thrown("## Backend data cached; please reload the page.\r\n            ## (This will be fixed at a later date.)\r\n            \r\n            " + Std.string(unloaded));
 		}
 		if(parse != null) {
 			this.jason = parse.bpm;
-			haxe_Log.trace(this.jason,{ fileName : "source/states/WebStatusState.hx", lineNumber : 268, className : "states.WebStatusState", methodName : "create"});
+			haxe_Log.trace(this.jason,{ fileName : "source/states/WebStatusState.hx", lineNumber : 344, className : "states.WebStatusState", methodName : "create"});
 		}
 		flixel_tweens_FlxTween.tween(this.bopper,{ alpha : 1, x : flixel_FlxG.width * 0.85},1.7,{ ease : flixel_tweens_FlxEase.sineOut, onComplete : function(_) {
 			_gthis.startBop = true;
@@ -127859,7 +127979,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 			};
 			http.onError = function(error) {
 				reject(error);
-				haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 389, className : "states.WebStatusState", methodName : "getStatus"});
+				haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 465, className : "states.WebStatusState", methodName : "getStatus"});
 			};
 			http.request();
 		}).then(function(data) {
@@ -127893,7 +128013,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 				};
 				http.onError = function(error) {
 					reject(error);
-					haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 389, className : "states.WebStatusState", methodName : "getStatus"});
+					haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 465, className : "states.WebStatusState", methodName : "getStatus"});
 				};
 				http.request();
 			}).then(function(data) {
@@ -127901,12 +128021,12 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 					flixel_tweens_FlxTween.tween(_gthis.notice,{ alpha : 1, y : flixel_FlxG.height - 50},1.25,{ ease : flixel_tweens_FlxEase.elasticInOut, onComplete : function(_) {
 						flixel_tweens_FlxTween.tween(_gthis.notice,{ alpha : 0, y : flixel_FlxG.height + 20},1.25,{ ease : flixel_tweens_FlxEase.sineIn, startDelay : 5});
 					}});
-					flixel_FlxG.sound.play("bulkAssets/noticeUpdate.ogg",0.5);
+					flixel_FlxG.sound.play("bulkAssets/noticeUpdate.ogg",0.7);
 					states_WebStatusState.daStatus = data.status;
 					window.console.log("!!! -- New status fetched! -- !!!");
 				}
 			}).catch(function(e) {
-				haxe_Log.trace("status failed | " + e,{ fileName : "source/states/WebStatusState.hx", lineNumber : 307, className : "states.WebStatusState", methodName : "create"});
+				haxe_Log.trace("status failed | " + e,{ fileName : "source/states/WebStatusState.hx", lineNumber : 383, className : "states.WebStatusState", methodName : "create"});
 			});
 		},0);
 	}
@@ -127922,7 +128042,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 		}
 		var secondsTotal = flixel_math_FlxMath.roundDecimal(states_WebStatusState.MusicHandler._time / 1000,4);
 		var croshet = flixel_math_FlxMath.roundDecimal(60 / this.jason,4);
-		if(secondsTotal % croshet >= 0 && secondsTotal % croshet <= 0.03) {
+		if(secondsTotal % croshet >= 0 && secondsTotal % croshet <= 0.03 && this.bopPrefs) {
 			if(!this.delayy) {
 				if(this.startBop) {
 					flixel_tweens_FlxTween.completeTweensOf(this.bopper);
@@ -127997,7 +128117,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 			};
 			http.onError = function(error) {
 				reject(error);
-				haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 389, className : "states.WebStatusState", methodName : "getStatus"});
+				haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 465, className : "states.WebStatusState", methodName : "getStatus"});
 			};
 			http.request();
 		});
@@ -128176,14 +128296,16 @@ flixel_FlxObject._secondSeparateFlxRect = (function($this) {
 }(this));
 flixel_FlxSprite.defaultAntialiasing = false;
 classes_Bar.entries = new haxe_ds_StringMap();
-classes_PageInfo.Homepage = "\r\nOh, heyo. Looks like you stumbled upon the preliminary structure of what's supposed to be my entire Discord profile page.\r\nIf you've seen the Netlify site of this, well... it's getting discontinued. So we're here now. :P\r\n\r\n### Changelog has been moved to the Status tab.\r\nMore stuff coming soon, by which I mean the bios...\r\n\r\nI'm STILL caught up in college homework this week, so development will be somewhat hindered.\r\n\r\n~ PotateX2";
-classes_PageInfo.About_Me = "\r\nPlaceholder/main bio will be added here by 0.3.0, check back here soon. :)\r\n    ";
+classes_PageInfo.Homepage = "\r\nOh, heyo. Welcome (or welcome back) to the barebones of my HaxeFlixel bio.\r\n!!TL:DR, the Netlify site is deprecated. Don't bother navigating to it.!!\r\n\r\n%%### Site changelog and info is located in the Status tab.%%\r\n\r\nI'm STILL caught up in college homework this week, so development will be somewhat hindered.\r\n\r\n~ PotateX2";
+classes_PageInfo.About_Me = "\r\nPlaceholder and main bio will be added here SOON, stay tuned. :)\r\n    ";
 classes_PageInfo.Status = "Click to fetch status";
 classes_PageInfo.Settings = "Site Settings";
 openfl_text_TextField.__missingFontWarning = new haxe_ds_StringMap();
 flixel_text_FlxText.VERTICAL_GUTTER = 4;
 classes_FlxDynamicText.entries = new haxe_ds_StringMap();
+classes_FlxTagSprite.entries = new haxe_ds_StringMap();
 classes_FlxAnimButton.entries = new haxe_ds_StringMap();
+classes_FlxGroupButton.entries = new haxe_ds_StringMap();
 classes_Page.pageList = [];
 classes_Page.current = null;
 flixel_ui_FlxButton.NORMAL = 0;
