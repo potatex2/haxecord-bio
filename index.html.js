@@ -925,7 +925,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "18";
+	app.meta.h["build"] = "90";
 	app.meta.h["company"] = "PotateX2";
 	app.meta.h["file"] = "index.html";
 	app.meta.h["name"] = "PotateX2 ~ WebStatusState.hx";
@@ -13637,7 +13637,7 @@ classes_FlxAnimButton.get = function(which) {
 	return null;
 };
 classes_FlxAnimButton.no = function(aaa) {
-	if(!aaa.visible) {
+	if(!aaa.visible || aaa.alpha < 0.5) {
 		return;
 	}
 };
@@ -13652,11 +13652,11 @@ classes_FlxAnimButton.prototype = $extend(flixel_ui_FlxSpriteButton.prototype,{
 	}
 	,__class__: classes_FlxAnimButton
 });
-var classes_FlxGroupButton = function(name,x,y,button,toggleable) {
+var classes_FlxGroupButton = function(name,button,toggleable) {
 	if(toggleable == null) {
 		toggleable = false;
 	}
-	flixel_group_FlxTypedSpriteGroup.call(this);
+	flixel_group_FlxTypedSpriteGroup.call(this,0,0);
 	classes_FlxGroupButton.entries.h[name] = this;
 	this.add(button);
 	if(toggleable) {
@@ -13728,7 +13728,7 @@ classes_HTMLBackend.create = function() {
 		otherGoober.style.textAlign = "center";
 		return otherGoober.style.textShadow = "black 2px 2px 3px";
 	}).catch(function(e) {
-		haxe_Log.trace("error on font: " + e,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 53, className : "classes.HTMLBackend", methodName : "create"});
+		haxe_Log.trace("error on font: " + e,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 54, className : "classes.HTMLBackend", methodName : "create"});
 	});
 	window.document.body.appendChild(filler);
 };
@@ -13741,7 +13741,7 @@ classes_HTMLBackend.loadAndCache = function(name,url,async) {
 		window.localStorage.setItem(name,raw);
 	};
 	http.onError = function(err) {
-		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 67, className : "classes.HTMLBackend", methodName : "loadAndCache"});
+		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 68, className : "classes.HTMLBackend", methodName : "loadAndCache"});
 	};
 	http.request(async);
 };
@@ -80709,7 +80709,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 705199;
+	this.version = 321398;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -127625,6 +127625,7 @@ var states_WebStatusState = function() {
 	this.delayy = false;
 	this.boopWay = true;
 	this.preventTransition = false;
+	this.buttongroup = new flixel_group_FlxTypedGroup();
 	this.bopPrefs = true;
 	this.startBop = false;
 	this.notice = new flixel_group_FlxTypedSpriteGroup(0,flixel_FlxG.height + 20);
@@ -127663,6 +127664,8 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 	,bopConst: null
 	,jason: null
 	,files: null
+	,settings: null
+	,buttongroup: null
 	,realTime: null
 	,sorry: null
 	,preventTransition: null
@@ -127709,7 +127712,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 						};
 						http.onError = function(error) {
 							reject(error);
-							haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 497, className : "states.WebStatusState", methodName : "getStatus"});
+							haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 461, className : "states.WebStatusState", methodName : "getStatus"});
 						};
 						http.request();
 					}).then(function(data) {
@@ -127741,96 +127744,6 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 				flixel_tweens_FlxTween.tween(button,{ "scale.x" : 1, "scale.y" : 1, y : reloadY, angle : 0},0.4,{ ease : flixel_tweens_FlxEase.sineOut});
 			});
 		};
-		_g.h["Settings"] = function() {
-			_gthis.add(new classes_Page("Settings",[new classes_FlxDynamicText("Settings",50,100,flixel_FlxG.width * 0.4,classes_PageInfo.Settings).setFormat("PhantomMuff 1.5",26 * ratio,2582493,"left"),new flixel_text_FlxText(50,classes_FlxDynamicText.getInstance("Settings").y + 50,200,"Music").setFormat("PhantomMuff 1.5",20,50150),new flixel_text_FlxText(50,classes_FlxDynamicText.getInstance("Settings").y + 90,200,"Volume").setFormat("PhantomMuff 1.5",15,50150),new classes_Bar("volume",50,classes_FlxDynamicText.getInstance("Settings").y + 130,"volumeBar",function() {
-				return states_WebStatusState.MusicHandler._volume;
-			}),new classes_FlxAnimButton("volDown",50,classes_Bar.getInstance("volume").y + 50 | 0,"bulkAssets/ui/volDown.png",null),new classes_FlxAnimButton("volUp",120,classes_Bar.getInstance("volume").y + 50 | 0,"bulkAssets/ui/volUp.png",null),new flixel_text_FlxText(50,classes_FlxAnimButton.get("volDown").y + 80,200,"Background Color",10).setFormat("PhantomMuff 1.5",15,50150),new classes_FlxGroupButton("bgColor",50,classes_FlxAnimButton.get("volDown").y + 110,new classes_FlxAnimButton("bgMode",3,3,"bulkAssets/ui/bgMode.png",null),true),new classes_FlxGroupButton("music",50,classes_FlxAnimButton.get("volDown").y + 210,new classes_FlxAnimButton("toggleMusic",0,0,"bulkAssets/ui/musicIcon.png",null),true),new flixel_text_FlxText(50,classes_FlxDynamicText.getInstance("Settings").y + 500,500,"More settings and better UI added soon.",10).setFormat("PhantomMuff 1.5",20,50150)],false));
-			classes_FlxGroupButton.get("bgColor").addElement(new classes_FlxTagSprite("selector",5,6).loadGraphic("bulkAssets/ui/bgModeSelected.png"));
-			classes_FlxGroupButton.get("music").addElement(new classes_FlxTagSprite("muted",5,6).loadGraphic("bulkAssets/ui/nO.png"));
-			var bgButton = classes_FlxAnimButton.get("bgMode");
-			var select = classes_FlxTagSprite.get("selector");
-			var group = classes_FlxGroupButton.get("bgColor");
-			group.set_x(50);
-			group.set_y(classes_FlxAnimButton.get("volDown").y + 110);
-			bgButton.setCallbacks(function() {
-				classes_FlxAnimButton.no(bgButton);
-				flixel_tweens_FlxTween.cancelTweensOf(select,["x"]);
-				flixel_tweens_FlxTween.cancelTweensOf(_gthis.dummy);
-				states_WebStatusState.SoundHandler.soundCheck("clickOut.ogg");
-				flixel_tweens_FlxTween.tween(select,{ x : group.toggleState ? group.x + 5 + 23.25 : group.x + 5},0.3,{ ease : flixel_tweens_FlxEase.circOut});
-				flixel_tweens_FlxTween.color(_gthis.dummy,1,_gthis.dummy.color,group.toggleState ? -12961222 : -16777216,{ onUpdate : function(_) {
-					flixel_FlxG.camera.bgColor = _gthis.dummy.color;
-				}});
-				group.toggleState = !group.toggleState;
-			},function() {
-				classes_FlxAnimButton.no(bgButton);
-				states_WebStatusState.SoundHandler.soundCheck("clickIn.ogg");
-			});
-			var down = classes_FlxAnimButton.get("volDown");
-			var up = classes_FlxAnimButton.get("volUp");
-			down.setCallbacks(function() {
-				down.scale.set_x(down.scale.x + 0.2);
-				down.scale.set_y(down.scale.y + 0.2);
-				states_WebStatusState.SoundHandler.soundCheck("clickOut.ogg");
-				var fh = states_WebStatusState.MusicHandler;
-				fh.set_volume(fh._volume - 0.1);
-			},function() {
-				down.scale.set_x(down.scale.x - 0.2);
-				down.scale.set_y(down.scale.y - 0.2);
-				states_WebStatusState.SoundHandler.soundCheck("clickIn.ogg");
-			},function() {
-				classes_FlxAnimButton.no(down);
-				flixel_tweens_FlxTween.cancelTweensOf(down,["alpha","y"]);
-				flixel_tweens_FlxTween.tween(down,{ "scale.x" : 1.1, "scale.y" : 1.1},0.2,{ ease : flixel_tweens_FlxEase.circInOut});
-			},function() {
-				classes_FlxAnimButton.no(down);
-				flixel_tweens_FlxTween.cancelTweensOf(down,["alpha","y"]);
-				flixel_tweens_FlxTween.tween(down,{ "scale.x" : 1, "scale.y" : 1},0.2,{ ease : flixel_tweens_FlxEase.sineOut});
-			});
-			up.setCallbacks(function() {
-				up.scale.set_x(up.scale.x + 0.2);
-				up.scale.set_y(up.scale.y + 0.2);
-				states_WebStatusState.SoundHandler.soundCheck("clickOut.ogg");
-				var fh = states_WebStatusState.MusicHandler;
-				fh.set_volume(fh._volume + 0.1);
-			},function() {
-				up.scale.set_x(up.scale.x - 0.2);
-				up.scale.set_y(up.scale.y - 0.2);
-				states_WebStatusState.SoundHandler.soundCheck("clickIn.ogg");
-			},function() {
-				classes_FlxAnimButton.no(up);
-				flixel_tweens_FlxTween.cancelTweensOf(up,["alpha","y"]);
-				flixel_tweens_FlxTween.tween(up,{ "scale.x" : 1.1, "scale.y" : 1.1},0.2,{ ease : flixel_tweens_FlxEase.circInOut});
-			},function() {
-				classes_FlxAnimButton.no(up);
-				flixel_tweens_FlxTween.cancelTweensOf(up,["alpha","y"]);
-				flixel_tweens_FlxTween.tween(up,{ "scale.x" : 1, "scale.y" : 1},0.2,{ ease : flixel_tweens_FlxEase.sineOut});
-			});
-			var musicMute = classes_FlxAnimButton.get("toggleMusic");
-			var muteGroup = classes_FlxGroupButton.get("music");
-			muteGroup.set_x(300);
-			muteGroup.set_y(classes_FlxAnimButton.get("volDown").y);
-			musicMute.setCallbacks(function() {
-				musicMute.scale.set_x(1);
-				musicMute.scale.set_y(1);
-				states_WebStatusState.SoundHandler.soundCheck("clickOut.ogg");
-				if(classes_FlxGroupButton.get("music").toggleState) {
-					states_WebStatusState.MusicHandler.pause();
-					classes_FlxTagSprite.get("muted").set_visible(true);
-					_gthis.bopPrefs = false;
-				} else {
-					states_WebStatusState.MusicHandler.play();
-					classes_FlxTagSprite.get("muted").set_visible(false);
-					_gthis.bopPrefs = true;
-				}
-				classes_FlxGroupButton.get("music").toggleState = !classes_FlxGroupButton.get("music").toggleState;
-			},function() {
-				musicMute.scale.set_x(musicMute.scale.x - 0.2);
-				musicMute.scale.set_y(musicMute.scale.y - 0.2);
-				states_WebStatusState.SoundHandler.soundCheck("clickIn.ogg");
-			});
-			classes_FlxTagSprite.get("muted").set_visible(false);
-		};
 		states_WebStatusState.__Page_Elements = _g;
 		classes_HTMLBackend.create();
 		flixel_FlxState.prototype.create.call(this);
@@ -127855,7 +127768,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 				})(page),flixel_FlxG.width * 0.3 + 120 * sigh,20,"bulkAssets/navIcons/" + page[0] + ".png"));
 			} catch( _g ) {
 				var nothing = haxe_Exception.caught(_g);
-				haxe_Log.trace(nothing,{ fileName : "source/states/WebStatusState.hx", lineNumber : 281, className : "states.WebStatusState", methodName : "create"});
+				haxe_Log.trace(nothing,{ fileName : "source/states/WebStatusState.hx", lineNumber : 160, className : "states.WebStatusState", methodName : "create"});
 			}
 			++sigh;
 		}
@@ -127904,7 +127817,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 		this.add(this.realTime);
 		this.realTime.set_cameras([states_WebStatusState.camHUD]);
 		flixel_tweens_FlxTween.tween(this.realTime,{ alpha : 1},1.4,{ ease : flixel_tweens_FlxEase.sineInOut});
-		this.files = new classes_FlxGroupButton("repoPage",flixel_FlxG.width - 100,flixel_FlxG.height - 130,new classes_FlxAnimButton("redirect",flixel_FlxG.width - 100,flixel_FlxG.height - 150,"bulkAssets/siteRepo.png"));
+		this.files = new classes_FlxGroupButton("repoPage",new classes_FlxAnimButton("redirect",flixel_FlxG.width - 100,flixel_FlxG.height - 150,"bulkAssets/siteRepo.png"));
 		this.add(this.files);
 		this.files.set_alpha(0);
 		this.files.set_cameras([states_WebStatusState.camHUD]);
@@ -127947,6 +127860,88 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 			flixel_tweens_FlxTween.cancelTweensOf(aaa,["alpha","y"]);
 			flixel_tweens_FlxTween.tween(aaa,{ "scale.x" : 1, "scale.y" : 1},0.2,{ ease : flixel_tweens_FlxEase.sineOut});
 		});
+		this.settings = new classes_FlxGroupButton("Settings",new classes_FlxAnimButton("settingToggle",10,flixel_FlxG.height - 125,"bulkAssets/navIcons/Settings.png"),true);
+		this.settings.addElement(new classes_FlxGroupButton("bgColor",new classes_FlxAnimButton("bgMode",classes_FlxAnimButton.get("settingToggle").get_width() + 3,classes_FlxAnimButton.get("settingToggle").y + classes_FlxAnimButton.get("settingToggle").get_height() / 4,"bulkAssets/ui/bgMode.png",null),true));
+		var bgMode = classes_FlxAnimButton.get("bgMode");
+		var group = classes_FlxGroupButton.get("bgColor");
+		this.settings.addElement(new classes_FlxGroupButton("music",new classes_FlxAnimButton("toggleMusic",bgMode.x - bgMode.get_width(),classes_FlxAnimButton.get("settingToggle").y + classes_FlxAnimButton.get("settingToggle").get_height() / 4,"bulkAssets/ui/musicIcon.png",null),true));
+		var music = classes_FlxGroupButton.get("music");
+		var musicMute = classes_FlxAnimButton.get("toggleMusic");
+		group.set_alpha(0);
+		music.set_alpha(0);
+		group.addElement(new classes_FlxTagSprite("selector",group.x + 5,bgMode.y + 3).loadGraphic("bulkAssets/ui/bgModeSelected.png"));
+		music.addElement(new classes_FlxTagSprite("muted",musicMute.x + 5,bgMode.y).loadGraphic("bulkAssets/ui/nO.png"));
+		music.set_x(150);
+		musicMute.setCallbacks(function() {
+			classes_FlxAnimButton.no(musicMute);
+			musicMute.scale.set_x(1);
+			musicMute.scale.set_y(1);
+			states_WebStatusState.SoundHandler.soundCheck("clickOut.ogg");
+			if(music.toggleState) {
+				states_WebStatusState.MusicHandler.pause();
+				classes_FlxTagSprite.get("muted").set_visible(true);
+				_gthis.bopPrefs = false;
+			} else {
+				states_WebStatusState.MusicHandler.play();
+				classes_FlxTagSprite.get("muted").set_visible(false);
+				_gthis.bopPrefs = true;
+			}
+			music.toggleState = !music.toggleState;
+		},function() {
+			musicMute.scale.set_x(musicMute.scale.x - 0.2);
+			musicMute.scale.set_y(musicMute.scale.y - 0.2);
+			states_WebStatusState.SoundHandler.soundCheck("clickIn.ogg");
+		});
+		classes_FlxTagSprite.get("muted").set_visible(false);
+		var select = classes_FlxTagSprite.get("selector");
+		select.set_x(classes_FlxAnimButton.get("settingToggle").get_width() + 5);
+		bgMode.setCallbacks(function() {
+			classes_FlxAnimButton.no(bgMode);
+			flixel_tweens_FlxTween.cancelTweensOf(select,["x"]);
+			flixel_tweens_FlxTween.cancelTweensOf(_gthis.dummy);
+			states_WebStatusState.SoundHandler.soundCheck("clickOut.ogg");
+			flixel_tweens_FlxTween.tween(select,{ x : group.toggleState ? classes_FlxAnimButton.get("settingToggle").get_width() + 4 + 24.25 : classes_FlxAnimButton.get("settingToggle").get_width() + 5},0.3,{ ease : flixel_tweens_FlxEase.circOut});
+			flixel_tweens_FlxTween.color(_gthis.dummy,1,_gthis.dummy.color,group.toggleState ? -12961222 : -16777216,{ onUpdate : function(_) {
+				flixel_FlxG.camera.bgColor = _gthis.dummy.color;
+			}});
+			group.toggleState = !group.toggleState;
+		},function() {
+			classes_FlxAnimButton.no(bgMode);
+			states_WebStatusState.SoundHandler.soundCheck("clickIn.ogg");
+		});
+		var settingToggle = classes_FlxAnimButton.get("settingToggle");
+		settingToggle.scale.set_x(0.8);
+		settingToggle.scale.set_y(0.8);
+		this.settings.toggleState = false;
+		var groupY = group.y;
+		var musicY = music.y;
+		settingToggle.setCallbacks(function() {
+			settingToggle.scale.set_x(0.8);
+			settingToggle.scale.set_y(0.8);
+			classes_FlxGroupButton.get("Settings").toggleState = !classes_FlxGroupButton.get("Settings").toggleState;
+			flixel_tweens_FlxTween.tween(group,{ alpha : classes_FlxGroupButton.get("Settings").toggleState ? 1 : 0, y : classes_FlxGroupButton.get("Settings").toggleState ? groupY : groupY + 10},0.3,{ ease : flixel_tweens_FlxEase.sineOut, onStart : function(_) {
+				if(classes_FlxGroupButton.get("Settings").toggleState) {
+					group.set_visible(true);
+				}
+			}, onComplete : function(_) {
+				if(!classes_FlxGroupButton.get("Settings").toggleState) {
+					group.set_visible(false);
+				}
+			}});
+			flixel_tweens_FlxTween.tween(music,{ alpha : classes_FlxGroupButton.get("Settings").toggleState ? 1 : 0, y : classes_FlxGroupButton.get("Settings").toggleState ? musicY : musicY + 10},0.3,{ ease : flixel_tweens_FlxEase.sineOut, onStart : function(_) {
+				if(classes_FlxGroupButton.get("Settings").toggleState) {
+					group.set_visible(true);
+				}
+			}, onComplete : function(_) {
+				if(!classes_FlxGroupButton.get("Settings").toggleState) {
+					group.set_visible(false);
+				}
+			}});
+		},function() {
+			settingToggle.scale.set_x(settingToggle.scale.x - 0.2);
+			settingToggle.scale.set_y(settingToggle.scale.y - 0.2);
+		});
+		this.add(this.settings);
 		if(window.localStorage.getItem("metadata") == null) {
 			classes_HTMLBackend.loadAndCache("metadata","bulkAssets/metadata.json",false);
 		}
@@ -127959,7 +127954,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 		}
 		if(parse != null) {
 			this.jason = parse.bpm;
-			haxe_Log.trace(this.jason,{ fileName : "source/states/WebStatusState.hx", lineNumber : 377, className : "states.WebStatusState", methodName : "create"});
+			haxe_Log.trace(this.jason,{ fileName : "source/states/WebStatusState.hx", lineNumber : 341, className : "states.WebStatusState", methodName : "create"});
 		}
 		flixel_tweens_FlxTween.tween(this.bopper,{ alpha : 1, x : flixel_FlxG.width * 0.85},1.7,{ ease : flixel_tweens_FlxEase.sineOut, onComplete : function(_) {
 			_gthis.startBop = true;
@@ -127992,7 +127987,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 			};
 			http.onError = function(error) {
 				reject(error);
-				haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 497, className : "states.WebStatusState", methodName : "getStatus"});
+				haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 461, className : "states.WebStatusState", methodName : "getStatus"});
 			};
 			http.request();
 		}).then(function(data) {
@@ -128008,7 +128003,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 		this.notice.add(this.noticeBG);
 		this.notice.set_alpha(0);
 		this.add(this.notice);
-		new flixel_util_FlxTimer().start(3,function(_) {
+		new flixel_util_FlxTimer().start(10,function(_) {
 			new Promise(function(resolve,reject) {
 				var http = new haxe_http_HttpJs("https://raw.githubusercontent.com/potatex2/status/refs/heads/main/status.json");
 				http.onData = function(data) {
@@ -128026,7 +128021,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 				};
 				http.onError = function(error) {
 					reject(error);
-					haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 497, className : "states.WebStatusState", methodName : "getStatus"});
+					haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 461, className : "states.WebStatusState", methodName : "getStatus"});
 				};
 				http.request();
 			}).then(function(data) {
@@ -128039,7 +128034,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 					window.console.log("!!! -- New status fetched! -- !!!");
 				}
 			}).catch(function(e) {
-				haxe_Log.trace("status failed | " + e,{ fileName : "source/states/WebStatusState.hx", lineNumber : 416, className : "states.WebStatusState", methodName : "create"});
+				haxe_Log.trace("status failed | " + e,{ fileName : "source/states/WebStatusState.hx", lineNumber : 380, className : "states.WebStatusState", methodName : "create"});
 			});
 		},0);
 	}
@@ -128130,7 +128125,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 			};
 			http.onError = function(error) {
 				reject(error);
-				haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 497, className : "states.WebStatusState", methodName : "getStatus"});
+				haxe_Log.trace("fish | " + error,{ fileName : "source/states/WebStatusState.hx", lineNumber : 461, className : "states.WebStatusState", methodName : "getStatus"});
 			};
 			http.request();
 		});
