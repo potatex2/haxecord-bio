@@ -925,7 +925,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "61";
+	app.meta.h["build"] = "67";
 	app.meta.h["company"] = "PotateX2";
 	app.meta.h["file"] = "index.html";
 	app.meta.h["name"] = "PotateX2 ~ WebStatusState.hx";
@@ -13601,19 +13601,16 @@ classes_HTMLBackend.create = function() {
 		p.style.left = "10%";
 		otherGoober.style.position = "absolute";
 		otherGoober.style.top = "95%";
+		otherGoober.style.fontFamily = "'PhantomMuff 1.5'";
 		otherGoober.style.left = "50%";
 		otherGoober.style.textAlign = "center";
 		return otherGoober.style.textShadow = "black 2px 2px 3px";
 	}).catch(function(e) {
-		haxe_Log.trace("error on font: " + e,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 54, className : "classes.HTMLBackend", methodName : "create"});
+		haxe_Log.trace("error on font: " + e,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 55, className : "classes.HTMLBackend", methodName : "create"});
 	});
 	var emptyFont = new FontFace("PhantomMuff 1.5 (Empty)","url('bulkAssets/PhantomMuff_Empty.ttf')");
 	emptyFont.load().then(function(loaded2) {
 		window.document.fonts.add(loaded2);
-	}).then(function(_) {
-		return otherGoober.style.fontFamily = "'PhantomMuff Empty 1.5'";
-	}).catch(function(e) {
-		window.console.warn("Second font loading failed: " + e);
 	});
 	window.document.body.appendChild(filler);
 };
@@ -13626,7 +13623,7 @@ classes_HTMLBackend.loadAndCache = function(name,url,async) {
 		window.localStorage.setItem(name,raw);
 	};
 	http.onError = function(err) {
-		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 71, className : "classes.HTMLBackend", methodName : "loadAndCache"});
+		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 72, className : "classes.HTMLBackend", methodName : "loadAndCache"});
 	};
 	http.request(async);
 };
@@ -82278,7 +82275,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 704015;
+	this.version = 192608;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -129518,6 +129515,8 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 		var musicMute = classes_FlxAnimButton.get("toggleMusic");
 		group.set_alpha(0);
 		music.set_alpha(0);
+		group.set_visible(false);
+		music.set_visible(false);
 		group.addElement(new classes_FlxTagSprite("selector",group.x + 5,bgMode.y + 3).loadGraphic("bulkAssets/" + "ui/bgModeSelected.png"));
 		music.addElement(new classes_FlxTagSprite("muted",musicMute.x + 5,bgMode.y).loadGraphic("bulkAssets/" + "ui/nO.png"));
 		music.set_x(150);
@@ -129536,6 +129535,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 			}
 			music.toggleState = !music.toggleState;
 		},function() {
+			classes_FlxAnimButton.no(musicMute);
 			musicMute.scale.set_x(musicMute.scale.x - 0.2);
 			musicMute.scale.set_y(musicMute.scale.y - 0.2);
 		});
@@ -129573,11 +129573,11 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 			}});
 			flixel_tweens_FlxTween.tween(music,{ alpha : classes_FlxGroupButton.get("Settings").toggleState ? 1 : 0, y : classes_FlxGroupButton.get("Settings").toggleState ? musicY : musicY + 10},0.3,{ ease : flixel_tweens_FlxEase.sineOut, onStart : function(_) {
 				if(classes_FlxGroupButton.get("Settings").toggleState) {
-					group.set_visible(true);
+					music.set_visible(true);
 				}
 			}, onComplete : function(_) {
 				if(!classes_FlxGroupButton.get("Settings").toggleState) {
-					group.set_visible(false);
+					music.set_visible(false);
 				}
 			}});
 		},function() {
@@ -129597,7 +129597,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 		}
 		if(parse != null) {
 			this.jason = parse.bpm;
-			haxe_Log.trace("Loaded BPM: " + this.jason,{ fileName : "source/states/WebStatusState.hx", lineNumber : 378, className : "states.WebStatusState", methodName : "create"});
+			haxe_Log.trace("Loaded BPM: " + this.jason,{ fileName : "source/states/WebStatusState.hx", lineNumber : 381, className : "states.WebStatusState", methodName : "create"});
 		}
 		flixel_tweens_FlxTween.tween(this.bopper,{ alpha : 1, x : flixel_FlxG.width * 0.85},1.7,{ ease : flixel_tweens_FlxEase.sineOut, onComplete : function(_) {
 			_gthis.startBop = true;
@@ -129713,7 +129713,7 @@ states_WebStatusState.prototype = $extend(flixel_FlxState.prototype,{
 					window.console.log("!!! -- New status fetched! -- !!!");
 				}
 			}).catch(function(e) {
-				haxe_Log.trace("status failed | " + e,{ fileName : "source/states/WebStatusState.hx", lineNumber : 418, className : "states.WebStatusState", methodName : "create"});
+				haxe_Log.trace("status failed | " + e,{ fileName : "source/states/WebStatusState.hx", lineNumber : 421, className : "states.WebStatusState", methodName : "create"});
 			});
 		},0);
 	}
