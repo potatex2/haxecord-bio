@@ -1,0 +1,53 @@
+body {
+    --crochetCalc: 0.6818s; /* for delay and tweening */
+}
+@keyframes Flx_CrochetLeft {
+    0% {
+        rotate: -10deg;
+        scale: 120%;
+    }
+    100% {
+        rotate: 0deg;
+        scale: 100%;
+    }
+}
+@keyframes Flx_CrochetRight {
+    0% {
+        rotate: 10deg;
+        scale: 120%;
+    }
+    100% {
+        rotate: 0deg;
+        scale: 100%;
+    }
+}
+.bopperLeft {
+    animation-name: Flx_CrochetLeft;
+    animation-duration: var(--crochetCalc); /* crochet will be calculated in haxe file */
+    animation-timing-function: cubic-bezier(.16,1.15,1,1);
+    animation-iteration-count: infinite;
+    
+}
+.bopperRight {
+    animation-name: Flx_CrochetRight;
+    animation-duration: var(--crochetCalc); /* crochet will be calculated in haxe file */
+    animation-timing-function: cubic-bezier(.16,1.15,1,1);
+    animation-iteration-count: infinite;
+    
+}
+@keyframes CircOutText {
+    0% {
+        scale: 1.125;
+    }
+    100% {
+        scale: 1.0;
+    }
+}
+.textBop {
+    animation-name: CircOutText;
+    animation-duration: calc(var(--crochetCalc) * 2);
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-iteration-count: infinite;
+}
+
+/* Base elements soon */

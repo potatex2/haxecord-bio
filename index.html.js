@@ -892,7 +892,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "172";
+	app.meta.h["build"] = "40";
 	app.meta.h["company"] = "PotateX2";
 	app.meta.h["file"] = "index.html";
 	app.meta.h["name"] = "PotateX2 ~ WebStatusState.hx";
@@ -988,11 +988,14 @@ Main.init = function(E) {
 	window.console.log("%%%%% Post-setup %%%%%");
 	states_HtmlSplashPort.init();
 };
-Main.REQUESTANIMATIONFRAME = function(delta) {
+Main.REQUESTANIMATIONFRAME = function(now) {
+	Main.lastTime = now;
+	Main.Now = now;
 	if(!flixel_FlxG.html5.onMobile) {
 		classes_Memory.updateText();
 	}
-	classes_HTMLBackend.update(delta);
+	classes_HTMLBackend.TweenManager.update(now / 1000);
+	classes_HTMLBackend.update(Main.lastTime);
 	window.requestAnimationFrame(Main.REQUESTANIMATIONFRAME);
 };
 var DocumentClass = function() { };
@@ -1214,7 +1217,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy24:bulkAssets%2FbgGoofy.pngy4:sizei9125y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y21:bulkAssets%2Fbozo.pngR2i28469R3R4R5R7R6tgoR2i5681R3y5:SOUNDR5y24:bulkAssets%2FclickIn.oggy9:pathGroupaR9hR6tgoR2i5432R3R8R5y25:bulkAssets%2FclickOut.oggR10aR11hR6tgoR2i33629R3R8R5y23:bulkAssets%2Fflixel.oggR10aR12hR6tgoR0y21:bulkAssets%2Ficon.pngR2i24322R3R4R5R13R6tgoR0y23:bulkAssets%2Ficon64.pngR2i5550R3R4R5R14R6tgoR0y26:bulkAssets%2Fmetadata.jsonR2i192R3y4:TEXTR5R15R6tgoR0y25:bulkAssets%2FmusicBar.pngR2i744R3R4R5R17R6tgoR0y31:bulkAssets%2FnavIcons%2FBio.pngR2i11086R3R4R5R18R6tgoR0y32:bulkAssets%2FnavIcons%2FHome.pngR2i10429R3R4R5R19R6tgoR0y36:bulkAssets%2FnavIcons%2FSettings.pngR2i8037R3R4R5R20R6tgoR0y34:bulkAssets%2FnavIcons%2FStatus.pngR2i6638R3R4R5R21R6tgoR2i15744R3y4:FONTy9:classNamey33:__ASSET__bulkassets_nokiafc22_ttfR5y26:bulkAssets%2Fnokiafc22.ttfR6tgoR2i110479R3R8R5y29:bulkAssets%2FnoticeUpdate.oggR10aR26hR6tgoR2i632783R3R8R5y22:bulkAssets%2Fpause.oggR10aR27hR6tgoR2i46252R3R22R23y35:__ASSET__bulkassets_phantommuff_ttfR5y28:bulkAssets%2FPhantomMuff.ttfR6tgoR2i78252R3R22R23y41:__ASSET__bulkassets_phantommuff_empty_ttfR5y34:bulkAssets%2FPhantomMuff_Empty.ttfR6tgoR0y23:bulkAssets%2Freload.pngR2i10586R3R4R5R32R6tgoR0y25:bulkAssets%2FsiteRepo.pngR2i7231R3R4R5R33R6tgoR2i69071R3R8R5y29:bulkAssets%2FToggleJingle.oggR10aR34hR6tgoR0y28:bulkAssets%2Fui%2FbgMode.pngR2i391R3R4R5R35R6tgoR0y36:bulkAssets%2Fui%2FbgModeSelected.pngR2i710R3R4R5R36R6tgoR0y29:bulkAssets%2Fui%2FbioDown.pngR2i2129R3R4R5R37R6tgoR0y27:bulkAssets%2Fui%2FbioUp.pngR2i2219R3R4R5R38R6tgoR0y31:bulkAssets%2Fui%2FmusicIcon.pngR2i4035R3R4R5R39R6tgoR0y24:bulkAssets%2Fui%2FnO.pngR2i1681R3R4R5R40R6tgoR0y30:bulkAssets%2Fui%2FnoticeBG.pngR2i17469R3R4R5R41R6tgoR0y34:bulkAssets%2Fui%2FstatusUpdate.pngR2i3516R3R4R5R42R6tgoR0y29:bulkAssets%2Fui%2FvolDown.pngR2i3714R3R4R5R43R6tgoR0y27:bulkAssets%2Fui%2FvolUp.pngR2i4198R3R4R5R44R6tgoR0y26:bulkAssets%2FvolumeBar.pngR2i3385R3R4R5R45R6tgoR2i2563R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R10aR47y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R46R5y28:flixel%2Fsounds%2Fflixel.mp3R10aR49y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i5636R3R8R5R48R10aR47R48hgoR2i33629R3R8R5R50R10aR49R50hgoR2i15744R3R22R23y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R22R23y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i277R3R4R5R55R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i505R3R4R5R56R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Fbox.pngR2i75R3R4R5R57R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fbutton.pngR2i211R3R4R5R58R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_down.pngR2i216R3R4R5R59R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_left.pngR2i222R3R4R5R60R6tgoR0y49:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_right.pngR2i238R3R4R5R61R6tgoR0y46:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_up.pngR2i227R3R4R5R62R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fbutton_thin.pngR2i118R3R4R5R63R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fbutton_toggle.pngR2i254R3R4R5R64R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fcheck_box.pngR2i101R3R4R5R65R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fcheck_mark.pngR2i97R3R4R5R66R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fchrome.pngR2i135R3R4R5R67R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fchrome_flat.pngR2i124R3R4R5R68R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_inset.pngR2i102R3R4R5R69R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_light.pngR2i118R3R4R5R70R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fdropdown_mark.pngR2i86R3R4R5R71R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Ffinger_big.pngR2i1337R3R4R5R72R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Ffinger_small.pngR2i157R3R4R5R73R6tgoR0y38:flixel%2Fflixel-ui%2Fimg%2Fhilight.pngR2i74R3R4R5R74R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Finvis.pngR2i72R3R4R5R75R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fminus_mark.pngR2i77R3R4R5R76R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fplus_mark.pngR2i83R3R4R5R77R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Fradio.pngR2i108R3R4R5R78R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fradio_dot.pngR2i81R3R4R5R79R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fswatch.pngR2i94R3R4R5R80R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Ftab.pngR2i106R3R4R5R81R6tgoR0y39:flixel%2Fflixel-ui%2Fimg%2Ftab_back.pngR2i111R3R4R5R82R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Ftooltip_arrow.pngR2i176R3R4R5R83R6tgoR0y39:flixel%2Fflixel-ui%2Fxml%2Fdefaults.xmlR2i1263R3R16R5R84R6tgoR0y53:flixel%2Fflixel-ui%2Fxml%2Fdefault_loading_screen.xmlR2i1953R3R16R5R85R6tgoR0y44:flixel%2Fflixel-ui%2Fxml%2Fdefault_popup.xmlR2i1848R3R16R5R86R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fcircle.pngR2i299R3R4R5R87R6tgoR0y53:flixel%2Fimages%2Ftransitions%2Fdiagonal_gradient.pngR2i730R3R4R5R88R6tgoR0y43:flixel%2Fimages%2Ftransitions%2Fdiamond.pngR2i236R3R4R5R89R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fsquare.pngR2i209R3R4R5R90R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy24:bulkAssets%2FbgGoofy.pngy4:sizei9125y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y21:bulkAssets%2Fbozo.pngR2i28469R3R4R5R7R6tgoR2i5681R3y5:SOUNDR5y24:bulkAssets%2FclickIn.oggy9:pathGroupaR9hR6tgoR2i5432R3R8R5y25:bulkAssets%2FclickOut.oggR10aR11hR6tgoR2i33629R3R8R5y23:bulkAssets%2Fflixel.oggR10aR12hR6tgoR0y21:bulkAssets%2Ficon.pngR2i24322R3R4R5R13R6tgoR0y23:bulkAssets%2Ficon64.pngR2i5550R3R4R5R14R6tgoR0y26:bulkAssets%2Fmetadata.jsonR2i192R3y4:TEXTR5R15R6tgoR0y25:bulkAssets%2FmusicBar.pngR2i744R3R4R5R17R6tgoR0y31:bulkAssets%2FnavIcons%2FBio.pngR2i11086R3R4R5R18R6tgoR0y32:bulkAssets%2FnavIcons%2FHome.pngR2i10429R3R4R5R19R6tgoR0y36:bulkAssets%2FnavIcons%2FSettings.pngR2i8037R3R4R5R20R6tgoR0y34:bulkAssets%2FnavIcons%2FStatus.pngR2i6638R3R4R5R21R6tgoR2i15744R3y4:FONTy9:classNamey33:__ASSET__bulkassets_nokiafc22_ttfR5y26:bulkAssets%2Fnokiafc22.ttfR6tgoR2i110479R3R8R5y29:bulkAssets%2FnoticeUpdate.oggR10aR26hR6tgoR2i632783R3R8R5y22:bulkAssets%2Fpause.oggR10aR27hR6tgoR2i46252R3R22R23y35:__ASSET__bulkassets_phantommuff_ttfR5y28:bulkAssets%2FPhantomMuff.ttfR6tgoR2i78252R3R22R23y41:__ASSET__bulkassets_phantommuff_empty_ttfR5y34:bulkAssets%2FPhantomMuff_Empty.ttfR6tgoR0y23:bulkAssets%2Freload.pngR2i10586R3R4R5R32R6tgoR0y25:bulkAssets%2FsiteRepo.pngR2i7231R3R4R5R33R6tgoR2i69071R3R8R5y29:bulkAssets%2FToggleJingle.oggR10aR34hR6tgoR0y26:bulkAssets%2FtweenPort.cssR2i658R3R16R5R35R6tgoR0y28:bulkAssets%2Fui%2FbgMode.pngR2i391R3R4R5R36R6tgoR0y36:bulkAssets%2Fui%2FbgModeSelected.pngR2i710R3R4R5R37R6tgoR0y29:bulkAssets%2Fui%2FbioDown.pngR2i2129R3R4R5R38R6tgoR0y27:bulkAssets%2Fui%2FbioUp.pngR2i2219R3R4R5R39R6tgoR0y31:bulkAssets%2Fui%2FmusicIcon.pngR2i4035R3R4R5R40R6tgoR0y24:bulkAssets%2Fui%2FnO.pngR2i1681R3R4R5R41R6tgoR0y30:bulkAssets%2Fui%2FnoticeBG.pngR2i17469R3R4R5R42R6tgoR0y34:bulkAssets%2Fui%2FstatusUpdate.pngR2i3516R3R4R5R43R6tgoR0y29:bulkAssets%2Fui%2FvolDown.pngR2i3714R3R4R5R44R6tgoR0y27:bulkAssets%2Fui%2FvolUp.pngR2i4198R3R4R5R45R6tgoR0y26:bulkAssets%2FvolumeBar.pngR2i3385R3R4R5R46R6tgoR2i2563R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R10aR48y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R47R5y28:flixel%2Fsounds%2Fflixel.mp3R10aR50y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i5636R3R8R5R49R10aR48R49hgoR2i33629R3R8R5R51R10aR50R51hgoR2i15744R3R22R23y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R22R23y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i277R3R4R5R56R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i505R3R4R5R57R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Fbox.pngR2i75R3R4R5R58R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fbutton.pngR2i211R3R4R5R59R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_down.pngR2i216R3R4R5R60R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_left.pngR2i222R3R4R5R61R6tgoR0y49:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_right.pngR2i238R3R4R5R62R6tgoR0y46:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_up.pngR2i227R3R4R5R63R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fbutton_thin.pngR2i118R3R4R5R64R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fbutton_toggle.pngR2i254R3R4R5R65R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fcheck_box.pngR2i101R3R4R5R66R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fcheck_mark.pngR2i97R3R4R5R67R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fchrome.pngR2i135R3R4R5R68R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fchrome_flat.pngR2i124R3R4R5R69R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_inset.pngR2i102R3R4R5R70R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_light.pngR2i118R3R4R5R71R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fdropdown_mark.pngR2i86R3R4R5R72R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Ffinger_big.pngR2i1337R3R4R5R73R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Ffinger_small.pngR2i157R3R4R5R74R6tgoR0y38:flixel%2Fflixel-ui%2Fimg%2Fhilight.pngR2i74R3R4R5R75R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Finvis.pngR2i72R3R4R5R76R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fminus_mark.pngR2i77R3R4R5R77R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fplus_mark.pngR2i83R3R4R5R78R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Fradio.pngR2i108R3R4R5R79R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fradio_dot.pngR2i81R3R4R5R80R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fswatch.pngR2i94R3R4R5R81R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Ftab.pngR2i106R3R4R5R82R6tgoR0y39:flixel%2Fflixel-ui%2Fimg%2Ftab_back.pngR2i111R3R4R5R83R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Ftooltip_arrow.pngR2i176R3R4R5R84R6tgoR0y39:flixel%2Fflixel-ui%2Fxml%2Fdefaults.xmlR2i1263R3R16R5R85R6tgoR0y53:flixel%2Fflixel-ui%2Fxml%2Fdefault_loading_screen.xmlR2i1953R3R16R5R86R6tgoR0y44:flixel%2Fflixel-ui%2Fxml%2Fdefault_popup.xmlR2i1848R3R16R5R87R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fcircle.pngR2i299R3R4R5R88R6tgoR0y53:flixel%2Fimages%2Ftransitions%2Fdiagonal_gradient.pngR2i730R3R4R5R89R6tgoR0y43:flixel%2Fimages%2Ftransitions%2Fdiamond.pngR2i236R3R4R5R90R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fsquare.pngR2i209R3R4R5R91R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -15848,11 +15851,270 @@ flixel_FlxG.get_state = function() {
 flixel_FlxG.get_onMobile = function() {
 	return flixel_FlxG.html5.onMobile;
 };
+var flixel_math_FlxMath = function() { };
+$hxClasses["flixel.math.FlxMath"] = flixel_math_FlxMath;
+flixel_math_FlxMath.__name__ = "flixel.math.FlxMath";
+flixel_math_FlxMath.roundDecimal = function(Value,Precision) {
+	var mult = 1;
+	var _g = 0;
+	var _g1 = Precision;
+	while(_g < _g1) {
+		var i = _g++;
+		mult *= 10;
+	}
+	return Math.round(Value * mult) / mult;
+};
+flixel_math_FlxMath.bound = function(Value,Min,Max) {
+	var lowerBound = Min != null && Value < Min ? Min : Value;
+	if(Max != null && lowerBound > Max) {
+		return Max;
+	} else {
+		return lowerBound;
+	}
+};
+flixel_math_FlxMath.lerp = function(a,b,ratio) {
+	return a + ratio * (b - a);
+};
+flixel_math_FlxMath.inBounds = function(Value,Min,Max) {
+	if(Min == null || Value >= Min) {
+		if(Max != null) {
+			return Value <= Max;
+		} else {
+			return true;
+		}
+	} else {
+		return false;
+	}
+};
+flixel_math_FlxMath.isOdd = function(n) {
+	return ((n | 0) & 1) != 0;
+};
+flixel_math_FlxMath.isEven = function(n) {
+	return ((n | 0) & 1) == 0;
+};
+flixel_math_FlxMath.numericComparison = function(a,b) {
+	if(b > a) {
+		return -1;
+	} else if(a > b) {
+		return 1;
+	}
+	return 0;
+};
+flixel_math_FlxMath.pointInCoordinates = function(pointX,pointY,rectX,rectY,rectWidth,rectHeight) {
+	if(pointX >= rectX && pointX <= rectX + rectWidth) {
+		if(pointY >= rectY && pointY <= rectY + rectHeight) {
+			return true;
+		}
+	}
+	return false;
+};
+flixel_math_FlxMath.pointInFlxRect = function(pointX,pointY,rect) {
+	if(pointX >= rect.x && pointX <= rect.x + rect.width && pointY >= rect.y) {
+		return pointY <= rect.y + rect.height;
+	} else {
+		return false;
+	}
+};
+flixel_math_FlxMath.mouseInFlxRect = function(useWorldCoords,rect) {
+	if(rect == null) {
+		return true;
+	}
+	if(useWorldCoords) {
+		return flixel_math_FlxMath.pointInFlxRect(Math.floor(flixel_FlxG.mouse.x),Math.floor(flixel_FlxG.mouse.y),rect);
+	} else {
+		return flixel_math_FlxMath.pointInFlxRect(flixel_FlxG.mouse.screenX,flixel_FlxG.mouse.screenY,rect);
+	}
+};
+flixel_math_FlxMath.pointInRectangle = function(pointX,pointY,rect) {
+	if(pointX >= rect.x && pointX <= rect.get_right() && pointY >= rect.y) {
+		return pointY <= rect.get_bottom();
+	} else {
+		return false;
+	}
+};
+flixel_math_FlxMath.maxAdd = function(value,amount,max,min) {
+	if(min == null) {
+		min = 0;
+	}
+	value += amount;
+	if(value > max) {
+		value = max;
+	} else if(value <= min) {
+		value = min;
+	}
+	return value;
+};
+flixel_math_FlxMath.wrap = function(value,min,max) {
+	var range = max - min + 1;
+	if(value < min) {
+		value += range * ((min - value) / range + 1 | 0);
+	}
+	return min + (value - min) % range;
+};
+flixel_math_FlxMath.remapToRange = function(value,start1,stop1,start2,stop2) {
+	return start2 + (value - start1) * ((stop2 - start2) / (stop1 - start1));
+};
+flixel_math_FlxMath.dotProduct = function(ax,ay,bx,by) {
+	return ax * bx + ay * by;
+};
+flixel_math_FlxMath.vectorLength = function(dx,dy) {
+	return Math.sqrt(dx * dx + dy * dy);
+};
+flixel_math_FlxMath.distanceBetween = function(SpriteA,SpriteB) {
+	var dx = SpriteA.x + SpriteA.origin.x - (SpriteB.x + SpriteB.origin.x);
+	var dy = SpriteA.y + SpriteA.origin.y - (SpriteB.y + SpriteB.origin.y);
+	return Math.sqrt(dx * dx + dy * dy) | 0;
+};
+flixel_math_FlxMath.isDistanceWithin = function(SpriteA,SpriteB,Distance,IncludeEqual) {
+	if(IncludeEqual == null) {
+		IncludeEqual = false;
+	}
+	var dx = SpriteA.x + SpriteA.origin.x - (SpriteB.x + SpriteB.origin.x);
+	var dy = SpriteA.y + SpriteA.origin.y - (SpriteB.y + SpriteB.origin.y);
+	if(IncludeEqual) {
+		return dx * dx + dy * dy <= Distance * Distance;
+	} else {
+		return dx * dx + dy * dy < Distance * Distance;
+	}
+};
+flixel_math_FlxMath.distanceToPoint = function(Sprite,Target) {
+	var dx = Sprite.x + Sprite.origin.x - Target.x;
+	var dy = Sprite.y + Sprite.origin.y - Target.y;
+	if(Target._weak) {
+		Target.put();
+	}
+	return Math.sqrt(dx * dx + dy * dy) | 0;
+};
+flixel_math_FlxMath.isDistanceToPointWithin = function(Sprite,Target,Distance,IncludeEqual) {
+	if(IncludeEqual == null) {
+		IncludeEqual = false;
+	}
+	var dx = Sprite.x + Sprite.origin.x - Target.x;
+	var dy = Sprite.y + Sprite.origin.y - Target.y;
+	if(Target._weak) {
+		Target.put();
+	}
+	if(IncludeEqual) {
+		return dx * dx + dy * dy <= Distance * Distance;
+	} else {
+		return dx * dx + dy * dy < Distance * Distance;
+	}
+};
+flixel_math_FlxMath.distanceToMouse = function(Sprite) {
+	var dx = Sprite.x + Sprite.origin.x - flixel_FlxG.mouse.screenX;
+	var dy = Sprite.y + Sprite.origin.y - flixel_FlxG.mouse.screenY;
+	return Math.sqrt(dx * dx + dy * dy) | 0;
+};
+flixel_math_FlxMath.isDistanceToMouseWithin = function(Sprite,Distance,IncludeEqual) {
+	if(IncludeEqual == null) {
+		IncludeEqual = false;
+	}
+	var dx = Sprite.x + Sprite.origin.x - flixel_FlxG.mouse.screenX;
+	var dy = Sprite.y + Sprite.origin.y - flixel_FlxG.mouse.screenY;
+	if(IncludeEqual) {
+		return dx * dx + dy * dy <= Distance * Distance;
+	} else {
+		return dx * dx + dy * dy < Distance * Distance;
+	}
+};
+flixel_math_FlxMath.distanceToTouch = function(Sprite,Touch1) {
+	var dx = Sprite.x + Sprite.origin.x - Touch1.screenX;
+	var dy = Sprite.y + Sprite.origin.y - Touch1.screenY;
+	return Math.sqrt(dx * dx + dy * dy) | 0;
+};
+flixel_math_FlxMath.isDistanceToTouchWithin = function(Sprite,Touch1,Distance,IncludeEqual) {
+	if(IncludeEqual == null) {
+		IncludeEqual = false;
+	}
+	var dx = Sprite.x + Sprite.origin.x - Touch1.screenX;
+	var dy = Sprite.y + Sprite.origin.y - Touch1.screenY;
+	if(IncludeEqual) {
+		return dx * dx + dy * dy <= Distance * Distance;
+	} else {
+		return dx * dx + dy * dy < Distance * Distance;
+	}
+};
+flixel_math_FlxMath.getDecimals = function(n) {
+	var helperArray = (n == null ? "null" : "" + n).split(".");
+	var decimals = 0;
+	if(helperArray.length > 1) {
+		decimals = helperArray[1].length;
+	}
+	return decimals;
+};
+flixel_math_FlxMath.equal = function(aValueA,aValueB,aDiff) {
+	if(aDiff == null) {
+		aDiff = 0.0000001;
+	}
+	return Math.abs(aValueA - aValueB) <= aDiff;
+};
+flixel_math_FlxMath.signOf = function(n) {
+	if(n < 0) {
+		return -1;
+	} else {
+		return 1;
+	}
+};
+flixel_math_FlxMath.sameSign = function(a,b) {
+	return (a < 0 ? -1 : 1) == (b < 0 ? -1 : 1);
+};
+flixel_math_FlxMath.fastSin = function(n) {
+	n *= 0.3183098862;
+	if(n > 1) {
+		n -= Math.ceil(n) >> 1 << 1;
+	} else if(n < -1) {
+		n += Math.ceil(-n) >> 1 << 1;
+	}
+	if(n > 0) {
+		return n * (3.1 + n * (0.5 + n * (-7.2 + n * 3.6)));
+	} else {
+		return n * (3.1 - n * (0.5 + n * (7.2 + n * 3.6)));
+	}
+};
+flixel_math_FlxMath.fastCos = function(n) {
+	var n1 = n + 1.570796327;
+	n1 *= 0.3183098862;
+	if(n1 > 1) {
+		n1 -= Math.ceil(n1) >> 1 << 1;
+	} else if(n1 < -1) {
+		n1 += Math.ceil(-n1) >> 1 << 1;
+	}
+	if(n1 > 0) {
+		return n1 * (3.1 + n1 * (0.5 + n1 * (-7.2 + n1 * 3.6)));
+	} else {
+		return n1 * (3.1 - n1 * (0.5 + n1 * (7.2 + n1 * 3.6)));
+	}
+};
+flixel_math_FlxMath.sinh = function(n) {
+	return (Math.exp(n) - Math.exp(-n)) / 2;
+};
+flixel_math_FlxMath.maxInt = function(a,b) {
+	if(a > b) {
+		return a;
+	} else {
+		return b;
+	}
+};
+flixel_math_FlxMath.minInt = function(a,b) {
+	if(a > b) {
+		return b;
+	} else {
+		return a;
+	}
+};
+flixel_math_FlxMath.absInt = function(n) {
+	if(n > 0) {
+		return n;
+	} else {
+		return -n;
+	}
+};
 var classes_HTMLBackend = function() { };
 $hxClasses["classes.HTMLBackend"] = classes_HTMLBackend;
 classes_HTMLBackend.__name__ = "classes.HTMLBackend";
 classes_HTMLBackend.create = function() {
 	window.document.body.style.overflowY = "scroll";
+	window.document.body.style.setProperty("-webkit-overflow-scrolling","touch");
 	classes_HTMLBackend.backdropTest = window.document.createElement("div");
 	classes_HTMLBackend.backdropTest.style.height = "1000px";
 	classes_HTMLBackend.backdropTest.id = "background";
@@ -15876,13 +16138,13 @@ classes_HTMLBackend.create = function() {
 		classes_HTMLBackend.backdropTest.style.opacity = val == null ? "null" : "" + val;
 	});
 	window.document.body.appendChild(classes_HTMLBackend.backdropTest);
-	var bgMusic = new Audio("bulkAssets/pause.ogg");
-	bgMusic.loop = true;
-	bgMusic.autoplay = true;
-	bgMusic.preload = "auto";
-	bgMusic.addEventListener("loadeddata",function() {
-		if(bgMusic.readyState >= 4) {
-			bgMusic.play();
+	classes_HTMLBackend.bgMusic = new Audio("bulkAssets/pause.ogg");
+	classes_HTMLBackend.bgMusic.loop = true;
+	classes_HTMLBackend.bgMusic.autoplay = true;
+	classes_HTMLBackend.bgMusic.preload = "auto";
+	classes_HTMLBackend.bgMusic.addEventListener("loadeddata",function() {
+		if(classes_HTMLBackend.bgMusic.readyState >= 4) {
+			classes_HTMLBackend.bgMusic.play();
 		}
 	});
 	var filler = window.document.createElement("div");
@@ -15903,6 +16165,8 @@ classes_HTMLBackend.create = function() {
 		p.textContent = "More canvas elements will be added to this overhaul soon.";
 		p.title = "And no, there really isn't any other secrets hidden here. Yet. :)";
 		p.style.fontFamily = "'PhantomMuff 1.5'";
+		p.style.position = "relative";
+		p.style.top = "20px";
 		p.style.fontSize = "24px";
 		p.style.color = "#68ff74";
 		p.style.textAlign = "center";
@@ -15915,10 +16179,19 @@ classes_HTMLBackend.create = function() {
 		otherGoober.style.fontSize = "24px";
 		otherGoober.style.color = "#0084ff";
 		filler.appendChild(otherGoober);
+		var gamble = window.document.createElement("p");
+		gamble.id = "credit";
+		gamble.title = "gambling";
+		gamble.innerHTML = "mc.gamblecraft.net go brr";
+		gamble.style.fontFamily = "'PhantomMuff 1.5'";
+		gamble.style.fontSize = "12px";
+		gamble.style.color = "#738d00";
+		gamble.style.top = "50%";
+		gamble.style.position = "relative";
+		gamble.style.textAlign = "center";
+		filler.appendChild(gamble);
 	}).then(function(_) {
-		p.style.position = "absolute";
 		p.style.top = "20%";
-		p.style.left = "10%";
 		otherGoober.style.position = "absolute";
 		otherGoober.style.top = "95%";
 		otherGoober.style.fontFamily = "'PhantomMuff 1.5'";
@@ -15926,23 +16199,24 @@ classes_HTMLBackend.create = function() {
 		otherGoober.style.textAlign = "center";
 		return otherGoober.style.textShadow = "black 2px 2px 3px";
 	}).catch(function(e) {
-		haxe_Log.trace("error on font: " + e,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 122, className : "classes.HTMLBackend", methodName : "create"});
+		haxe_Log.trace("error on font: " + e,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 158, className : "classes.HTMLBackend", methodName : "create"});
 	});
 	var emptyFont = new FontFace("PhantomMuff 1.5 (Empty)","url('bulkAssets/PhantomMuff_Empty.ttf')");
 	emptyFont.load().then(function(loaded2) {
 		window.document.fonts.add(loaded2);
 	});
-	var beBackSoon = window.document.createElement("h1");
-	beBackSoon.textContent = "be back soon...";
-	beBackSoon.style.fontFamily = "'PhantomMuff 1.5'";
-	beBackSoon.style.color = "#FFD95D";
-	beBackSoon.style.textShadow = "3px 3px 2px #FFAA00";
-	beBackSoon.style.textAlign = "center";
-	beBackSoon.style.fontSize = "45px";
-	beBackSoon.style.top = "50px";
-	classes_HTMLBackend.backdropTest.appendChild(beBackSoon);
+	classes_HTMLBackend.beBackSoon = window.document.createElement("h1");
+	classes_HTMLBackend.beBackSoon.textContent = "be back soon...";
+	classes_HTMLBackend.beBackSoon.style.fontFamily = "'PhantomMuff 1.5'";
+	classes_HTMLBackend.beBackSoon.style.color = "#FFD95D";
+	classes_HTMLBackend.beBackSoon.style.textShadow = "3px 3px 2px #FFAA00";
+	classes_HTMLBackend.beBackSoon.style.textAlign = "center";
+	classes_HTMLBackend.beBackSoon.style.fontSize = "45px";
+	classes_HTMLBackend.beBackSoon.style.top = "50px";
+	classes_HTMLBackend.beBackSoon.className = "textBop";
+	classes_HTMLBackend.backdropTest.appendChild(classes_HTMLBackend.beBackSoon);
 	var notice = window.document.createElement("h3");
-	notice.textContent = "To keep it short, everything that used the Flixel window where this is supposed to be is currently being replaced and fully overhauled to use HTML elements through Haxe. I'll be adding the previous features back here at some point, but sit tight for now. :)\r\n- PotateX2" + (!flixel_FlxG.html5.onMobile ? "" : "\r\n\r\n\r\n(Since you're on mobile, that's all you can see. I'm trying to find a fix for that. Not like there's anything else below the page, though...)");
+	notice.textContent = "If you've been here before, you should know what's happening here with all the Flixel stuff. I'm starting to get back to working on this though - I even used CSS for tweens now yippee :D\r\n- PotateX2\r\n\r\n(I might put the status fetch stuff back here later but I dunno, college is killing me...)" + (!flixel_FlxG.html5.onMobile ? "" : "\r\n\r\n\r\n(This is all you can really see for now since you're on mobile, but there really isn't anything else to see apart from this right now.)");
 	notice.style.fontFamily = "'PhantomMuff 1.5'";
 	notice.style.color = "#5CDEFF";
 	notice.style.textShadow = "3px 3px 2px #3C66FC";
@@ -15952,22 +16226,49 @@ classes_HTMLBackend.create = function() {
 	notice.style.position = "relative";
 	notice.style.top = "100px";
 	classes_HTMLBackend.backdropTest.appendChild(notice);
-	var goober = window.document.createElement("img");
-	goober.src = "bulkAssets/bozo.png";
-	goober.style.position = "relative";
-	goober.style.top = "200px";
+	if(flixel_FlxG.html5.onMobile) {
+		window.alert("init");
+		var mobileHTTP = new haxe_http_HttpJs("bulkAssets/tweenPort.css");
+		mobileHTTP.onData = function(css) {
+			classes_HTMLBackend.CSS.textContent = css;
+		};
+		mobileHTTP.onError = function(sigh) {
+			window.alert("CSS loading failed... | \n" + sigh);
+		};
+		mobileHTTP.request(false);
+	} else {
+		classes_HTMLBackend.CSS.textContent = openfl_utils_Assets.getText("bulkAssets/tweenPort.css");
+	}
+	window.document.head.appendChild(classes_HTMLBackend.CSS);
+	window.document.body.style.setProperty("--crochetCalc",Std.string(classes_HTMLBackend.croshet) + "s");
+	haxe_Log.trace(window.document.body.style.getPropertyValue("--crochetCalc"),{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 206, className : "classes.HTMLBackend", methodName : "create"});
+	classes_HTMLBackend.goober = window.document.createElement("img");
+	classes_HTMLBackend.goober.src = "bulkAssets/bozo.png";
+	classes_HTMLBackend.goober.style.position = "relative";
+	classes_HTMLBackend.goober.style.top = "200px";
 	var tmp = Std.string(window.innerWidth / 2 - 75);
-	goober.style.left = tmp + "px";
-	classes_HTMLBackend.backdropTest.appendChild(goober);
+	classes_HTMLBackend.goober.style.left = tmp + "px";
+	classes_HTMLBackend.goober.className = "bopper";
+	classes_HTMLBackend.backdropTest.appendChild(classes_HTMLBackend.goober);
 	classes_HTMLBackend.TweenManager.num(150,100,600,{ ease : flixel_tweens_FlxEase.sineOut},function(val) {
 		notice.style.top = (val == null ? "null" : "" + val) + "px";
-		goober.style.top = Std.string(val + 100) + "px";
+		classes_HTMLBackend.goober.style.top = Std.string(val + 100) + "px";
 	});
 	window.document.body.appendChild(filler);
+	if(window.localStorage.getItem("metadata") == null) {
+		classes_HTMLBackend.loadAndCache("metadata","bulkAssets/metadata.json",false);
+	}
+	classes_HTMLBackend.bpmTime = new haxe_Timer(Math.round(classes_HTMLBackend.croshet * 1000));
+	classes_HTMLBackend.bpmTime.run = function() {
+		classes_HTMLBackend.camBeat++;
+		classes_HTMLBackend.goober.className = classes_HTMLBackend.camBeat % 2 == 0 ? "bopperLeft" : "bopperRight";
+		classes_HTMLBackend.beBackSoon.className = classes_HTMLBackend.camBeat % 2 == 0 ? "" : "textBop";
+	};
+	classes_HTMLBackend.bpmTime.run();
 };
 classes_HTMLBackend.update = function(elapsed) {
-	classes_HTMLBackend.TweenManager.update(elapsed / 1000);
 	if(states_HtmlSplashPort.jobDone) {
+		classes_HTMLBackend.musicElapsed = flixel_math_FlxMath.roundDecimal(classes_HTMLBackend.bgMusic.currentTime,4);
 		classes_HTMLBackend.x += 0.5;
 		classes_HTMLBackend.y += 0.25;
 		classes_HTMLBackend.backdropTest.style.backgroundPositionX = classes_HTMLBackend.x + "px";
@@ -15983,7 +16284,7 @@ classes_HTMLBackend.loadAndCache = function(name,url,async) {
 		window.localStorage.setItem(name,raw);
 	};
 	http.onError = function(err) {
-		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 186, className : "classes.HTMLBackend", methodName : "loadAndCache"});
+		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 269, className : "classes.HTMLBackend", methodName : "loadAndCache"});
 	};
 	http.request(async);
 };
@@ -16013,6 +16314,11 @@ classes_HTMLBackend.formatStatus = function(data) {
 	var daData = data.data;
 	var tmp = daData.notice;
 	return "__Version:__ " + daData.version + "\r\n__Changes:__ " + daData.changelog + "\r\n__Status:__\n" + daData.status + "\r\n__Time:__ " + Std.string(daData.timestamp) + " (timestamp class soon)\r\n__Notice:__ " + (tmp != null ? tmp : "None; this is for any other info if I don't input one.");
+};
+var classes_CSSStyle = function() { };
+$hxClasses["classes.CSSStyle"] = classes_CSSStyle;
+classes_CSSStyle.__name__ = "classes.CSSStyle";
+classes_CSSStyle.add = function() {
 };
 var classes_Memory = function() {
 	classes_Memory.instance = window.document.createElement("p");
@@ -38779,264 +39085,6 @@ flixel_math_FlxAngle.get_TO_DEG = function() {
 };
 flixel_math_FlxAngle.get_TO_RAD = function() {
 	return Math.PI / 180;
-};
-var flixel_math_FlxMath = function() { };
-$hxClasses["flixel.math.FlxMath"] = flixel_math_FlxMath;
-flixel_math_FlxMath.__name__ = "flixel.math.FlxMath";
-flixel_math_FlxMath.roundDecimal = function(Value,Precision) {
-	var mult = 1;
-	var _g = 0;
-	var _g1 = Precision;
-	while(_g < _g1) {
-		var i = _g++;
-		mult *= 10;
-	}
-	return Math.round(Value * mult) / mult;
-};
-flixel_math_FlxMath.bound = function(Value,Min,Max) {
-	var lowerBound = Min != null && Value < Min ? Min : Value;
-	if(Max != null && lowerBound > Max) {
-		return Max;
-	} else {
-		return lowerBound;
-	}
-};
-flixel_math_FlxMath.lerp = function(a,b,ratio) {
-	return a + ratio * (b - a);
-};
-flixel_math_FlxMath.inBounds = function(Value,Min,Max) {
-	if(Min == null || Value >= Min) {
-		if(Max != null) {
-			return Value <= Max;
-		} else {
-			return true;
-		}
-	} else {
-		return false;
-	}
-};
-flixel_math_FlxMath.isOdd = function(n) {
-	return ((n | 0) & 1) != 0;
-};
-flixel_math_FlxMath.isEven = function(n) {
-	return ((n | 0) & 1) == 0;
-};
-flixel_math_FlxMath.numericComparison = function(a,b) {
-	if(b > a) {
-		return -1;
-	} else if(a > b) {
-		return 1;
-	}
-	return 0;
-};
-flixel_math_FlxMath.pointInCoordinates = function(pointX,pointY,rectX,rectY,rectWidth,rectHeight) {
-	if(pointX >= rectX && pointX <= rectX + rectWidth) {
-		if(pointY >= rectY && pointY <= rectY + rectHeight) {
-			return true;
-		}
-	}
-	return false;
-};
-flixel_math_FlxMath.pointInFlxRect = function(pointX,pointY,rect) {
-	if(pointX >= rect.x && pointX <= rect.x + rect.width && pointY >= rect.y) {
-		return pointY <= rect.y + rect.height;
-	} else {
-		return false;
-	}
-};
-flixel_math_FlxMath.mouseInFlxRect = function(useWorldCoords,rect) {
-	if(rect == null) {
-		return true;
-	}
-	if(useWorldCoords) {
-		return flixel_math_FlxMath.pointInFlxRect(Math.floor(flixel_FlxG.mouse.x),Math.floor(flixel_FlxG.mouse.y),rect);
-	} else {
-		return flixel_math_FlxMath.pointInFlxRect(flixel_FlxG.mouse.screenX,flixel_FlxG.mouse.screenY,rect);
-	}
-};
-flixel_math_FlxMath.pointInRectangle = function(pointX,pointY,rect) {
-	if(pointX >= rect.x && pointX <= rect.get_right() && pointY >= rect.y) {
-		return pointY <= rect.get_bottom();
-	} else {
-		return false;
-	}
-};
-flixel_math_FlxMath.maxAdd = function(value,amount,max,min) {
-	if(min == null) {
-		min = 0;
-	}
-	value += amount;
-	if(value > max) {
-		value = max;
-	} else if(value <= min) {
-		value = min;
-	}
-	return value;
-};
-flixel_math_FlxMath.wrap = function(value,min,max) {
-	var range = max - min + 1;
-	if(value < min) {
-		value += range * ((min - value) / range + 1 | 0);
-	}
-	return min + (value - min) % range;
-};
-flixel_math_FlxMath.remapToRange = function(value,start1,stop1,start2,stop2) {
-	return start2 + (value - start1) * ((stop2 - start2) / (stop1 - start1));
-};
-flixel_math_FlxMath.dotProduct = function(ax,ay,bx,by) {
-	return ax * bx + ay * by;
-};
-flixel_math_FlxMath.vectorLength = function(dx,dy) {
-	return Math.sqrt(dx * dx + dy * dy);
-};
-flixel_math_FlxMath.distanceBetween = function(SpriteA,SpriteB) {
-	var dx = SpriteA.x + SpriteA.origin.x - (SpriteB.x + SpriteB.origin.x);
-	var dy = SpriteA.y + SpriteA.origin.y - (SpriteB.y + SpriteB.origin.y);
-	return Math.sqrt(dx * dx + dy * dy) | 0;
-};
-flixel_math_FlxMath.isDistanceWithin = function(SpriteA,SpriteB,Distance,IncludeEqual) {
-	if(IncludeEqual == null) {
-		IncludeEqual = false;
-	}
-	var dx = SpriteA.x + SpriteA.origin.x - (SpriteB.x + SpriteB.origin.x);
-	var dy = SpriteA.y + SpriteA.origin.y - (SpriteB.y + SpriteB.origin.y);
-	if(IncludeEqual) {
-		return dx * dx + dy * dy <= Distance * Distance;
-	} else {
-		return dx * dx + dy * dy < Distance * Distance;
-	}
-};
-flixel_math_FlxMath.distanceToPoint = function(Sprite,Target) {
-	var dx = Sprite.x + Sprite.origin.x - Target.x;
-	var dy = Sprite.y + Sprite.origin.y - Target.y;
-	if(Target._weak) {
-		Target.put();
-	}
-	return Math.sqrt(dx * dx + dy * dy) | 0;
-};
-flixel_math_FlxMath.isDistanceToPointWithin = function(Sprite,Target,Distance,IncludeEqual) {
-	if(IncludeEqual == null) {
-		IncludeEqual = false;
-	}
-	var dx = Sprite.x + Sprite.origin.x - Target.x;
-	var dy = Sprite.y + Sprite.origin.y - Target.y;
-	if(Target._weak) {
-		Target.put();
-	}
-	if(IncludeEqual) {
-		return dx * dx + dy * dy <= Distance * Distance;
-	} else {
-		return dx * dx + dy * dy < Distance * Distance;
-	}
-};
-flixel_math_FlxMath.distanceToMouse = function(Sprite) {
-	var dx = Sprite.x + Sprite.origin.x - flixel_FlxG.mouse.screenX;
-	var dy = Sprite.y + Sprite.origin.y - flixel_FlxG.mouse.screenY;
-	return Math.sqrt(dx * dx + dy * dy) | 0;
-};
-flixel_math_FlxMath.isDistanceToMouseWithin = function(Sprite,Distance,IncludeEqual) {
-	if(IncludeEqual == null) {
-		IncludeEqual = false;
-	}
-	var dx = Sprite.x + Sprite.origin.x - flixel_FlxG.mouse.screenX;
-	var dy = Sprite.y + Sprite.origin.y - flixel_FlxG.mouse.screenY;
-	if(IncludeEqual) {
-		return dx * dx + dy * dy <= Distance * Distance;
-	} else {
-		return dx * dx + dy * dy < Distance * Distance;
-	}
-};
-flixel_math_FlxMath.distanceToTouch = function(Sprite,Touch1) {
-	var dx = Sprite.x + Sprite.origin.x - Touch1.screenX;
-	var dy = Sprite.y + Sprite.origin.y - Touch1.screenY;
-	return Math.sqrt(dx * dx + dy * dy) | 0;
-};
-flixel_math_FlxMath.isDistanceToTouchWithin = function(Sprite,Touch1,Distance,IncludeEqual) {
-	if(IncludeEqual == null) {
-		IncludeEqual = false;
-	}
-	var dx = Sprite.x + Sprite.origin.x - Touch1.screenX;
-	var dy = Sprite.y + Sprite.origin.y - Touch1.screenY;
-	if(IncludeEqual) {
-		return dx * dx + dy * dy <= Distance * Distance;
-	} else {
-		return dx * dx + dy * dy < Distance * Distance;
-	}
-};
-flixel_math_FlxMath.getDecimals = function(n) {
-	var helperArray = (n == null ? "null" : "" + n).split(".");
-	var decimals = 0;
-	if(helperArray.length > 1) {
-		decimals = helperArray[1].length;
-	}
-	return decimals;
-};
-flixel_math_FlxMath.equal = function(aValueA,aValueB,aDiff) {
-	if(aDiff == null) {
-		aDiff = 0.0000001;
-	}
-	return Math.abs(aValueA - aValueB) <= aDiff;
-};
-flixel_math_FlxMath.signOf = function(n) {
-	if(n < 0) {
-		return -1;
-	} else {
-		return 1;
-	}
-};
-flixel_math_FlxMath.sameSign = function(a,b) {
-	return (a < 0 ? -1 : 1) == (b < 0 ? -1 : 1);
-};
-flixel_math_FlxMath.fastSin = function(n) {
-	n *= 0.3183098862;
-	if(n > 1) {
-		n -= Math.ceil(n) >> 1 << 1;
-	} else if(n < -1) {
-		n += Math.ceil(-n) >> 1 << 1;
-	}
-	if(n > 0) {
-		return n * (3.1 + n * (0.5 + n * (-7.2 + n * 3.6)));
-	} else {
-		return n * (3.1 - n * (0.5 + n * (7.2 + n * 3.6)));
-	}
-};
-flixel_math_FlxMath.fastCos = function(n) {
-	var n1 = n + 1.570796327;
-	n1 *= 0.3183098862;
-	if(n1 > 1) {
-		n1 -= Math.ceil(n1) >> 1 << 1;
-	} else if(n1 < -1) {
-		n1 += Math.ceil(-n1) >> 1 << 1;
-	}
-	if(n1 > 0) {
-		return n1 * (3.1 + n1 * (0.5 + n1 * (-7.2 + n1 * 3.6)));
-	} else {
-		return n1 * (3.1 - n1 * (0.5 + n1 * (7.2 + n1 * 3.6)));
-	}
-};
-flixel_math_FlxMath.sinh = function(n) {
-	return (Math.exp(n) - Math.exp(-n)) / 2;
-};
-flixel_math_FlxMath.maxInt = function(a,b) {
-	if(a > b) {
-		return a;
-	} else {
-		return b;
-	}
-};
-flixel_math_FlxMath.minInt = function(a,b) {
-	if(a > b) {
-		return b;
-	} else {
-		return a;
-	}
-};
-flixel_math_FlxMath.absInt = function(n) {
-	if(n > 0) {
-		return n;
-	} else {
-		return -n;
-	}
 };
 var flixel_math_FlxPoint = {};
 flixel_math_FlxPoint.__properties__ = {get_ly:"get_ly",get_lx:"get_lx",get_ry:"get_ry",get_rx:"get_rx",set_radians:"set_radians",get_radians:"get_radians",set_degrees:"set_degrees",get_degrees:"get_degrees",get_lengthSquared:"get_lengthSquared",set_length:"set_length",get_length:"get_length",get_dy:"get_dy",get_dx:"get_dx",set_y:"set_y",get_y:"get_y",set_x:"set_x",get_x:"get_x"};
@@ -75395,7 +75443,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 465131;
+	this.version = 363915;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -124856,151 +124904,35 @@ openfl_utils__$internal_format_amf3_AMF3Writer.prototype = {
 	}
 	,__class__: openfl_utils__$internal_format_amf3_AMF3Writer
 };
-var states_HTMLStatusState = function() {
-	this.bgY = 0;
-	this.bgX = 0;
-	this.Body = window.document.body;
-	this.Window = window;
-	this.backdrop = new HTMLImageElement();
-	var _gthis = this;
-	this.backdrop.src = "bulkAssets/bgGoofy.png";
-	this.backdrop.onload = function(e) {
-		_gthis.Body.style.backgroundImage = "url(\"" + _gthis.backdrop.src + "\")";
-		_gthis.Body.style.backgroundSize = "auto";
-		_gthis.Body.style.backgroundRepeat = "repeat";
-		_gthis.add(_gthis.backdrop);
-		return _gthis.Window.setInterval($bind(_gthis,_gthis.updateBackdrop),50);
-	};
-	var test = window.document.createTextNode("placeholder");
-	this.Body.appendChild(test);
-};
-$hxClasses["states.HTMLStatusState"] = states_HTMLStatusState;
-states_HTMLStatusState.__name__ = "states.HTMLStatusState";
-states_HTMLStatusState.prototype = {
-	add: function(element,parent) {
-		if(parent != null) {
-			parent.appendChild(element);
-		} else {
-			this.Body.appendChild(element);
-		}
-	}
-	,updateBackdrop: function(updateX) {
-		this.bgX += 0.5;
-		this.bgY += 0.5;
-		this.Body.style.backgroundPosition = "" + this.bgX + "px " + this.bgY + "px";
-		window.requestAnimationFrame($bind(this,this.updateBackdrop));
-	}
-	,__class__: states_HTMLStatusState
-};
-var states_HTML = function() { };
-$hxClasses["states.HTML"] = states_HTML;
-states_HTML.__name__ = "states.HTML";
-states_HTML.initHead = function() {
-	var Head = window.document.head;
-};
-states_HTML.prototype = {
-	create: function(elem,parent,options) {
-		var named;
-		switch(elem._hx_index) {
-		case 0:
-			named = window.document.createElement("div");
-			break;
-		case 1:
-			named = window.document.createElement("section");
-			break;
-		case 2:
-			var level = elem.level;
-			try {
-				named = window.document.createElement("h" + level);
-			} catch( _g ) {
-				var e = haxe_Exception.caught(_g);
-				throw haxe_Exception.thrown("Invalid heading level? | " + Std.string(e));
-			}
-			break;
-		case 3:
-			var href = elem.href;
-			var text = elem.text;
-			var anchor = window.document.createElement("a");
-			anchor.href = href;
-			anchor.innerText = text;
-			named = anchor;
-			break;
-		case 4:
-			var imagePath = elem.imagePath;
-			var callbacks = elem.callbacks;
-			var btn = window.document.createElement("button");
-			btn.innerHTML = "<img src=\"" + imagePath + "\" alt=\"button image\"/>";
-			btn.addEventListener("mouseup",callbacks.onUp);
-			if(callbacks.onDown != null) {
-				btn.addEventListener("mousedown",callbacks.onDown);
-			}
-			if(callbacks.onOver != null) {
-				btn.addEventListener("mouseover",callbacks.onOver);
-			}
-			if(callbacks.onOut != null) {
-				btn.addEventListener("mouseout",callbacks.onOut);
-			}
-			named = btn;
-			break;
-		}
-		if(named != null) {
-			if(elem == states_DOM.div || elem == states_DOM.section) {
-				return named;
-			} else if(parent != null) {
-				parent.appendChild(named);
-				return named;
-			}
-		}
-		return null;
-	}
-	,addTo: function(target) {
-		if(target == null) {
-			return;
-		}
-	}
-	,__class__: states_HTML
-};
-var states_DOM = $hxEnums["states.DOM"] = { __ename__:"states.DOM",__constructs__:null
-	,div: {_hx_name:"div",_hx_index:0,__enum__:"states.DOM",toString:$estr}
-	,section: {_hx_name:"section",_hx_index:1,__enum__:"states.DOM",toString:$estr}
-	,h: ($_=function(level) { return {_hx_index:2,level:level,__enum__:"states.DOM",toString:$estr}; },$_._hx_name="h",$_.__params__ = ["level"],$_)
-	,a: ($_=function(href,text) { return {_hx_index:3,href:href,text:text,__enum__:"states.DOM",toString:$estr}; },$_._hx_name="a",$_.__params__ = ["href","text"],$_)
-	,button: ($_=function(imagePath,callbacks) { return {_hx_index:4,imagePath:imagePath,callbacks:callbacks,__enum__:"states.DOM",toString:$estr}; },$_._hx_name="button",$_.__params__ = ["imagePath","callbacks"],$_)
-};
-states_DOM.__constructs__ = [states_DOM.div,states_DOM.section,states_DOM.h,states_DOM.a,states_DOM.button];
 var states_HtmlSplashPort = function() { };
 $hxClasses["states.HtmlSplashPort"] = states_HtmlSplashPort;
 states_HtmlSplashPort.__name__ = "states.HtmlSplashPort";
 states_HtmlSplashPort.init = function() {
+	window.document.body.style.backgroundColor = "black";
 	states_HtmlSplashPort.font.load().then(function(load) {
 		window.document.fonts.add(load);
+	}).then(function(_) {
+		states_HtmlSplashPort.silly.src = "bulkAssets/bozo.png";
+		states_HtmlSplashPort.canvas.width = window.innerWidth;
+		states_HtmlSplashPort.canvas.height = window.innerHeight;
+		states_HtmlSplashPort.canvas.style.backgroundColor = "rgba(0, 0, 0, 1)";
+		window.document.body.appendChild(states_HtmlSplashPort.canvasHandler);
+		states_HtmlSplashPort.canvasHandler.style.backgroundColor = "rgba(0, 0, 0, 1)";
+		states_HtmlSplashPort.canvasHandler.appendChild(states_HtmlSplashPort.canvas);
+		states_HtmlSplashPort.canvasHandler.style.position = "absolute";
+		states_HtmlSplashPort.initialOffset = { x : states_HtmlSplashPort.canvas.width * 0.4, y : states_HtmlSplashPort.canvas.height / 2};
+		states_HtmlSplashPort.drawer = states_HtmlSplashPort.canvas.getContext("2d",null);
+		states_HtmlSplashPort.selfInsert();
 	});
-	states_HtmlSplashPort.silly.src = "bulkAssets/bozo.png";
-	states_HtmlSplashPort.canvas.width = window.innerWidth;
-	states_HtmlSplashPort.canvas.height = window.innerHeight;
-	states_HtmlSplashPort.canvas.style.backgroundColor = "rgba(0, 0, 0, 1)";
-	window.document.body.appendChild(states_HtmlSplashPort.canvasHandler);
-	states_HtmlSplashPort.canvasHandler.style.backgroundColor = "rgba(0, 0, 0, 1)";
-	states_HtmlSplashPort.canvasHandler.appendChild(states_HtmlSplashPort.canvas);
-	states_HtmlSplashPort.canvasHandler.style.position = "absolute";
-	states_HtmlSplashPort.initialOffset = { x : states_HtmlSplashPort.canvas.width * 0.4, y : states_HtmlSplashPort.canvas.height / 2};
-	states_HtmlSplashPort.drawer = states_HtmlSplashPort.canvas.getContext("2d",null);
-	states_HtmlSplashPort.selfInsert();
-	window.document.body.style.backgroundColor = "black";
 };
 states_HtmlSplashPort.selfInsert = function() {
 	new Audio("bulkAssets/flixel.ogg").play();
 	var _g = 0;
 	var _g1 = states_HtmlSplashPort._times;
 	while(_g < _g1.length) {
-		var time = [_g1[_g]];
+		var time = _g1[_g];
 		++_g;
-		haxe_Timer.delay((function(time) {
-			return function() {
-				states_HtmlSplashPort._functions[states_HtmlSplashPort._times.indexOf(time[0])]();
-				haxe_Log.trace("did " + states_HtmlSplashPort._times.indexOf(time[0]),{ fileName : "source/states/Preload.hx", lineNumber : 57, className : "states.HtmlSplashPort", methodName : "selfInsert"});
-			};
-		})(time),time[0] * 1000 | 0);
+		haxe_Timer.delay(states_HtmlSplashPort._functions[states_HtmlSplashPort._times.indexOf(time)],time * 1000 | 0);
 	}
 };
 states_HtmlSplashPort.drawGreen = function() {
@@ -125020,6 +124952,7 @@ states_HtmlSplashPort.drawGreen = function() {
 	states_HtmlSplashPort.drawer.lineTo(states_HtmlSplashPort.initialOffset.x,-37 + states_HtmlSplashPort.initialOffset.y);
 	states_HtmlSplashPort.drawer.closePath();
 	states_HtmlSplashPort.drawer.fill();
+	window.console.log("fun");
 };
 states_HtmlSplashPort.drawYellow = function() {
 	states_HtmlSplashPort.drawer.fillStyle = states_HtmlSplashPort._colors[1];
@@ -125034,6 +124967,7 @@ states_HtmlSplashPort.drawYellow = function() {
 	states_HtmlSplashPort.drawer.lineTo(-50 + states_HtmlSplashPort.initialOffset.x,-50 + states_HtmlSplashPort.initialOffset.y);
 	states_HtmlSplashPort.drawer.closePath();
 	states_HtmlSplashPort.drawer.fill();
+	window.console.log("   ny");
 };
 states_HtmlSplashPort.drawRed = function() {
 	states_HtmlSplashPort.drawer.fillStyle = states_HtmlSplashPort._colors[2];
@@ -125047,6 +124981,7 @@ states_HtmlSplashPort.drawRed = function() {
 	states_HtmlSplashPort.drawer.lineTo(50 + states_HtmlSplashPort.initialOffset.x,-50 + states_HtmlSplashPort.initialOffset.y);
 	states_HtmlSplashPort.drawer.closePath();
 	states_HtmlSplashPort.drawer.fill();
+	window.console.log("      self");
 };
 states_HtmlSplashPort.drawBlue = function() {
 	states_HtmlSplashPort.drawer.fillStyle = states_HtmlSplashPort._colors[3];
@@ -125060,6 +124995,7 @@ states_HtmlSplashPort.drawBlue = function() {
 	states_HtmlSplashPort.drawer.lineTo(-50 + states_HtmlSplashPort.initialOffset.x,50 + states_HtmlSplashPort.initialOffset.y);
 	states_HtmlSplashPort.drawer.closePath();
 	states_HtmlSplashPort.drawer.fill();
+	window.console.log("           in");
 };
 states_HtmlSplashPort.drawLightBlue = function() {
 	states_HtmlSplashPort.drawer.drawImage(states_HtmlSplashPort.silly,states_HtmlSplashPort.initialOffset.x + 200,states_HtmlSplashPort.initialOffset.y - 74);
@@ -125074,7 +125010,7 @@ states_HtmlSplashPort.drawLightBlue = function() {
 	states_HtmlSplashPort.drawer.lineTo(50 + states_HtmlSplashPort.initialOffset.x,50 + states_HtmlSplashPort.initialOffset.y);
 	states_HtmlSplashPort.drawer.closePath();
 	states_HtmlSplashPort.drawer.fill();
-	haxe_Log.trace("before tween",{ fileName : "source/states/Preload.hx", lineNumber : 132, className : "states.HtmlSplashPort", methodName : "drawLightBlue"});
+	window.console.log("             sert");
 	classes_HTMLBackend.TweenManager.num(100,0,575,{ ease : flixel_tweens_FlxEase.linear, onComplete : function(_) {
 		window.document.body.removeChild(states_HtmlSplashPort.canvasHandler);
 		states_HtmlSplashPort.complete();
@@ -125878,6 +125814,8 @@ openfl_ui_Multitouch.supportedGestures = null;
 openfl_ui_Multitouch.supportsGestureEvents = false;
 openfl_ui_Multitouch.inputMode = 2;
 Main.CANVAS = window.document;
+Main.lastTime = window.performance.now();
+Main.Now = 0;
 openfl_text_Font.__fontByName = new haxe_ds_StringMap();
 openfl_text_Font.__registeredFonts = [];
 Xml.Element = 0;
@@ -126107,9 +126045,21 @@ flixel_FlxG.cameras = new flixel_system_frontEnds_CameraFrontEnd();
 flixel_FlxG.initialWidth = 0;
 flixel_FlxG.initialHeight = 0;
 flixel_FlxG.signals = new flixel_system_frontEnds_SignalFrontEnd();
+flixel_math_FlxMath.MIN_VALUE_FLOAT = 0.0000000000000001;
+flixel_math_FlxMath.MAX_VALUE_FLOAT = 1.79e+308;
+flixel_math_FlxMath.MIN_VALUE_INT = -2147483647;
+flixel_math_FlxMath.MAX_VALUE_INT = 2147483647;
+flixel_math_FlxMath.SQUARE_ROOT_OF_TWO = 1.41421356237;
+flixel_math_FlxMath.EPSILON = 0.0000001;
 classes_HTMLBackend.TweenManager = new flixel_tweens_FlxTweenManager();
+classes_HTMLBackend.CSS = window.document.createElement("style");
 classes_HTMLBackend.x = 0;
 classes_HTMLBackend.y = 0;
+classes_HTMLBackend.croshet = flixel_math_FlxMath.roundDecimal(60 / JSON.parse(window.localStorage.getItem("metadata")).music.bpm,4);
+classes_HTMLBackend.camBeat = 0;
+classes_HTMLBackend.boopWay = true;
+classes_HTMLBackend.angleVal = 0;
+classes_HTMLBackend.scaleVal = 1;
 classes_Page.pageList = [];
 classes_PageInfo.Homepage = "\r\nOh, heyo. Welcome (or welcome back) to the barebones of my HaxeFlixel bio.\r\n!!TL:DR, the Netlify site is deprecated. Don't bother navigating to it.!!\r\n\r\n%%### Site changelog and info is located in the Status tab.%%\r\n\r\nI'm STILL caught up in college homework this week, so development will be somewhat hindered.\r\n\r\n~ PotateX2";
 classes_PageInfo.About_Me = "Bio Navigation";
@@ -126996,12 +126946,6 @@ openfl_display_BitmapData.__tempVector = new lime_math_Vector2();
 flixel_input_mouse__$FlxMouse_GraphicCursor.resourceType = "image/png";
 flixel_input_mouse__$FlxMouse_GraphicCursor.resourceName = "__ASSET__:bitmap_flixel_input_mouse__FlxMouse_GraphicCursor";
 flixel_input_touch_FlxTouchManager.maxTouchPoints = 0;
-flixel_math_FlxMath.MIN_VALUE_FLOAT = 0.0000000000000001;
-flixel_math_FlxMath.MAX_VALUE_FLOAT = 1.79e+308;
-flixel_math_FlxMath.MIN_VALUE_INT = -2147483647;
-flixel_math_FlxMath.MAX_VALUE_INT = 2147483647;
-flixel_math_FlxMath.SQUARE_ROOT_OF_TWO = 1.41421356237;
-flixel_math_FlxMath.EPSILON = 0.0000001;
 flixel_math_FlxPoint.EPSILON = 0.0000001;
 flixel_math_FlxPoint.EPSILON_SQUARED = 9.9999999999999984e-015;
 flixel_math_FlxPoint._point1 = (function($this) {
