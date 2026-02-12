@@ -1,6 +1,10 @@
+/* idk if this variable calc does anything */
 body {
     --crochetCalc: 0.6818s; /* for delay and tweening */
 }
+
+/* Backdrop elements */
+
 @keyframes Flx_CrochetLeft {
     0% {
         rotate: -10deg;
@@ -50,4 +54,28 @@ body {
     animation-iteration-count: infinite;
 }
 
-/* Base elements soon */
+.github {
+    position: relative;
+    top: 900px;
+    left: 20px;
+    transform: scale(1.0);
+    transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.github:hover {
+    transform: scale(1.125);
+}
+
+/* BASE ELEMENT DESIGNATIONS */
+
+.commonText {
+    font-family: "PhantomMuff 1.5";
+    position: relative;
+    font-size: 24px;
+    text-align: center;
+}
+
+#initialNotice {
+    top: 20px;
+    color: rgb(104, 255, 116);
+}
