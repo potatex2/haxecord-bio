@@ -68,6 +68,11 @@ body {
 
 /* BASE ELEMENT DESIGNATIONS */
 
+td {
+    border: 1px solid #8d8d8d;
+    border-radius: 5px;
+}
+
 .commonText {
     font-family: "PhantomMuff 1.5";
     position: relative;
@@ -76,6 +81,30 @@ body {
 }
 
 #initialNotice {
-    top: 20px;
+    top: 30px; /* exact for offsets */
     color: rgb(104, 255, 116);
+    position: relative;
+}
+
+#statusContent {
+    top: 25%;
+    color: #37B6FF;
+    justify-self: center;
+    line-height: 2em;
+}
+
+.inactive {
+    visibility: hidden;
+}
+
+.active {
+    visibility: visible;
+}
+
+#scrollTest {
+    --fish: "yes";
+}
+
+#Bios {
+    --fosj: "yes";
 }
