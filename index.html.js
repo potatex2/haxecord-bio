@@ -925,7 +925,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "129";
+	app.meta.h["build"] = "23";
 	app.meta.h["company"] = "PotateX2";
 	app.meta.h["file"] = "index.html";
 	app.meta.h["name"] = "PotateX2 ~ WebStatusState.hx";
@@ -1246,7 +1246,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy24:bulkAssets%2FbgGoofy.pngy4:sizei9125y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y21:bulkAssets%2Fbozo.pngR2i28469R3R4R5R7R6tgoR2i5681R3y5:SOUNDR5y24:bulkAssets%2FclickIn.oggy9:pathGroupaR9hR6tgoR2i5432R3R8R5y25:bulkAssets%2FclickOut.oggR10aR11hR6tgoR2i33629R3R8R5y23:bulkAssets%2Fflixel.oggR10aR12hR6tgoR0y21:bulkAssets%2Ficon.pngR2i24322R3R4R5R13R6tgoR0y23:bulkAssets%2Ficon64.pngR2i5550R3R4R5R14R6tgoR0y26:bulkAssets%2Fmetadata.jsonR2i192R3y4:TEXTR5R15R6tgoR0y25:bulkAssets%2FmusicBar.pngR2i744R3R4R5R17R6tgoR0y31:bulkAssets%2FnavIcons%2FBio.pngR2i11086R3R4R5R18R6tgoR0y32:bulkAssets%2FnavIcons%2FHome.pngR2i10429R3R4R5R19R6tgoR0y36:bulkAssets%2FnavIcons%2FSettings.pngR2i8037R3R4R5R20R6tgoR0y34:bulkAssets%2FnavIcons%2FStatus.pngR2i6638R3R4R5R21R6tgoR2i15744R3y4:FONTy9:classNamey33:__ASSET__bulkassets_nokiafc22_ttfR5y26:bulkAssets%2Fnokiafc22.ttfR6tgoR2i110479R3R8R5y29:bulkAssets%2FnoticeUpdate.oggR10aR26hR6tgoR2i632783R3R8R5y22:bulkAssets%2Fpause.oggR10aR27hR6tgoR2i46252R3R22R23y35:__ASSET__bulkassets_phantommuff_ttfR5y28:bulkAssets%2FPhantomMuff.ttfR6tgoR2i78252R3R22R23y41:__ASSET__bulkassets_phantommuff_empty_ttfR5y34:bulkAssets%2FPhantomMuff_Empty.ttfR6tgoR0y23:bulkAssets%2Freload.pngR2i10586R3R4R5R32R6tgoR0y25:bulkAssets%2FsiteRepo.pngR2i7231R3R4R5R33R6tgoR2i69071R3R8R5y29:bulkAssets%2FToggleJingle.oggR10aR34hR6tgoR0y26:bulkAssets%2FtweenPort.cssR2i2145R3R16R5R35R6tgoR0y28:bulkAssets%2Fui%2FbgMode.pngR2i391R3R4R5R36R6tgoR0y36:bulkAssets%2Fui%2FbgModeSelected.pngR2i710R3R4R5R37R6tgoR0y29:bulkAssets%2Fui%2FbioDown.pngR2i2129R3R4R5R38R6tgoR0y27:bulkAssets%2Fui%2FbioUp.pngR2i2219R3R4R5R39R6tgoR0y31:bulkAssets%2Fui%2FmusicIcon.pngR2i4035R3R4R5R40R6tgoR0y24:bulkAssets%2Fui%2FnO.pngR2i1681R3R4R5R41R6tgoR0y30:bulkAssets%2Fui%2FnoticeBG.pngR2i17469R3R4R5R42R6tgoR0y34:bulkAssets%2Fui%2FstatusUpdate.pngR2i3516R3R4R5R43R6tgoR0y29:bulkAssets%2Fui%2FvolDown.pngR2i3714R3R4R5R44R6tgoR0y27:bulkAssets%2Fui%2FvolUp.pngR2i4198R3R4R5R45R6tgoR0y26:bulkAssets%2FvolumeBar.pngR2i3385R3R4R5R46R6tgoR0R35R2i2145R3R16R5R35R6tgoR2i2563R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R10aR48y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R47R5y28:flixel%2Fsounds%2Fflixel.mp3R10aR50y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i5636R3R8R5R49R10aR48R49hgoR2i33629R3R8R5R51R10aR50R51hgoR2i15744R3R22R23y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R22R23y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i277R3R4R5R56R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i505R3R4R5R57R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Fbox.pngR2i75R3R4R5R58R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fbutton.pngR2i211R3R4R5R59R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_down.pngR2i216R3R4R5R60R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_left.pngR2i222R3R4R5R61R6tgoR0y49:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_right.pngR2i238R3R4R5R62R6tgoR0y46:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_up.pngR2i227R3R4R5R63R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fbutton_thin.pngR2i118R3R4R5R64R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fbutton_toggle.pngR2i254R3R4R5R65R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fcheck_box.pngR2i101R3R4R5R66R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fcheck_mark.pngR2i97R3R4R5R67R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fchrome.pngR2i135R3R4R5R68R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fchrome_flat.pngR2i124R3R4R5R69R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_inset.pngR2i102R3R4R5R70R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_light.pngR2i118R3R4R5R71R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fdropdown_mark.pngR2i86R3R4R5R72R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Ffinger_big.pngR2i1337R3R4R5R73R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Ffinger_small.pngR2i157R3R4R5R74R6tgoR0y38:flixel%2Fflixel-ui%2Fimg%2Fhilight.pngR2i74R3R4R5R75R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Finvis.pngR2i72R3R4R5R76R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fminus_mark.pngR2i77R3R4R5R77R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fplus_mark.pngR2i83R3R4R5R78R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Fradio.pngR2i108R3R4R5R79R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fradio_dot.pngR2i81R3R4R5R80R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fswatch.pngR2i94R3R4R5R81R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Ftab.pngR2i106R3R4R5R82R6tgoR0y39:flixel%2Fflixel-ui%2Fimg%2Ftab_back.pngR2i111R3R4R5R83R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Ftooltip_arrow.pngR2i176R3R4R5R84R6tgoR0y39:flixel%2Fflixel-ui%2Fxml%2Fdefaults.xmlR2i1263R3R16R5R85R6tgoR0y53:flixel%2Fflixel-ui%2Fxml%2Fdefault_loading_screen.xmlR2i1953R3R16R5R86R6tgoR0y44:flixel%2Fflixel-ui%2Fxml%2Fdefault_popup.xmlR2i1848R3R16R5R87R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fcircle.pngR2i299R3R4R5R88R6tgoR0y53:flixel%2Fimages%2Ftransitions%2Fdiagonal_gradient.pngR2i730R3R4R5R89R6tgoR0y43:flixel%2Fimages%2Ftransitions%2Fdiamond.pngR2i236R3R4R5R90R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fsquare.pngR2i209R3R4R5R91R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy24:bulkAssets%2FbgGoofy.pngy4:sizei9125y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y21:bulkAssets%2Fbozo.pngR2i28469R3R4R5R7R6tgoR2i5681R3y5:SOUNDR5y24:bulkAssets%2FclickIn.oggy9:pathGroupaR9hR6tgoR2i5432R3R8R5y25:bulkAssets%2FclickOut.oggR10aR11hR6tgoR0y21:bulkAssets%2Ffish.gifR2i577318R3R4R5R12R6tgoR2i33629R3R8R5y23:bulkAssets%2Fflixel.oggR10aR13hR6tgoR0y21:bulkAssets%2Ficon.pngR2i24322R3R4R5R14R6tgoR0y23:bulkAssets%2Ficon64.pngR2i5550R3R4R5R15R6tgoR0y26:bulkAssets%2Fmetadata.jsonR2i192R3y4:TEXTR5R16R6tgoR0y25:bulkAssets%2FmusicBar.pngR2i744R3R4R5R18R6tgoR0y31:bulkAssets%2FnavIcons%2FBio.pngR2i11086R3R4R5R19R6tgoR0y32:bulkAssets%2FnavIcons%2FHome.pngR2i10429R3R4R5R20R6tgoR0y36:bulkAssets%2FnavIcons%2FSettings.pngR2i8037R3R4R5R21R6tgoR0y34:bulkAssets%2FnavIcons%2FStatus.pngR2i6638R3R4R5R22R6tgoR2i15744R3y4:FONTy9:classNamey33:__ASSET__bulkassets_nokiafc22_ttfR5y26:bulkAssets%2Fnokiafc22.ttfR6tgoR2i110479R3R8R5y29:bulkAssets%2FnoticeUpdate.oggR10aR27hR6tgoR2i632783R3R8R5y22:bulkAssets%2Fpause.oggR10aR28hR6tgoR2i46252R3R23R24y35:__ASSET__bulkassets_phantommuff_ttfR5y28:bulkAssets%2FPhantomMuff.ttfR6tgoR2i78252R3R23R24y41:__ASSET__bulkassets_phantommuff_empty_ttfR5y34:bulkAssets%2FPhantomMuff_Empty.ttfR6tgoR0y23:bulkAssets%2Freload.pngR2i10586R3R4R5R33R6tgoR0y25:bulkAssets%2FsiteRepo.pngR2i7231R3R4R5R34R6tgoR2i69071R3R8R5y29:bulkAssets%2FToggleJingle.oggR10aR35hR6tgoR0y26:bulkAssets%2FtweenPort.cssR2i2293R3R17R5R36R6tgoR0y28:bulkAssets%2Fui%2FbgMode.pngR2i391R3R4R5R37R6tgoR0y36:bulkAssets%2Fui%2FbgModeSelected.pngR2i710R3R4R5R38R6tgoR0y29:bulkAssets%2Fui%2FbioDown.pngR2i2129R3R4R5R39R6tgoR0y27:bulkAssets%2Fui%2FbioUp.pngR2i2219R3R4R5R40R6tgoR0y31:bulkAssets%2Fui%2FmusicIcon.pngR2i4035R3R4R5R41R6tgoR0y24:bulkAssets%2Fui%2FnO.pngR2i1681R3R4R5R42R6tgoR0y30:bulkAssets%2Fui%2FnoticeBG.pngR2i17469R3R4R5R43R6tgoR0y34:bulkAssets%2Fui%2FstatusUpdate.pngR2i3516R3R4R5R44R6tgoR0y29:bulkAssets%2Fui%2FvolDown.pngR2i3714R3R4R5R45R6tgoR0y27:bulkAssets%2Fui%2FvolUp.pngR2i4198R3R4R5R46R6tgoR0y26:bulkAssets%2FvolumeBar.pngR2i3385R3R4R5R47R6tgoR0R36R2i2293R3R17R5R36R6tgoR2i2563R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R10aR49y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R48R5y28:flixel%2Fsounds%2Fflixel.mp3R10aR51y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i5636R3R8R5R50R10aR49R50hgoR2i33629R3R8R5R52R10aR51R52hgoR2i15744R3R23R24y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R23R24y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i277R3R4R5R57R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i505R3R4R5R58R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Fbox.pngR2i75R3R4R5R59R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fbutton.pngR2i211R3R4R5R60R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_down.pngR2i216R3R4R5R61R6tgoR0y48:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_left.pngR2i222R3R4R5R62R6tgoR0y49:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_right.pngR2i238R3R4R5R63R6tgoR0y46:flixel%2Fflixel-ui%2Fimg%2Fbutton_arrow_up.pngR2i227R3R4R5R64R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fbutton_thin.pngR2i118R3R4R5R65R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fbutton_toggle.pngR2i254R3R4R5R66R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fcheck_box.pngR2i101R3R4R5R67R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fcheck_mark.pngR2i97R3R4R5R68R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fchrome.pngR2i135R3R4R5R69R6tgoR0y42:flixel%2Fflixel-ui%2Fimg%2Fchrome_flat.pngR2i124R3R4R5R70R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_inset.pngR2i102R3R4R5R71R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Fchrome_light.pngR2i118R3R4R5R72R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Fdropdown_mark.pngR2i86R3R4R5R73R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Ffinger_big.pngR2i1337R3R4R5R74R6tgoR0y43:flixel%2Fflixel-ui%2Fimg%2Ffinger_small.pngR2i157R3R4R5R75R6tgoR0y38:flixel%2Fflixel-ui%2Fimg%2Fhilight.pngR2i74R3R4R5R76R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Finvis.pngR2i72R3R4R5R77R6tgoR0y41:flixel%2Fflixel-ui%2Fimg%2Fminus_mark.pngR2i77R3R4R5R78R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fplus_mark.pngR2i83R3R4R5R79R6tgoR0y36:flixel%2Fflixel-ui%2Fimg%2Fradio.pngR2i108R3R4R5R80R6tgoR0y40:flixel%2Fflixel-ui%2Fimg%2Fradio_dot.pngR2i81R3R4R5R81R6tgoR0y37:flixel%2Fflixel-ui%2Fimg%2Fswatch.pngR2i94R3R4R5R82R6tgoR0y34:flixel%2Fflixel-ui%2Fimg%2Ftab.pngR2i106R3R4R5R83R6tgoR0y39:flixel%2Fflixel-ui%2Fimg%2Ftab_back.pngR2i111R3R4R5R84R6tgoR0y44:flixel%2Fflixel-ui%2Fimg%2Ftooltip_arrow.pngR2i176R3R4R5R85R6tgoR0y39:flixel%2Fflixel-ui%2Fxml%2Fdefaults.xmlR2i1263R3R17R5R86R6tgoR0y53:flixel%2Fflixel-ui%2Fxml%2Fdefault_loading_screen.xmlR2i1953R3R17R5R87R6tgoR0y44:flixel%2Fflixel-ui%2Fxml%2Fdefault_popup.xmlR2i1848R3R17R5R88R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fcircle.pngR2i299R3R4R5R89R6tgoR0y53:flixel%2Fimages%2Ftransitions%2Fdiagonal_gradient.pngR2i730R3R4R5R90R6tgoR0y43:flixel%2Fimages%2Ftransitions%2Fdiamond.pngR2i236R3R4R5R91R6tgoR0y42:flixel%2Fimages%2Ftransitions%2Fsquare.pngR2i209R3R4R5R92R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -11160,42 +11160,40 @@ classes_HTMLBackend.create = function() {
 	header.style.justifySelf = "center";
 	header.style.height = "100px";
 	window.document.body.appendChild(header);
+	var Settings = window.document.createElement("div");
+	Settings.style.position = "fixed";
+	Settings.style.bottom = "5%";
+	Settings.style.left = "10px";
+	Settings.innerHTML = "...";
+	Settings.style.zIndex = "1";
+	Settings.className = "commonText";
+	Settings.onclick = function() {
+		window.alert("aaaa");
+	};
 	var MAIN_DIV = window.document.createElement("div");
 	MAIN_DIV.style.zIndex = "2";
 	window.document.body.appendChild(MAIN_DIV);
+	MAIN_DIV.appendChild(Settings);
 	classes_HTMLBackend.BackdropDiv = window.document.createElement("div");
 	classes_HTMLBackend.BackdropDiv.style.height = "1000px";
 	classes_HTMLBackend.BackdropDiv.id = "background";
-	classes_HTMLBackend.BackdropDiv.style.backgroundImage = "url('bulkAssets/bgGoofy.png')";
-	classes_HTMLBackend.BackdropDiv.style.backgroundRepeat = "repeat";
-	classes_HTMLBackend.BackdropDiv.style.backgroundSize = "auto";
-	classes_HTMLBackend.BackdropDiv.style.backgroundAttachment = "fixed";
-	classes_HTMLBackend.BackdropDiv.style.opacity = "0";
 	var imageRedir = window.document.createElement("a");
 	imageRedir.href = "https://github.com/potatex2/haxecord-bio";
 	imageRedir.target = "_blank";
 	imageRedir.title = "GitHub Repo";
 	imageRedir.style.position = "relative";
-	imageRedir.style.top = "900px";
-	imageRedir.style.left = "20px";
+	imageRedir.style.left = "90%";
+	imageRedir.style.top = "89%";
 	var testt = window.document.createElement("img");
 	testt.src = "bulkAssets/siteRepo.png";
 	testt.className = "github";
+	testt.style.position = "relative";
 	imageRedir.appendChild(testt);
 	classes_HTMLBackend.BackdropDiv.appendChild(imageRedir);
 	classes_HTMLBackend.TweenManager.num(0,0.7,300,{ ease : flixel_tweens_FlxEase.sineInOut},function(val) {
 		classes_HTMLBackend.BackdropDiv.style.opacity = val == null ? "null" : "" + val;
 	});
 	MAIN_DIV.appendChild(classes_HTMLBackend.BackdropDiv);
-	classes_HTMLBackend.bgMusic = new Audio("bulkAssets/pause.ogg");
-	classes_HTMLBackend.bgMusic.loop = true;
-	classes_HTMLBackend.bgMusic.autoplay = true;
-	classes_HTMLBackend.bgMusic.preload = "auto";
-	classes_HTMLBackend.bgMusic.addEventListener("loadeddata",function() {
-		if(classes_HTMLBackend.bgMusic.readyState >= 4) {
-			classes_HTMLBackend.bgMusic.play();
-		}
-	});
 	classes_HTMLBackend.beBackSoon = window.document.createElement("h1");
 	classes_HTMLBackend.beBackSoon.textContent = "be back soon...";
 	classes_HTMLBackend.beBackSoon.style.fontFamily = "'PhantomMuff 1.5'";
@@ -11208,7 +11206,7 @@ classes_HTMLBackend.create = function() {
 	classes_HTMLBackend.BackdropDiv.appendChild(classes_HTMLBackend.beBackSoon);
 	var notice = window.document.createElement("h3");
 	notice.className = "commonText";
-	notice.textContent = "Welcome (back) to the barebones of the personal bio site... the overhaul is still being developed as usual, but hey, at least some things changed. :D\r\n- PotateX2\r\n\r\n(I've added the status updater back, but as usual, it's quite unoptimized. For now, see you soon once again...)" + (!flixel_FlxG.html5.onMobile ? "" : "\r\n\r\n\r\n(I've found the fix to the mobile scrolling handler; sorry for the unoptimized stuff though, I'm working on that fix now.)");
+	notice.textContent = "Welcome (back) to the barebones of the personal bio site... the overhaul is still being developed as usual, but hey, at least some things changed. :D\r\n- PotateX2\r\n\r\n(I've added the status updater back, but as usual, it's quite unoptimized. For now, see you soon once again...)" + (!flixel_FlxG.html5.onMobile ? "" : "\r\n\r\n\r\n(Mobile scrolling handler fixed; sorry for the unoptimized stuff though, I'm still experimenting with this.)");
 	notice.style.color = "#5CDEFF";
 	notice.style.textShadow = "3px 3px 2px #3C66FC";
 	notice.style.fontSize = "25px";
@@ -11233,7 +11231,7 @@ classes_HTMLBackend.create = function() {
 	MainDiv.style.background = "transparent";
 	MainDiv.style.height = "1px";
 	MainDiv.className = "active";
-	MainDiv.id = "scrollTest";
+	MainDiv.id = "Home";
 	MainDiv.style.boxSizing = "inherit";
 	filler.appendChild(MainDiv);
 	var BioDiv = window.document.createElement("div");
@@ -11257,7 +11255,7 @@ classes_HTMLBackend.create = function() {
 	var data1 = row1.insertCell();
 	data1.style.width = "33%";
 	var homeHREF = window.document.createElement("a");
-	homeHREF.href = "#scrollTest";
+	homeHREF.href = "#Home";
 	homeHREF.textContent = "Home";
 	homeHREF.onclick = function() {
 		MainDiv.className = "active";
@@ -11380,35 +11378,55 @@ classes_HTMLBackend.create = function() {
 	otherGoober.style.textShadow = "black 2px 2px 3px";
 	MainDiv.appendChild(otherGoober);
 	window.document.body.style.setProperty("--crochetCalc",Std.string(classes_HTMLBackend.croshet) + "s");
-	haxe_Log.trace(window.document.body.style.getPropertyValue("--crochetCalc"),{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 314, className : "classes.HTMLBackend", methodName : "create"});
+	haxe_Log.trace(window.document.body.style.getPropertyValue("--crochetCalc"),{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 315, className : "classes.HTMLBackend", methodName : "create"});
 	classes_HTMLBackend.TweenManager.num(150,100,600,{ ease : flixel_tweens_FlxEase.sineOut},function(val) {
 		notice.style.top = (val == null ? "null" : "" + val) + "px";
 		classes_HTMLBackend.goober.style.top = Std.string(val + 200) + "px";
 	});
 	MAIN_DIV.appendChild(filler);
-	classes_HTMLBackend.bpmTime = new haxe_Timer(Math.round(classes_HTMLBackend.croshet * 1000));
-	classes_HTMLBackend.bpmTime.run = function() {
-		classes_HTMLBackend.camBeat++;
-		classes_HTMLBackend.goober.className = classes_HTMLBackend.camBeat % 2 == 0 ? "bopperLeft" : "bopperRight";
-		classes_HTMLBackend.beBackSoon.className = classes_HTMLBackend.camBeat % 2 == 0 ? "" : "textBop";
-	};
-	classes_HTMLBackend.bpmTime.run();
+	classes_HTMLBackend.bgMusic = new Audio("bulkAssets/pause.ogg");
+	classes_HTMLBackend.bgMusic.loop = true;
+	classes_HTMLBackend.bgMusic.autoplay = true;
+	classes_HTMLBackend.bgMusic.preload = "auto";
+	classes_HTMLBackend.bgMusic.addEventListener("loadeddata",function() {
+		if(classes_HTMLBackend.bgMusic.readyState >= 4) {
+			classes_HTMLBackend.bgMusic.play();
+		}
+	});
 	var bio_placeholder = window.document.createElement("p");
 	bio_placeholder.className = "commonText";
 	bio_placeholder.innerHTML = "" + ("<span style=\"color:#" + "ff7b00" + ";\">" + "Not yet." + "</span>") + " Check back here later.";
 	bio_placeholder.style.textAlign = "center";
 	bio_placeholder.style.color = "#bdbdbd";
 	bio_placeholder.style.position = "relative";
-	bio_placeholder.style.top = "30%";
+	bio_placeholder.style.top = "20%";
+	if(!flixel_FlxG.html5.onMobile) {
+		bio_placeholder.style.left = "50px";
+	}
+	var fish = window.document.createElement("img");
+	fish.src = "bulkAssets/fish.gif";
+	fish.style.position = "relative";
+	fish.style.alignSelf = "center";
+	fish.style.top = "16%";
+	fish.onclick = function() {
+		window.alert("you know what that means");
+	};
+	BioDiv.appendChild(fish);
 	BioDiv.appendChild(bio_placeholder);
 };
 classes_HTMLBackend.update = function(elapsed) {
 	if(states_HtmlSplashPort.jobDone) {
-		classes_HTMLBackend.musicElapsed = flixel_math_FlxMath.roundDecimal(classes_HTMLBackend.bgMusic.currentTime,4);
+		classes_HTMLBackend.musicElapsed = flixel_math_FlxMath.roundDecimal(classes_HTMLBackend.bgMusic.currentTime,5);
+		classes_HTMLBackend.daBeat = classes_HTMLBackend.musicElapsed / classes_HTMLBackend.croshet | 0;
 		classes_HTMLBackend.x += 0.5;
 		classes_HTMLBackend.y += 0.25;
 		classes_HTMLBackend.BackdropDiv.style.backgroundPositionX = classes_HTMLBackend.x + "px";
 		classes_HTMLBackend.BackdropDiv.style.backgroundPositionY = classes_HTMLBackend.y + "px";
+		if(classes_HTMLBackend.musicElapsed % classes_HTMLBackend.croshet >= 0 && classes_HTMLBackend.musicElapsed % classes_HTMLBackend.croshet <= 0.01) {
+			classes_HTMLBackend.camBeat++;
+			classes_HTMLBackend.goober.className = classes_HTMLBackend.daBeat % 2 == 0 ? "bopperLeft" : "bopperRight";
+			classes_HTMLBackend.beBackSoon.className = classes_HTMLBackend.daBeat % 2 == 0 ? "" : "textBop";
+		}
 	}
 };
 classes_HTMLBackend.fish = function(text,color) {
@@ -11420,7 +11438,7 @@ classes_HTMLBackend.loadAndCache = function(name,url,async) {
 		window.localStorage.setItem(name,raw);
 	};
 	http.onError = function(err) {
-		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 365, className : "classes.HTMLBackend", methodName : "loadAndCache"});
+		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 400, className : "classes.HTMLBackend", methodName : "loadAndCache"});
 	};
 	http.request(async);
 };
@@ -77777,7 +77795,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 160579;
+	this.version = 449316;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -126895,6 +126913,7 @@ classes_HTMLBackend.camBeat = 0;
 classes_HTMLBackend.boopWay = true;
 classes_HTMLBackend.angleVal = 0;
 classes_HTMLBackend.scaleVal = 1;
+classes_HTMLBackend.daBeat = 0;
 flixel_system_FlxSplash.muted = false;
 flixel_system_FlxSplash.WIP = false;
 flixel_system_FlxSplash.contextOverride = "bulkAssets/bozo.png";
