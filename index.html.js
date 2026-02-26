@@ -11164,7 +11164,7 @@ classes_HTMLBackend.create = function() {
 	no.style.position = "absolute";
 	no.style.bottom = "0px";
 	no.style.setProperty("scale","116%");
-	SettingsIcon.src = "bulkAssets/navIcons/settings.png";
+	SettingsIcon.src = "bulkAssets/navIcons/Settings.png";
 	SettingsIcon.style.position = "absolute";
 	SettingsIcon.style.setProperty("scale","70%");
 	SettingsIcon.style.right = "-75px";
