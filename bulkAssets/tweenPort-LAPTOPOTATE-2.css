@@ -1,0 +1,157 @@
+/* idk if this variable calc does anything */
+body {
+    --crochetCalc: 0.6818s; /* for delay and tweening */
+}
+
+/* Backdrop elements */
+
+@keyframes Flx_CrochetLeft {
+    0% {
+        rotate: -10deg;
+        scale: 120%;
+    }
+    100% {
+        rotate: 0deg;
+        scale: 100%;
+    }
+}
+@keyframes Flx_CrochetRight {
+    0% {
+        rotate: 10deg;
+        scale: 120%;
+    }
+    100% {
+        rotate: 0deg;
+        scale: 100%;
+    }
+}
+.bopperLeft {
+    animation-name: Flx_CrochetLeft;
+    animation-duration: var(--crochetCalc); /* crochet will be calculated in haxe file */
+    animation-timing-function: cubic-bezier(.16,1.15,1,1);
+    animation-iteration-count: infinite;
+    
+}
+.bopperRight {
+    animation-name: Flx_CrochetRight;
+    animation-duration: var(--crochetCalc); /* crochet will be calculated in haxe file */
+    animation-timing-function: cubic-bezier(.16,1.15,1,1);
+    animation-iteration-count: infinite;
+    
+}
+@keyframes CircOutText {
+    0% {
+        scale: 1.125;
+    }
+    100% {
+        scale: 1.0;
+    }
+}
+.textBop {
+    animation-name: CircOutText;
+    animation-duration: calc(var(--crochetCalc) * 2);
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-iteration-count: infinite;
+}
+
+.github {
+    position: absolute;
+    transform: scale(1.0);
+    transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.github:hover {
+    transform: scale(1.125);
+}
+
+#header {
+    position: fixed;
+    background: linear-gradient(180deg, #ff9cf069, transparent);
+    z-index: 1;
+    width: 100%;
+    justify-self: center;
+    height: 100px;
+    top: -100px;
+    opacity: 1;
+    animation-fill-mode: forwards;
+    transition: headerIn;
+    transform: headerIn;
+    /*BRO IDFK*/
+}
+
+@keyframes headerIn {
+    0% {
+        top: -100px;
+        opacity: 0;
+    }
+    100% {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes headerOut {
+    0% {
+        top: initial;
+        opacity: 1;
+    }
+    100% {
+        top: -100px;
+        opacity: 0;
+    }
+}
+
+.headerIn {
+    animation: headerOut 0.7s ease;
+}
+
+#background {
+    background-image: url("bulkAssets/bgGoofy.png");
+    background-repeat: repeat; 
+    background-size: auto; 
+    background-attachment: fixed;
+    opacity: 0;
+}
+
+/* BASE ELEMENT DESIGNATIONS */
+
+td {
+    border: 1px solid #8d8d8d;
+    border-radius: 5px;
+}
+
+.commonText {
+    font-family: "PhantomMuff 1.5";
+    position: relative;
+    font-size: 24px;
+    text-align: center;
+}
+
+#initialNotice {
+    top: 30px; /* exact for offsets */
+    color: rgb(104, 255, 116);
+    position: relative;
+}
+
+#statusContent {
+    top: 25%;
+    color: #37B6FF;
+    justify-self: center;
+    line-height: 2em;
+}
+
+.inactive {
+    visibility: hidden;
+}
+
+.active {
+    visibility: visible;
+}
+
+#scrollTest {
+    --fish: yes;
+}
+
+#Bios {
+    --fosj: yes;
+}
