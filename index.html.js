@@ -925,7 +925,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "88";
+	app.meta.h["build"] = "89";
 	app.meta.h["company"] = "PotateX2";
 	app.meta.h["file"] = "index.html";
 	app.meta.h["name"] = "PotateX2 ~ WebStatusState.hx";
@@ -1011,7 +1011,6 @@ Main.init = function(E) {
 	backendTest.onData = function(data) {
 		haxe_Log.trace("FROM DATABASE??? | " + data,{ fileName : "source/Main.hx", lineNumber : 24, className : "Main", methodName : "init"});
 	};
-	backendTest.request();
 	window.console.log("%%%%% Pre-setup %%%%%");
 	classes_HTMLBackend.loadAndCache("metadata","bulkAssets/metadata.json",false);
 	openfl_Lib.get_current().stage.align = openfl_display_StageAlign.fromString("tl");
@@ -1270,7 +1269,7 @@ ManifestResources.init = function(config) {
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$nokiafc22_$ttf);
 	openfl_text_Font.registerFont(_$_$ASSET_$_$OPENFL_$_$flixel_$fonts_$monsterrat_$ttf);
 	var bundle;
-	var data = "{\"name\":null,\"assets\":\"aoy4:pathy24:bulkAssets%2FbgGoofy.pngy4:sizei9125y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y21:bulkAssets%2Fbozo.pngR2i28469R3R4R5R7R6tgoR2i5681R3y5:SOUNDR5y24:bulkAssets%2FclickIn.oggy9:pathGroupaR9hR6tgoR2i5432R3R8R5y25:bulkAssets%2FclickOut.oggR10aR11hR6tgoR0y21:bulkAssets%2Ffish.gifR2i577318R3R4R5R12R6tgoR2i33629R3R8R5y23:bulkAssets%2Fflixel.oggR10aR13hR6tgoR0y21:bulkAssets%2Ficon.pngR2i24322R3R4R5R14R6tgoR0y23:bulkAssets%2Ficon64.pngR2i5550R3R4R5R15R6tgoR0y26:bulkAssets%2Fmetadata.jsonR2i192R3y4:TEXTR5R16R6tgoR0y25:bulkAssets%2FmusicBar.pngR2i744R3R4R5R18R6tgoR0y31:bulkAssets%2FnavIcons%2FBio.pngR2i11086R3R4R5R19R6tgoR0y32:bulkAssets%2FnavIcons%2FHome.pngR2i10429R3R4R5R20R6tgoR0y36:bulkAssets%2FnavIcons%2FSettings.pngR2i8037R3R4R5R21R6tgoR0y34:bulkAssets%2FnavIcons%2FStatus.pngR2i6638R3R4R5R22R6tgoR2i15744R3y4:FONTy9:classNamey33:__ASSET__bulkassets_nokiafc22_ttfR5y26:bulkAssets%2Fnokiafc22.ttfR6tgoR2i110479R3R8R5y29:bulkAssets%2FnoticeUpdate.oggR10aR27hR6tgoR2i632783R3R8R5y22:bulkAssets%2Fpause.oggR10aR28hR6tgoR2i46252R3R23R24y35:__ASSET__bulkassets_phantommuff_ttfR5y28:bulkAssets%2FPhantomMuff.ttfR6tgoR2i78252R3R23R24y41:__ASSET__bulkassets_phantommuff_empty_ttfR5y34:bulkAssets%2FPhantomMuff_Empty.ttfR6tgoR0y23:bulkAssets%2Freload.pngR2i10586R3R4R5R33R6tgoR0y25:bulkAssets%2FsiteRepo.pngR2i7231R3R4R5R34R6tgoR2i69071R3R8R5y29:bulkAssets%2FToggleJingle.oggR10aR35hR6tgoR0y40:bulkAssets%2FtweenPort-LAPTOPOTATE-2.cssR2i2975R3R17R5R36R6tgoR0y26:bulkAssets%2FtweenPort.cssR2i3142R3R17R5R37R6tgoR0y28:bulkAssets%2Fui%2FbgMode.pngR2i391R3R4R5R38R6tgoR0y36:bulkAssets%2Fui%2FbgModeSelected.pngR2i710R3R4R5R39R6tgoR0y29:bulkAssets%2Fui%2FbioDown.pngR2i2129R3R4R5R40R6tgoR0y27:bulkAssets%2Fui%2FbioUp.pngR2i2219R3R4R5R41R6tgoR0y31:bulkAssets%2Fui%2FmusicIcon.pngR2i4035R3R4R5R42R6tgoR0y24:bulkAssets%2Fui%2FnO.pngR2i1681R3R4R5R43R6tgoR0y30:bulkAssets%2Fui%2FnoticeBG.pngR2i17469R3R4R5R44R6tgoR0y34:bulkAssets%2Fui%2FstatusUpdate.pngR2i3516R3R4R5R45R6tgoR0y29:bulkAssets%2Fui%2FvolDown.pngR2i3714R3R4R5R46R6tgoR0y27:bulkAssets%2Fui%2FvolUp.pngR2i4198R3R4R5R47R6tgoR0y26:bulkAssets%2FvolumeBar.pngR2i3385R3R4R5R48R6tgoR0R37R2i3142R3R17R5R37R6tgoR2i2563R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R10aR50y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R49R5y28:flixel%2Fsounds%2Fflixel.mp3R10aR52y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i5636R3R8R5R51R10aR50R51hgoR2i33629R3R8R5R53R10aR52R53hgoR2i15744R3R23R24y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R23R24y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i277R3R4R5R58R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i505R3R4R5R59R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
+	var data = "{\"name\":null,\"assets\":\"aoy4:pathy24:bulkAssets%2FbgGoofy.pngy4:sizei9125y4:typey5:IMAGEy2:idR1y7:preloadtgoR0y21:bulkAssets%2Fbozo.pngR2i28469R3R4R5R7R6tgoR2i5681R3y5:SOUNDR5y24:bulkAssets%2FclickIn.oggy9:pathGroupaR9hR6tgoR2i5432R3R8R5y25:bulkAssets%2FclickOut.oggR10aR11hR6tgoR0y21:bulkAssets%2Ffish.gifR2i577318R3R4R5R12R6tgoR2i33629R3R8R5y23:bulkAssets%2Fflixel.oggR10aR13hR6tgoR0y21:bulkAssets%2Ficon.pngR2i24322R3R4R5R14R6tgoR0y23:bulkAssets%2Ficon64.pngR2i5550R3R4R5R15R6tgoR0y26:bulkAssets%2Fmetadata.jsonR2i192R3y4:TEXTR5R16R6tgoR0y25:bulkAssets%2FmusicBar.pngR2i744R3R4R5R18R6tgoR0y31:bulkAssets%2FnavIcons%2FBio.pngR2i11086R3R4R5R19R6tgoR0y32:bulkAssets%2FnavIcons%2FHome.pngR2i10429R3R4R5R20R6tgoR0y36:bulkAssets%2FnavIcons%2FSettings.pngR2i8037R3R4R5R21R6tgoR0y34:bulkAssets%2FnavIcons%2FStatus.pngR2i6638R3R4R5R22R6tgoR2i15744R3y4:FONTy9:classNamey33:__ASSET__bulkassets_nokiafc22_ttfR5y26:bulkAssets%2Fnokiafc22.ttfR6tgoR2i110479R3R8R5y29:bulkAssets%2FnoticeUpdate.oggR10aR27hR6tgoR2i632783R3R8R5y22:bulkAssets%2Fpause.oggR10aR28hR6tgoR2i46252R3R23R24y35:__ASSET__bulkassets_phantommuff_ttfR5y28:bulkAssets%2FPhantomMuff.ttfR6tgoR2i78252R3R23R24y41:__ASSET__bulkassets_phantommuff_empty_ttfR5y34:bulkAssets%2FPhantomMuff_Empty.ttfR6tgoR0y23:bulkAssets%2Freload.pngR2i10586R3R4R5R33R6tgoR0y25:bulkAssets%2FsiteRepo.pngR2i7231R3R4R5R34R6tgoR2i69071R3R8R5y29:bulkAssets%2FToggleJingle.oggR10aR35hR6tgoR0y26:bulkAssets%2FtweenPort.cssR2i3142R3R17R5R36R6tgoR0y28:bulkAssets%2Fui%2FbgMode.pngR2i391R3R4R5R37R6tgoR0y36:bulkAssets%2Fui%2FbgModeSelected.pngR2i710R3R4R5R38R6tgoR0y29:bulkAssets%2Fui%2FbioDown.pngR2i2129R3R4R5R39R6tgoR0y27:bulkAssets%2Fui%2FbioUp.pngR2i2219R3R4R5R40R6tgoR0y31:bulkAssets%2Fui%2FmusicIcon.pngR2i4035R3R4R5R41R6tgoR0y24:bulkAssets%2Fui%2FnO.pngR2i1681R3R4R5R42R6tgoR0y30:bulkAssets%2Fui%2FnoticeBG.pngR2i17469R3R4R5R43R6tgoR0y34:bulkAssets%2Fui%2FstatusUpdate.pngR2i3516R3R4R5R44R6tgoR0y29:bulkAssets%2Fui%2FvolDown.pngR2i3714R3R4R5R45R6tgoR0y27:bulkAssets%2Fui%2FvolUp.pngR2i4198R3R4R5R46R6tgoR0y26:bulkAssets%2FvolumeBar.pngR2i3385R3R4R5R47R6tgoR0R36R2i3142R3R17R5R36R6tgoR2i2563R3y5:MUSICR5y26:flixel%2Fsounds%2Fbeep.mp3R10aR49y26:flixel%2Fsounds%2Fbeep.ogghR6tgoR2i39706R3R48R5y28:flixel%2Fsounds%2Fflixel.mp3R10aR51y28:flixel%2Fsounds%2Fflixel.ogghR6tgoR2i5636R3R8R5R50R10aR49R50hgoR2i33629R3R8R5R52R10aR51R52hgoR2i15744R3R23R24y35:__ASSET__flixel_fonts_nokiafc22_ttfR5y30:flixel%2Ffonts%2Fnokiafc22.ttfR6tgoR2i29724R3R23R24y36:__ASSET__flixel_fonts_monsterrat_ttfR5y31:flixel%2Ffonts%2Fmonsterrat.ttfR6tgoR0y33:flixel%2Fimages%2Fui%2Fbutton.pngR2i277R3R4R5R57R6tgoR0y36:flixel%2Fimages%2Flogo%2Fdefault.pngR2i505R3R4R5R58R6tgh\",\"rootPath\":null,\"version\":2,\"libraryArgs\":[],\"libraryType\":null}";
 	var manifest = lime_utils_AssetManifest.parse(data,ManifestResources.rootPath);
 	var library = lime_utils_AssetLibrary.fromManifest(manifest);
 	lime_utils_Assets.registerLibrary("default",library);
@@ -11471,7 +11470,6 @@ classes_HTMLBackend.create = function() {
 	database.onData = function(data) {
 		notice.innerHTML = "OVERHAUL IN PROGRESS.\r\n\r\n        Database stuff for status loaded.\r\n\r\n        In the meantime, you're better off <a href='https://github.com/potatex2/lively-x-haxe'>checking PauseWallpaper.hx </a> out instead.\r\n        \r\n        - PotateX2\r\n        ";
 	};
-	database.request();
 	classes_HTMLBackend.goober = classes_HTMLBackend.doc.createElement("img");
 	classes_HTMLBackend.goober.src = "bulkAssets/bozo.png";
 	classes_HTMLBackend.goober.style.position = "relative";
@@ -11564,44 +11562,7 @@ classes_HTMLBackend.create = function() {
 	updateStatus.style.backgroundColor = "transparent";
 	updateStatus.style.display = "flex";
 	updateStatus.onclick = function() {
-		statusContent.textContent = "Fetching status, please wait...";
-		new Promise(function(resolve,reject) {
-			var http = new haxe_http_HttpJs("https://webstatus-backend-zyh8.onrender.com");
-			http.onData = function(data) {
-				try {
-					var parsed = JSON.parse(data)[0];
-					var out = { _id : null, status : { version : "0.0.1", changelog : "none", status : "exists", timestamp : new Date(), notice : "no notice"}, bios : [{ name : "Main Profile", entry : "Currently a work-in-progress.", timestamp : "To Be Implemented", _id : null}], __v : null};
-					if(parsed == null) {
-						throw haxe_Exception.thrown("Invalid type format in JSON file.");
-					}
-					var _g = 0;
-					var _g1 = Reflect.fields(parsed);
-					while(_g < _g1.length) {
-						var field = _g1[_g];
-						++_g;
-						haxe_Log.trace("setting" + field,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 491, className : "classes.HTMLBackend", methodName : "getDatabaseContent"});
-						out[field] = Reflect.field(parsed,field);
-					}
-					resolve(out);
-				} catch( _g ) {
-					var e = haxe_Exception.caught(_g);
-					window.console.error("PARSE FAILED: " + Std.string(e));
-					reject(e);
-				}
-			};
-			http.onError = function(error) {
-				reject(error);
-				window.console.warn("fish | " + error);
-			};
-			http.request();
-		}).then(function(data) {
-			var data1 = data.status;
-			var tmp = data1.notice;
-			statusContent.innerHTML = "" + ("<span style=\"color:#" + "00bdb3" + ";\">" + "Version:" + "</span>") + " " + data1.version + "<br />\r\n" + ("<span style=\"color:#" + "00bdb3" + ";\">" + "Changes: " + "</span>") + " " + data1.changelog + "<br />\r\n" + ("<span style=\"color:#" + "00bdb3" + ";\">" + "Status: " + "</span>") + " \n" + data1.status + "<br />\r\n" + ("<span style=\"color:#" + "00bdb3" + ";\">" + "Time: " + "</span>") + "  " + Std.string(data1.timestamp) + " (timestamp formatting in progress)<br />\r\n" + ("<span style=\"color:#" + "00bdb3" + ";\">" + "Notice: " + "</span>") + "  " + (tmp != null ? tmp : "None; this is for any other info if I don't input one.");
-			return new Audio("bulkAssets/ToggleJingle.ogg").play();
-		}).catch(function(error) {
-			return statusContent.innerHTML = "Status failed to load, please DM PotateX2.";
-		});
+		statusContent.textContent = "Status requests are currently in development with the backend overhaul. Check back later.";
 	};
 	var updateStatus_Button = classes_HTMLBackend.doc.createElement("img");
 	updateStatus_Button.src = "bulkAssets/reload.png";
@@ -11622,7 +11583,7 @@ classes_HTMLBackend.create = function() {
 	otherGoober.style.textShadow = "black 2px 2px 3px";
 	MainDiv.appendChild(otherGoober);
 	classes_HTMLBackend.doc.body.style.setProperty("--crochetCalc",Std.string(classes_HTMLBackend.croshet) + "s");
-	haxe_Log.trace(classes_HTMLBackend.doc.body.style.getPropertyValue("--crochetCalc"),{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 342, className : "classes.HTMLBackend", methodName : "create"});
+	haxe_Log.trace(classes_HTMLBackend.doc.body.style.getPropertyValue("--crochetCalc"),{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 344, className : "classes.HTMLBackend", methodName : "create"});
 	classes_HTMLBackend.TweenManager.num(150,100,600,{ ease : flixel_tweens_FlxEase.sineOut},function(val) {
 		notice.style.top = (val == null ? "null" : "" + val) + "px";
 		classes_HTMLBackend.goober.style.top = Std.string(val + 200) + "px";
@@ -11690,7 +11651,7 @@ classes_HTMLBackend.loadAndCache = function(name,url,async) {
 		window.localStorage.setItem(name,raw);
 	};
 	http.onError = function(err) {
-		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 440, className : "classes.HTMLBackend", methodName : "loadAndCache"});
+		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 442, className : "classes.HTMLBackend", methodName : "loadAndCache"});
 	};
 	http.request(async);
 };
@@ -11726,7 +11687,7 @@ classes_HTMLBackend.getDatabaseContent = function(link) {
 				while(_g < _g1.length) {
 					var field = _g1[_g];
 					++_g;
-					haxe_Log.trace("setting" + field,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 491, className : "classes.HTMLBackend", methodName : "getDatabaseContent"});
+					haxe_Log.trace("setting" + field,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 493, className : "classes.HTMLBackend", methodName : "getDatabaseContent"});
 					out[field] = Reflect.field(parsed,field);
 				}
 				resolve(out);
@@ -89339,7 +89300,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 129509;
+	this.version = 586434;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
