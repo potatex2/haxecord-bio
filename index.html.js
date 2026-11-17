@@ -925,7 +925,7 @@ ApplicationMain.main = function() {
 ApplicationMain.create = function(config) {
 	var app = new openfl_display_Application();
 	ManifestResources.init(config);
-	app.meta.h["build"] = "89";
+	app.meta.h["build"] = "119";
 	app.meta.h["company"] = "PotateX2";
 	app.meta.h["file"] = "index.html";
 	app.meta.h["name"] = "PotateX2 ~ WebStatusState.hx";
@@ -1020,7 +1020,6 @@ Main.init = function(E) {
 	if(!flixel_FlxG.html5.onMobile) {
 		Main.fpsVar = new classes_Memory();
 		Main.fpsVar = classes_Memory.instance;
-		Main.CANVAS.body.append(Main.fpsVar);
 		Main.fpsVar.style.position = "fixed";
 	}
 	Main.REQUESTANIMATIONFRAME(0);
@@ -1030,9 +1029,6 @@ Main.init = function(E) {
 Main.REQUESTANIMATIONFRAME = function(now) {
 	Main.lastTime = now;
 	Main.Now = now;
-	if(!flixel_FlxG.html5.onMobile) {
-		classes_Memory.updateText();
-	}
 	classes_HTMLBackend.TweenManager.update(now / 1000);
 	classes_HTMLBackend.update(Main.lastTime);
 	window.requestAnimationFrame(Main.REQUESTANIMATIONFRAME);
@@ -11367,280 +11363,25 @@ classes_HTMLBackend.bgMusic = null;
 classes_HTMLBackend.soundHandler = null;
 classes_HTMLBackend.musicElapsed = null;
 classes_HTMLBackend.bpmTime = null;
+classes_HTMLBackend.overhauling = null;
 classes_HTMLBackend.create = function() {
-	classes_HTMLBackend.doc.body.style.overflowY = "scroll";
-	classes_HTMLBackend.croshet = flixel_math_FlxMath.roundDecimal(60 / JSON.parse(window.localStorage.getItem("metadata")).music.bpm,4);
-	if(flixel_FlxG.html5.onMobile) {
-		var mobileHTTP = new haxe_http_HttpJs("bulkAssets/tweenPort.css");
-		mobileHTTP.onData = function(css) {
-			classes_HTMLBackend.CSS.textContent = css;
-		};
-		mobileHTTP.onError = function(sigh) {
-			window.alert("CSS loading failed... | \n" + sigh);
-		};
-		mobileHTTP.request(false);
-	} else {
-		classes_HTMLBackend.CSS.textContent = openfl_utils_Assets.getText("bulkAssets/tweenPort.css");
-	}
-	classes_HTMLBackend.doc.head.appendChild(classes_HTMLBackend.CSS);
-	classes_HTMLBackend.soundHandler = new Audio();
-	var header = classes_HTMLBackend.doc.createElement("div");
-	header.className = "switch";
-	header.classList.add("header");
-	classes_HTMLBackend.doc.body.appendChild(header);
-	var Settings = classes_HTMLBackend.doc.createElement("div");
-	var SettingsIcon = classes_HTMLBackend.doc.createElement("img");
-	var no = classes_HTMLBackend.doc.createElement("img");
-	no.classList.toggle("inactive");
-	no.src = "bulkAssets/ui/nO.png";
-	no.style.position = "absolute";
-	no.style.bottom = "0px";
-	no.style.setProperty("scale","116%");
-	SettingsIcon.src = "bulkAssets/navIcons/Settings.png";
-	SettingsIcon.style.position = "absolute";
-	SettingsIcon.style.setProperty("scale","70%");
-	SettingsIcon.style.right = "-75px";
-	SettingsIcon.style.bottom = "-22px";
-	Settings.id = "tempSettings";
-	Settings.title = "Show/Hide Headers";
-	Settings.onclick = function() {
-		header.classList.toggle("switch");
-		classes_HTMLBackend.tableheaders.classList.toggle("tableSwitch");
-		no.classList.toggle("inactive");
+	classes_HTMLBackend.overhauling = classes_HTMLBackend.doc.createElement("h1");
+	classes_HTMLBackend.overhauling.textContent = "be back soon...";
+	classes_HTMLBackend.overhauling.style.fontFamily = "'PhantomMuff 1.5'";
+	classes_HTMLBackend.overhauling.style.color = "rgba(155, 75, 198, 0.5)";
+	classes_HTMLBackend.overhauling.style.opacity = "0";
+	classes_HTMLBackend.overhauling.style.textAlign = "center";
+	classes_HTMLBackend.overhauling.style.fontSize = "45px";
+	classes_HTMLBackend.overhauling.style.position = "relative";
+	classes_HTMLBackend.overhauling.style.top = "23%";
+	classes_HTMLBackend.overhauling.onclick = function() {
+		window.alert("Full overhaul in progress. See you soon...");
 	};
-	Settings.onmouseenter = function() {
-		return Settings.style.transform = "scale(110%)";
-	};
-	Settings.onmousedown = function() {
-		Settings.style.transform = "scale(85%)";
-		classes_HTMLBackend.soundHandler.src = "bulkAssets/clickIn.ogg";
-		return classes_HTMLBackend.soundHandler.play();
-	};
-	Settings.onmouseup = function() {
-		Settings.style.transform = "scale(110%)";
-		classes_HTMLBackend.soundHandler.src = "bulkAssets/clickOut.ogg";
-		return classes_HTMLBackend.soundHandler.play();
-	};
-	Settings.appendChild(SettingsIcon);
-	Settings.appendChild(no);
-	var MAIN_DIV = classes_HTMLBackend.doc.createElement("div");
-	MAIN_DIV.style.zIndex = "2";
-	classes_HTMLBackend.doc.body.appendChild(MAIN_DIV);
-	MAIN_DIV.appendChild(Settings);
-	classes_HTMLBackend.BackdropDiv = classes_HTMLBackend.doc.createElement("div");
-	classes_HTMLBackend.BackdropDiv.style.height = "1000px";
-	classes_HTMLBackend.BackdropDiv.id = "background";
-	var imageRedir = classes_HTMLBackend.doc.createElement("a");
-	imageRedir.href = "https://github.com/potatex2/haxecord-bio";
-	imageRedir.target = "_blank";
-	imageRedir.title = "GitHub Repo";
-	imageRedir.style.position = "relative";
-	imageRedir.style.left = "90%";
-	imageRedir.style.top = "89%";
-	var testt = classes_HTMLBackend.doc.createElement("img");
-	testt.src = "bulkAssets/siteRepo.png";
-	testt.className = "github";
-	testt.style.position = "relative";
-	imageRedir.appendChild(testt);
-	classes_HTMLBackend.BackdropDiv.appendChild(imageRedir);
-	classes_HTMLBackend.TweenManager.num(0,0.7,300,{ ease : flixel_tweens_FlxEase.sineInOut},function(val) {
-		classes_HTMLBackend.BackdropDiv.style.opacity = val == null ? "null" : "" + val;
-	});
-	MAIN_DIV.appendChild(classes_HTMLBackend.BackdropDiv);
-	classes_HTMLBackend.beBackSoon = classes_HTMLBackend.doc.createElement("h1");
-	classes_HTMLBackend.beBackSoon.textContent = "be back soon...";
-	classes_HTMLBackend.beBackSoon.style.fontFamily = "'PhantomMuff 1.5'";
-	classes_HTMLBackend.beBackSoon.style.color = "#FFD95D";
-	classes_HTMLBackend.beBackSoon.style.textShadow = "3px 3px 2px #FFAA00";
-	classes_HTMLBackend.beBackSoon.style.textAlign = "center";
-	classes_HTMLBackend.beBackSoon.style.fontSize = "45px";
-	classes_HTMLBackend.beBackSoon.style.top = "50px";
-	classes_HTMLBackend.beBackSoon.className = "textBop";
-	classes_HTMLBackend.BackdropDiv.appendChild(classes_HTMLBackend.beBackSoon);
-	var notice = classes_HTMLBackend.doc.createElement("h3");
-	notice.className = "commonText";
-	notice.textContent = "OVERHAUL IN PROGRESS.\r\n        \r\n        - PotateX2";
-	notice.style.color = "#5CDEFF";
-	notice.style.textShadow = "3px 3px 2px #3C66FC";
-	notice.style.fontSize = "25px";
-	notice.style.whiteSpace = "pre-line";
-	notice.style.top = "100px";
-	classes_HTMLBackend.BackdropDiv.appendChild(notice);
-	var database = new haxe_http_HttpJs("https://webstatus-backend-zyh8.onrender.com");
-	database.onData = function(data) {
-		notice.innerHTML = "OVERHAUL IN PROGRESS.\r\n\r\n        Database stuff for status loaded.\r\n\r\n        In the meantime, you're better off <a href='https://github.com/potatex2/lively-x-haxe'>checking PauseWallpaper.hx </a> out instead.\r\n        \r\n        - PotateX2\r\n        ";
-	};
-	classes_HTMLBackend.goober = classes_HTMLBackend.doc.createElement("img");
-	classes_HTMLBackend.goober.src = "bulkAssets/bozo.png";
-	classes_HTMLBackend.goober.style.position = "relative";
-	classes_HTMLBackend.goober.style.top = "400px";
-	classes_HTMLBackend.goober.style.left = "45%";
-	classes_HTMLBackend.goober.className = "persistBop";
-	classes_HTMLBackend.BackdropDiv.appendChild(classes_HTMLBackend.goober);
-	var filler = classes_HTMLBackend.doc.createElement("div");
-	filler.id = "misc";
-	filler.style.display = "grid";
-	filler.style.background = "linear-gradient(#000000, #002C3D)";
-	filler.style.position = "relative";
-	filler.style.height = "1px";
-	var MainDiv = classes_HTMLBackend.doc.createElement("div");
-	MainDiv.style.position = "relative";
-	MainDiv.style.background = "transparent";
-	MainDiv.style.height = "1px";
-	MainDiv.className = "active";
-	MainDiv.id = "Home";
-	MainDiv.style.boxSizing = "inherit";
-	filler.appendChild(MainDiv);
-	var BioDiv = classes_HTMLBackend.doc.createElement("div");
-	BioDiv.style.position = "absolute";
-	BioDiv.style.background = "transparent";
-	BioDiv.style.height = "1px";
-	BioDiv.className = "inactive";
-	BioDiv.id = "Bios";
-	BioDiv.style.boxSizing = "inherit";
-	BioDiv.style.justifySelf = "center";
-	filler.appendChild(BioDiv);
-	classes_HTMLBackend.TweenManager.num(1,1500,800,{ ease : flixel_tweens_FlxEase.sineInOut},function(val) {
-		filler.style.height = (val == null ? "null" : "" + val) + "px";
-		MainDiv.style.height = (val == null ? "null" : "" + val) + "px";
-		BioDiv.style.height = (val == null ? "null" : "" + val) + "px";
-	});
-	classes_HTMLBackend.tableheaders = classes_HTMLBackend.doc.createElement("table");
-	var tbody = classes_HTMLBackend.tableheaders.createTBody();
-	var row1 = classes_HTMLBackend.doc.createElement("tr");
-	row1.style.background = "linear-gradient(180deg, #e16aebd4, #408ed1d6)";
-	var data1 = row1.insertCell();
-	data1.style.width = "33%";
-	var homeHREF = classes_HTMLBackend.doc.createElement("a");
-	homeHREF.href = "#Home";
-	homeHREF.textContent = "Home";
-	homeHREF.onclick = function() {
-		MainDiv.className = "active";
-		return BioDiv.className = "inactive";
-	};
-	data1.appendChild(homeHREF);
-	var data2 = row1.insertCell();
-	data2.style.width = "33%";
-	var BioHREF = classes_HTMLBackend.doc.createElement("a");
-	BioHREF.href = "#Bios";
-	BioHREF.textContent = "Bios";
-	BioHREF.onclick = function() {
-		MainDiv.className = "inactive";
-		return BioDiv.className = "active";
-	};
-	data2.appendChild(BioHREF);
-	var data3 = row1.insertCell();
-	data3.style.width = "33%";
-	data3.innerHTML = "More soon...";
-	tbody.appendChild(row1);
-	classes_HTMLBackend.tableheaders.appendChild(tbody);
-	header.appendChild(classes_HTMLBackend.tableheaders);
-	classes_HTMLBackend.tableheaders.className = "tableheaders";
-	classes_HTMLBackend.tableheaders.classList.add("tableSwitch");
-	var p = classes_HTMLBackend.doc.createElement("p");
-	p.className = "commonText";
-	p.id = "initialNotice";
-	p.textContent = "More elements will be added soon™️. Keep waiting.";
-	p.onclick = function() {
-		var tmp = flixel_FlxG.html5.onMobile ? "Soon™️..." : "No, there aren't any secrets yet. You'll have to wait some more...";
-		window.alert(tmp);
-	};
-	p.title = "Still no secrets... or are there? :)";
-	p.style.display = "flex";
-	p.style.justifyContent = "center";
-	p.style.top = "10%";
-	MainDiv.appendChild(p);
-	var statusContent = classes_HTMLBackend.doc.createElement("p");
-	statusContent.className = "commonText";
-	statusContent.id = "statusContent";
-	statusContent.textContent = "placeholder";
-	var updateStatus = classes_HTMLBackend.doc.createElement("button");
-	updateStatus.type = "button";
-	updateStatus.style.position = "relative";
-	updateStatus.style.top = "25%";
-	updateStatus.style.justifySelf = "center";
-	updateStatus.style.backgroundColor = "transparent";
-	updateStatus.style.display = "flex";
-	updateStatus.onclick = function() {
-		statusContent.textContent = "Status requests are currently in development with the backend overhaul. Check back later.";
-	};
-	var updateStatus_Button = classes_HTMLBackend.doc.createElement("img");
-	updateStatus_Button.src = "bulkAssets/reload.png";
-	updateStatus_Button.style.top = "20%";
-	updateStatus_Button.style.display = "flex";
-	updateStatus.appendChild(updateStatus_Button);
-	MainDiv.appendChild(updateStatus);
-	MainDiv.appendChild(statusContent);
-	var otherGoober = classes_HTMLBackend.doc.createElement("p");
-	otherGoober.className = "commonText";
-	otherGoober.id = "credit";
-	otherGoober.title = "HaxeFlixel is peak.";
-	otherGoober.innerHTML = "Created by " + ("<span style=\"color:#" + "48ff00" + ";\">" + "PotateX2" + "</span>") + " with <a target ='_blank' href='https://haxeflixel.com'>" + ("<span style=\"color:#" + "fffb00" + ";\">" + "Ha" + "</span>") + ("<span style=\"color:#" + "ad00fd" + ";\">" + "xe" + "</span>") + ("<span style=\"color:#" + "00fd00" + ";\">" + "Fl" + "</span>") + ("<span style=\"color:#" + "00eeff" + ";\">" + "ix" + "</span>") + ("<span style=\"color:#" + "fa088d" + ";\">" + "el" + "</span>") + "</a>";
-	otherGoober.style.color = "#0084ff";
-	otherGoober.style.position = "absolute";
-	otherGoober.style.bottom = "10px";
-	otherGoober.style.left = "50%";
-	otherGoober.style.textShadow = "black 2px 2px 3px";
-	MainDiv.appendChild(otherGoober);
-	classes_HTMLBackend.doc.body.style.setProperty("--crochetCalc",Std.string(classes_HTMLBackend.croshet) + "s");
-	haxe_Log.trace(classes_HTMLBackend.doc.body.style.getPropertyValue("--crochetCalc"),{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 344, className : "classes.HTMLBackend", methodName : "create"});
-	classes_HTMLBackend.TweenManager.num(150,100,600,{ ease : flixel_tweens_FlxEase.sineOut},function(val) {
-		notice.style.top = (val == null ? "null" : "" + val) + "px";
-		classes_HTMLBackend.goober.style.top = Std.string(val + 200) + "px";
-	});
-	MAIN_DIV.appendChild(filler);
-	classes_HTMLBackend.bgMusic = new Audio("bulkAssets/pause.ogg");
-	classes_HTMLBackend.bgMusic.loop = true;
-	classes_HTMLBackend.bgMusic.autoplay = true;
-	classes_HTMLBackend.bgMusic.preload = "auto";
-	classes_HTMLBackend.bgMusic.addEventListener("loadeddata",function() {
-		if(classes_HTMLBackend.bgMusic.readyState >= 4) {
-			classes_HTMLBackend.bgMusic.play();
-			classes_HTMLBackend.bgMusic.volume = 0.6;
-		}
-	});
-	var bio_placeholder = classes_HTMLBackend.doc.createElement("p");
-	bio_placeholder.className = "commonText";
-	bio_placeholder.innerHTML = "" + ("<span style=\"color:#" + "ff7b00" + ";\">" + "Not yet." + "</span>") + " Check back here later.";
-	bio_placeholder.style.textAlign = "center";
-	bio_placeholder.style.color = "#bdbdbd";
-	bio_placeholder.style.position = "relative";
-	bio_placeholder.style.top = "20%";
-	if(!flixel_FlxG.html5.onMobile) {
-		bio_placeholder.style.left = "50px";
-	}
-	var fish = classes_HTMLBackend.doc.createElement("img");
-	fish.src = "bulkAssets/fish.gif";
-	fish.style.position = "relative";
-	fish.style.alignSelf = "center";
-	fish.style.top = "16%";
-	fish.onclick = function() {
-		window.alert("you know what that means");
-	};
-	BioDiv.appendChild(fish);
-	BioDiv.appendChild(bio_placeholder);
+	classes_HTMLBackend.overhauling.className = "textBop";
+	window.document.body.appendChild(classes_HTMLBackend.overhauling);
 };
 classes_HTMLBackend.update = function(elapsed) {
-	if(states_HtmlSplashPort.jobDone) {
-		classes_HTMLBackend.musicElapsed = flixel_math_FlxMath.roundDecimal(classes_HTMLBackend.bgMusic.currentTime,5);
-		classes_HTMLBackend.daBeat = classes_HTMLBackend.musicElapsed / classes_HTMLBackend.croshet | 0;
-		classes_HTMLBackend.x += 0.5;
-		classes_HTMLBackend.y += 0.25;
-		classes_HTMLBackend.BackdropDiv.style.backgroundPositionX = classes_HTMLBackend.x + "px";
-		classes_HTMLBackend.BackdropDiv.style.backgroundPositionY = classes_HTMLBackend.y + "px";
-		if(classes_HTMLBackend.musicElapsed % classes_HTMLBackend.croshet >= 0 && classes_HTMLBackend.musicElapsed % classes_HTMLBackend.croshet <= 0.05 && classes_HTMLBackend.cd) {
-			classes_HTMLBackend.cd = false;
-			classes_HTMLBackend.camBeat++;
-			classes_HTMLBackend.beBackSoon.className = classes_HTMLBackend.daBeat % 2 == 0 ? "" : "textBop";
-			if(classes_HTMLBackend.camBeat % 4 == 0) {
-				classes_HTMLBackend.goober.animate([{ translate : "0 -20px"},{ translate : "0 0px"}],{ duration : classes_HTMLBackend.croshet * 498, iterations : 2, direction : "alternate-reverse", easing : "cubic-bezier(0.60, 0.04, 0.98, 0.335)"});
-				classes_HTMLBackend.goober.animate([{ scale : 1.15},{ scale : 1}],{ duration : classes_HTMLBackend.croshet * 1250, iterations : 1, easing : "cubic-bezier(0,.5,0,1)"});
-			}
-		}
-		haxe_Timer.delay(function() {
-			classes_HTMLBackend.cd = true;
-		},classes_HTMLBackend.croshet * 950 | 0);
-	}
+	return;
 };
 classes_HTMLBackend.fish = function(text,color) {
 	return "<span style=\"color:#" + color + ";\">" + text + "</span>";
@@ -11651,7 +11392,7 @@ classes_HTMLBackend.loadAndCache = function(name,url,async) {
 		window.localStorage.setItem(name,raw);
 	};
 	http.onError = function(err) {
-		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 442, className : "classes.HTMLBackend", methodName : "loadAndCache"});
+		haxe_Log.trace("Failed to fetch " + url + " | " + err,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 462, className : "classes.HTMLBackend", methodName : "loadAndCache"});
 	};
 	http.request(async);
 };
@@ -11687,7 +11428,7 @@ classes_HTMLBackend.getDatabaseContent = function(link) {
 				while(_g < _g1.length) {
 					var field = _g1[_g];
 					++_g;
-					haxe_Log.trace("setting" + field,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 493, className : "classes.HTMLBackend", methodName : "getDatabaseContent"});
+					haxe_Log.trace("setting" + field,{ fileName : "source/classes/HTMLBackend.hx", lineNumber : 513, className : "classes.HTMLBackend", methodName : "getDatabaseContent"});
 					out[field] = Reflect.field(parsed,field);
 				}
 				resolve(out);
@@ -11706,7 +11447,6 @@ classes_HTMLBackend.getDatabaseContent = function(link) {
 };
 var classes_Memory = function() {
 	classes_Memory.instance = window.document.createElement("p");
-	classes_Memory.instance.textContent = "FPS: ";
 	classes_Memory.instance.style.position = "fixed";
 	classes_Memory.instance.style.top = "-10px";
 	classes_Memory.instance.style.left = "5px";
@@ -89300,7 +89040,7 @@ var lime_utils_AssetCache = function() {
 	this.audio = new haxe_ds_StringMap();
 	this.font = new haxe_ds_StringMap();
 	this.image = new haxe_ds_StringMap();
-	this.version = 586434;
+	this.version = 260357;
 };
 $hxClasses["lime.utils.AssetCache"] = lime_utils_AssetCache;
 lime_utils_AssetCache.__name__ = "lime.utils.AssetCache";
@@ -140816,7 +140556,7 @@ states_HtmlSplashPort.init = function() {
 		states_HtmlSplashPort.canvasHandler.style.backgroundColor = "rgba(0, 0, 0, 1)";
 		states_HtmlSplashPort.canvasHandler.appendChild(states_HtmlSplashPort.canvas);
 		states_HtmlSplashPort.canvasHandler.style.position = "absolute";
-		states_HtmlSplashPort.initialOffset = { x : states_HtmlSplashPort.canvas.width * 0.4, y : states_HtmlSplashPort.canvas.height / 2};
+		states_HtmlSplashPort.initialOffset = { x : states_HtmlSplashPort.canvas.width * 0.35, y : states_HtmlSplashPort.canvas.height / 2};
 		states_HtmlSplashPort.drawer = states_HtmlSplashPort.canvas.getContext("2d",null);
 		states_HtmlSplashPort.selfInsert();
 	});
@@ -140900,9 +140640,10 @@ states_HtmlSplashPort.drawBlue = function() {
 	states_HtmlSplashPort.drawer.closePath();
 	states_HtmlSplashPort.drawer.fill();
 	window.console.log("           in");
+	states_HtmlSplashPort.complete();
 };
 states_HtmlSplashPort.drawLightBlue = function() {
-	states_HtmlSplashPort.drawer.drawImage(states_HtmlSplashPort.silly,states_HtmlSplashPort.initialOffset.x + 200,states_HtmlSplashPort.initialOffset.y - 74);
+	states_HtmlSplashPort.drawer.drawImage(states_HtmlSplashPort.silly,states_HtmlSplashPort.canvas.width * 0.6,states_HtmlSplashPort.initialOffset.y - 74);
 	states_HtmlSplashPort.drawer.fillStyle = states_HtmlSplashPort._colors[4];
 	states_HtmlSplashPort.drawer.fillText("HaxeFlixel",states_HtmlSplashPort.initialOffset.x - 63,states_HtmlSplashPort.initialOffset.y + 90);
 	states_HtmlSplashPort.drawer.beginPath();
@@ -140917,8 +140658,8 @@ states_HtmlSplashPort.drawLightBlue = function() {
 	window.console.log("             sert");
 	classes_HTMLBackend.TweenManager.num(100,0,575,{ ease : flixel_tweens_FlxEase.linear, onComplete : function(_) {
 		window.document.body.removeChild(states_HtmlSplashPort.canvasHandler);
-		states_HtmlSplashPort.complete();
 	}},function(result) {
+		classes_HTMLBackend.overhauling.style.opacity = Std.string(100 - (result | 0)) + "%";
 		states_HtmlSplashPort.canvas.style.opacity = Std.string(result | 0) + "%";
 	});
 };
@@ -140926,7 +140667,8 @@ states_HtmlSplashPort.complete = function() {
 	haxe_Timer.delay(function() {
 		states_HtmlSplashPort.jobDone = true;
 		classes_HTMLBackend.create();
-	},1000);
+	},10);
+	window.console.error("Took a bit of time working on the backend, so now I'm overhauling the frontend. Be back soon...");
 };
 function $getIterator(o) { if( o instanceof Array ) return new haxe_iterators_ArrayIterator(o); else return o.iterator(); }
 function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $global.$haxeUID++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = m.bind(o); o.hx__closures__[m.__id__] = f; } return f; }
