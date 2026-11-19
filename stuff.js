@@ -1,5 +1,4 @@
-import { Tween } from "../node_modules/gsap/gsap-core.js";
-import { gsap } from "../node_modules/gsap/index.js";
+const gsap = window.gsap;
 
 /**
  * @type HTMLCanvasElement
@@ -158,7 +157,7 @@ function endIntro() {
     beBackSoon.style.top = "55%";
 
     var what = gsap.timeline();
-    Tween.to(".homeIcon", {top: -15, left: 20, scale: 0.6, duration: 1.8, delay: 0.55, ease: "back.inOut", onComplete: () => {
+    gsap.to(".homeIcon", {top: -15, left: 20, scale: 0.6, duration: 1.8, delay: 0.55, ease: "back.inOut", onComplete: () => {
         silly.className = "homepage";
         imageclick.href = "localhost:3000/source/";
         silly.title = "this does nothing btw."
@@ -168,7 +167,7 @@ function endIntro() {
     //yo why is that lwk smooth wtf i cant even see the change
     what.to(".homeIcon", {rotation: 0, duration: 0.3, delay: 0.2, ease: "power1.inOut"});
 
-    Tween.to(".canvas", {opacity: 0, ease: "none", duration: 1.5, onComplete: () => {
+    gsap.to(".canvas", {opacity: 0, ease: "none", duration: 1.5, onComplete: () => {
         intro.remove();
         document.querySelector("html").style.overflow = "auto";
     }});
