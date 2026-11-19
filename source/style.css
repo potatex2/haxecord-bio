@@ -1,0 +1,58 @@
+/* fonts */
+@font-face {
+    font-family: flixelDefault;
+    src: url("bulkAssets/nokiafc22.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "PhantomMuff 1.5";
+    src: url("bulkAssets/PhantomMuff.ttf") format("truetype");
+}
+
+body {
+    height: 1000px;
+}
+
+p {
+    font-family: "PhantomMuff 1.5";
+    font-size: 36px;
+    text-align: center;
+}
+html {
+    background-color: black;
+    overflow: hidden;
+}
+.canvas {
+    background-color: rgba(0, 0, 0, 1);
+    top: -8px;
+    left: -8px;
+    position: relative;
+    z-index: 1;
+    display: block;
+}
+
+.backdrop {
+  background-image: url("bulkAssets/bgGoofy.png");
+  background-size: 64px 64px;
+  background-repeat: repeat;
+  animation: scroll-bg 3s linear infinite;
+}
+
+@keyframes scroll-bg {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    /* Must match background-size to avoid a visible jump */
+    background-position: 64px 64px; 
+  }
+}
+
+/* main elements */
+.homepage {
+    transform: scale(1.0);
+    transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.homepage:hover {
+    transform: scale(1.125);
+}
